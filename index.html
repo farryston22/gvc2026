@@ -514,7 +514,13 @@ footer{background:var(--midnight);border-top:1px solid var(--line);padding:52px 
       <div class="brk-body">${body}</div>`;
     ov.classList.add('open');document.body.style.overflow='hidden';
   }
-  function brkSetName(div,n,v){BRK_NAMES[div][n]=v.trim();BRK_MODE==='boys'?buildBoys():buildLadies();}
+  let brkNameSaveTimer=null;
+  function brkSetName(div,n,v){
+    BRK_NAMES[div][n]=v.trim();
+    BRK_MODE==='boys'?buildBoys():buildLadies();
+    clearTimeout(brkNameSaveTimer);
+    brkNameSaveTimer=setTimeout(()=>{ if(typeof gvcSet==='function') gvcSet('gvc2026','teamnames',BRK_NAMES); },600);
+  }
   function brkClose(){document.getElementById('brk-ov').classList.remove('open');document.body.style.overflow='';}
   document.addEventListener('keydown',e=>{if(e.key==='Escape')brkClose();});
 
@@ -815,7 +821,7 @@ body.kiosk .live-spotlight .tname{font-size:1.6rem}
     <p class="lead" style="max-width:680px;margin-top:14px">Follow every match as it happens on Sunday 30 August. Winners advance straight into the bracket below — no refresh needed.</p>
     <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:10px">
       <span class="live-status" id="live-conn"><span class="dot"></span><span id="live-conn-txt">Connecting…</span></span>
-      <a class="btn btn-ghost" id="live-fullscreen-link" href="?display=1#live" target="_blank" style="padding:8px 16px;font-size:.72rem">Open big-screen display ↗</a>
+      <a class="btn btn-ghost" id="live-fullscreen-link" href="led-wall.html" target="_blank" style="padding:8px 16px;font-size:.72rem">Open LED wall display ↗</a>
     </div>
   </div></section>
 
@@ -926,6 +932,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     document.getElementById("live-conn").classList.toggle("on",!GVC_OFFLINE);
     initSponsorsAdmin();
     watchSponsors();
+    watchTeamNames();
     liveInit();
   });
   if(location.search.indexOf("display=1")>=0){document.body.classList.add("kiosk");}
@@ -1230,6 +1237,7 @@ function liveEndMatch(id){
   if(st.scoreA===st.scoreB){ alert("Scores are level — enter the result after extra time / penalties before ending the match."); return; }
   st.status="complete";
   st.winner=st.scoreA>st.scoreB?st.teamA:st.teamB;
+  st.endedAt=Date.now();
   const def=liveMatchDef(LIVE_COMP,id);
   if(def.feeds){
     const target=LIVE_STATE[LIVE_COMP][def.feeds.id];
@@ -1249,6 +1257,15 @@ function liveShowComp(comp){
 function liveInit(){
   gvcWatch("gvc2026","live",liveDefaultState(),data=>{
     LIVE_STATE=(data&&data.boys)?data:liveDefaultState();
+    liveRenderBoard();
+  });
+}
+function watchTeamNames(){
+  gvcWatch("gvc2026","teamnames",{boys:{},ladies:{}},data=>{
+    if(!data)return;
+    Object.assign(BRK_NAMES.boys,data.boys||{});
+    Object.assign(BRK_NAMES.ladies,data.ladies||{});
+    if(typeof buildBoys==="function"){buildBoys();buildLadies();}
     liveRenderBoard();
   });
 }
