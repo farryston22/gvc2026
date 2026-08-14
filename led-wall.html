@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>UK Goan Vendors Cup — LED Wall</title>
+<!--
+  DEDICATED LED WALL DISPLAY
+  Built for a 3m x 2m panel at P3.9 pixel pitch, which works out to
+  roughly 768 x 512 physical pixels (six 500mm P3.9 cabinets across,
+  four down). Set your display/output resolution to 768x512 (or an
+  exact multiple like 1536x1024) in the machine driving the wall,
+  then open this file in Chrome and press F11 for fullscreen kiosk.
+  This page is read-only — scores are entered from the main site's
+  Live Score admin page (index.html #admin=gvc-bunty-2026).
+-->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&display=swap');
+:root{
+  --pitch:#0c3b2e;--pitch-2:#0a3327;--midnight:#06231a;
+  --gold:#ecc24b;--gold-2:#d6a12f;--gold-soft:#f2d684;--terra:#d8623c;
+  --azulejo:#2f73b0;--cream:#fbf7ec;--live:#3ecf6e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--midnight);cursor:none}
+body{
+  font-family:'DM Sans',system-ui,sans-serif;color:var(--cream);
+  display:flex;flex-direction:column;
+  background:radial-gradient(120% 100% at 50% -10%, rgba(236,194,75,.14), transparent 55%),
+             linear-gradient(180deg,var(--pitch-2),var(--pitch) 55%,var(--midnight));
+}
+h1,h2,.anton{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.02em}
+.serif{font-family:'Fraunces',serif;font-style:italic}
+
+/* ===== top bar ===== */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:2.2vh 3vw 1vh;flex:0 0 auto}
+.brand{display:flex;align-items:center;gap:1.2vw}
+.crest{width:6vh;height:6vh;border-radius:50%;background:var(--gold);color:var(--midnight);display:grid;place-items:center;font-family:'Anton',sans-serif;font-size:2.6vh;flex:0 0 auto}
+.brand-txt .t1{font-family:'Anton',sans-serif;font-size:2.4vh;color:#fff;line-height:1}
+.brand-txt .t2{font-size:1.3vh;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-top:.3vh}
+.clock{font-family:'Anton',sans-serif;font-size:2.4vh;color:var(--gold-soft);letter-spacing:.03em}
+
+/* ===== main stage ===== */
+.stage{flex:1 1 auto;position:relative;display:flex;align-items:center;justify-content:center;padding:0 4vw}
+.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .5s ease;flex-direction:column;gap:1.5vh}
+.slide.on{opacity:1}
+
+/* live/next/result match layout */
+.round-tag{font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:1.8vh;color:var(--gold-soft)}
+.live-tag{display:inline-flex;align-items:center;gap:.8vh;font-family:'Anton',sans-serif;font-size:2.2vh;color:var(--live);letter-spacing:.06em}
+.live-tag .dot{width:1.6vh;height:1.6vh;border-radius:50%;background:var(--live);box-shadow:0 0 0 .6vh rgba(62,207,110,.25);animation:pulse 1.3s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.matchup{display:flex;align-items:center;justify-content:center;gap:5vw}
+.team{display:flex;flex-direction:column;align-items:center;gap:1.4vh;width:26vw}
+.shield{width:11vh;height:11vh;border-radius:50%;background:rgba(244,236,214,.09);border:.3vh solid var(--gold-2);display:grid;place-items:center;font-family:'Anton',sans-serif;font-size:4vh;color:var(--gold)}
+.tname{font-family:'Anton',sans-serif;font-size:3.4vh;text-align:center;line-height:1.05;color:#fff;max-width:26vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.score{font-family:'Anton',sans-serif;font-size:11vh;line-height:1;color:var(--gold)}
+.sep{font-family:'Anton',sans-serif;font-size:6vh;color:#9fb0a4}
+.vs-label{font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:1.6vh;color:#9fb0a4}
+.result-tag{font-family:'Anton',sans-serif;font-size:2.2vh;color:var(--gold-soft);letter-spacing:.06em}
+
+/* branding slide */
+.brand-slide{text-align:center}
+.brand-slide .big{font-family:'Anton',sans-serif;font-size:6.5vh;color:#fff;line-height:1}
+.brand-slide .big .accent{color:var(--gold)}
+.brand-slide .sub{font-size:2vh;color:var(--gold-soft);font-family:'Fraunces';font-style:italic;margin-top:1.5vh}
+.brand-slide .meta{display:flex;gap:3vw;justify-content:center;margin-top:3vh}
+.brand-slide .meta div{font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:1.5vh;color:#cdd6cd}
+.brand-slide .meta b{display:block;font-family:'Anton',sans-serif;font-size:2.4vh;color:var(--gold);letter-spacing:.03em;margin-top:.5vh}
+
+/* idle/no-data slide */
+.idle-slide{text-align:center;color:#9fb0a4}
+.idle-slide .anton{font-size:3vh;color:#fff}
+
+/* ===== bottom ticker ===== */
+.ticker-wrap{flex:0 0 auto;border-top:.2vh solid rgba(244,236,214,.18);background:rgba(6,35,26,.7);overflow:hidden;height:5.5vh;display:flex;align-items:center}
+.ticker-label{flex:0 0 auto;background:var(--gold);color:var(--midnight);font-family:'Anton',sans-serif;font-size:1.8vh;letter-spacing:.06em;padding:0 1.6vw;height:100%;display:flex;align-items:center;white-space:nowrap}
+.ticker-track{flex:1;overflow:hidden;position:relative;height:100%;display:flex;align-items:center}
+.ticker-move{display:inline-flex;gap:5vw;white-space:nowrap;animation:scroll 32s linear infinite;padding-left:100%;font-size:1.9vh;font-weight:600;color:var(--cream)}
+.ticker-move b{color:var(--gold-soft)}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+
+.offline-badge{position:fixed;top:1.2vh;right:1.4vw;font-size:1.2vh;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9fb0a4;background:rgba(244,236,214,.08);padding:.6vh 1vh;border-radius:1vh;z-index:10}
+</style>
+</head>
+<body>
+
+<div class="offline-badge" id="conn-badge">Connecting…</div>
+
+<div class="topbar">
+  <div class="brand">
+    <div class="crest">🏆</div>
+    <div class="brand-txt"><div class="t1">UK Goan Vendors Cup</div><div class="t2">2026 · Cranford Community College</div></div>
+  </div>
+  <div class="clock" id="clock">--:--</div>
+</div>
+
+<div class="stage" id="stage"></div>
+
+<div class="ticker-wrap">
+  <div class="ticker-label">Thank you to our sponsors</div>
+  <div class="ticker-track"><div class="ticker-move" id="ticker-move">Loading sponsors…</div></div>
+</div>
+
+<script>
+/* ============================================================
+   Shared data layer — same shape/keys as the main site, so this
+   page reads live scores, team names and sponsors set from there.
+   Paste your real Firebase config to enable cross-device sync.
+   ============================================================ */
+const FIREBASE_CONFIG = {
+  apiKey: "PASTE_YOUR_FIREBASE_API_KEY",
+  authDomain: "gvc2026-1528a.firebaseapp.com",
+  projectId: "gvc2026-1528a",
+  storageBucket: "gvc2026-1528a.appspot.com",
+  messagingSenderId: "PASTE_SENDER_ID",
+  appId: "PASTE_APP_ID"
+};
+let GVC_DB=null, GVC_OFFLINE=true;
+function gvcInit(cb){
+  if(!FIREBASE_CONFIG.apiKey || FIREBASE_CONFIG.apiKey.indexOf("PASTE")===0){ GVC_OFFLINE=true; cb(); return; }
+  const s1=document.createElement("script"); s1.src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js";
+  s1.onload=()=>{
+    const s2=document.createElement("script"); s2.src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js";
+    s2.onload=()=>{ firebase.initializeApp(FIREBASE_CONFIG); GVC_DB=firebase.firestore(); GVC_OFFLINE=false; cb(); };
+    s2.onerror=()=>{ GVC_OFFLINE=true; cb(); };
+    document.head.appendChild(s2);
+  };
+  s1.onerror=()=>{ GVC_OFFLINE=true; cb(); };
+  document.head.appendChild(s1);
+}
+function gvcWatch(col,doc,fallback,cb){
+  if(GVC_OFFLINE){
+    try{ const raw=localStorage.getItem("gvc_"+col+"_"+doc); cb(raw?JSON.parse(raw):fallback); }catch(e){ cb(fallback); }
+    window.addEventListener("storage",e=>{ if(e.key==="gvc_"+col+"_"+doc){ try{cb(JSON.parse(e.newValue));}catch(err){} } });
+    return;
+  }
+  GVC_DB.collection(col).doc(doc).onSnapshot(d=>{ cb(d.exists?d.data():fallback); },()=>cb(fallback));
+}
+
+/* ============================================================
+   Bracket structure — must mirror index.html exactly
+   ============================================================ */
+const MATCH_DEFS={
+  boys:[
+    {id:"A1",teamA:9,teamB:7,round:"Round 1"},{id:"A2",teamA:12,teamB:11,round:"Round 1"},
+    {id:"A3",teamA:3,teamB:4,round:"Round 1"},{id:"A4",teamA:6,teamB:null,round:"Round 1",bye:true},
+    {id:"AS1",round:"Semi-Final"},{id:"AS2",round:"Semi-Final"},{id:"AF",round:"Bracket A Final"},
+    {id:"B1",teamA:10,teamB:5,round:"Round 1"},{id:"B2",teamA:2,teamB:null,round:"Round 1",bye:true},
+    {id:"B3",teamA:8,teamB:13,round:"Round 1"},{id:"B4",teamA:14,teamB:1,round:"Round 1"},
+    {id:"BS1",round:"Semi-Final"},{id:"BS2",round:"Semi-Final"},{id:"BF",round:"Bracket B Final"},
+    {id:"GF",round:"Grand Final"}
+  ],
+  ladies:[
+    {id:"LA1",teamA:6,teamB:3,round:"Round 1"},{id:"LA2",teamA:1,teamB:2,round:"Round 1"},
+    {id:"LAF",round:"Side A Final"},
+    {id:"LB1",teamA:4,teamB:7,round:"Round 1"},{id:"LB2",teamA:8,teamB:5,round:"Round 1"},
+    {id:"LBF",round:"Side B Final"},{id:"LGF",round:"Grand Final"}
+  ]
+};
+
+let LIVE=null, NAMES={boys:{},ladies:{}}, SPONSORS=[];
+let slideIndex=0, currentSlides=[];
+
+function teamName(comp,n){
+  if(n==null)return "TBD";
+  const nm=(NAMES[comp]||{})[n];
+  return nm && nm.trim() ? nm : ("Team "+n);
+}
+function initials(comp,n){
+  const nm=teamName(comp,n);
+  if(nm.indexOf("Team ")===0) return "⚽";
+  return nm.replace(/[^A-Za-z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase()||"⚽";
+}
+
+function computeSlides(){
+  if(!LIVE) return [{type:"idle"}];
+  const slides=[];
+  ["boys","ladies"].forEach(comp=>{
+    MATCH_DEFS[comp].forEach(def=>{
+      if(def.bye) return;
+      const st=(LIVE[comp]||{})[def.id];
+      if(!st) return;
+      if(st.status==="live" && st.teamA!=null && st.teamB!=null){
+        slides.push({type:"live",comp,def,st});
+      }
+    });
+  });
+  if(slides.length===0){
+    // next scheduled match with both teams known
+    let next=null;
+    ["boys","ladies"].forEach(comp=>{
+      if(next)return;
+      MATCH_DEFS[comp].forEach(def=>{
+        if(next||def.bye)return;
+        const st=(LIVE[comp]||{})[def.id];
+        if(st && st.status==="scheduled" && st.teamA!=null && st.teamB!=null){ next={type:"next",comp,def,st}; }
+      });
+    });
+    if(next) slides.push(next);
+
+    // most recent completed result
+    let lastResult=null, lastTime=0;
+    ["boys","ladies"].forEach(comp=>{
+      MATCH_DEFS[comp].forEach(def=>{
+        if(def.bye)return;
+        const st=(LIVE[comp]||{})[def.id];
+        if(st && st.status==="complete" && st.endedAt && st.endedAt>lastTime){ lastTime=st.endedAt; lastResult={type:"result",comp,def,st}; }
+      });
+    });
+    if(lastResult) slides.push(lastResult);
+  }
+  slides.push({type:"brand"});
+  return slides.length?slides:[{type:"idle"}];
+}
+
+function slideHTML(s){
+  if(s.type==="idle"){
+    return `<div class="idle-slide"><div class="anton">UK Goan Vendors Cup 2026</div><div style="margin-top:1.5vh;font-size:2vh">Kick-off Sunday 30 August</div></div>`;
+  }
+  if(s.type==="brand"){
+    return `<div class="brand-slide">
+      <div class="big">One Community · <span class="accent">One Pitch</span> · One Goal</div>
+      <div class="sub">UK Goan Vendors Cup 2026</div>
+      <div class="meta">
+        <div>Date<b>Sun 30 Aug</b></div>
+        <div>Venue<b>Cranford Community College</b></div>
+        <div>Format<b>5-a-side</b></div>
+      </div>
+    </div>`;
+  }
+  const {comp,def,st}=s;
+  const aN=teamName(comp,st.teamA), bN=teamName(comp,st.teamB);
+  const aI=initials(comp,st.teamA), bI=initials(comp,st.teamB);
+  const tag = s.type==="live" ? `<div class="live-tag"><span class="dot"></span> LIVE NOW</div>`
+            : s.type==="next" ? `<div class="round-tag">Up Next</div>`
+            : `<div class="result-tag">FULL TIME</div>`;
+  return `<div style="display:flex;flex-direction:column;align-items:center;gap:1.6vh">
+    <div class="round-tag">${comp==="boys"?"Men's":"Ladies"} · ${def.round}</div>
+    ${tag}
+    <div class="matchup">
+      <div class="team"><div class="shield">${aI}</div><div class="tname">${aN}</div></div>
+      <div class="score">${st.scoreA}</div>
+      <div class="sep">–</div>
+      <div class="score">${st.scoreB}</div>
+      <div class="team"><div class="shield">${bI}</div><div class="tname">${bN}</div></div>
+    </div>
+  </div>`;
+}
+
+function renderStage(){
+  currentSlides=computeSlides();
+  if(slideIndex>=currentSlides.length) slideIndex=0;
+  const stage=document.getElementById("stage");
+  stage.innerHTML=currentSlides.map((s,i)=>`<div class="slide${i===slideIndex?' on':''}">${slideHTML(s)}</div>`).join("");
+}
+function advanceSlide(){
+  slideIndex=(slideIndex+1)%Math.max(currentSlides.length,1);
+  renderStage();
+}
+function renderTicker(){
+  const mount=document.getElementById("ticker-move");
+  if(!SPONSORS.length){ mount.innerHTML="Sponsor this tournament — see goanvendors.uk/#sponsors"; return; }
+  mount.innerHTML=SPONSORS.map(s=>`<span><b>${s.name}</b> — ${s.desc}</span>`).join("<span>·</span>");
+}
+function tickClock(){
+  const d=new Date();
+  document.getElementById("clock").textContent=d.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
+}
+
+gvcInit(()=>{
+  document.getElementById("conn-badge").textContent=GVC_OFFLINE?"PREVIEW MODE (LOCAL ONLY)":"LIVE";
+  document.getElementById("conn-badge").style.color=GVC_OFFLINE?"#9fb0a4":"#3ecf6e";
+  gvcWatch("gvc2026","live",null,data=>{ LIVE=data; renderStage(); });
+  gvcWatch("gvc2026","teamnames",{boys:{},ladies:{}},data=>{ NAMES=data||{boys:{},ladies:{}}; renderStage(); });
+  gvcWatch("gvc2026","sponsors",{list:[]},data=>{ SPONSORS=(data&&data.list)||[]; renderTicker(); });
+  setInterval(advanceSlide,8000);
+  setInterval(tickClock,1000);
+  tickClock();
+});
+</script>
+</body>
+</html>
