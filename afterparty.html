@@ -65,6 +65,7 @@ footer{text-align:center;margin-top:36px;color:#8fa196;font-size:.78rem}
 .admin-total span{font-size:.85rem;color:#cdd6cd;font-family:'DM Sans';text-transform:uppercase;letter-spacing:.08em;margin-left:8px}
 .rsvp-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(244,236,214,.04);border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin-bottom:8px}
 .rsvp-row .who{font-weight:700;color:#fff;font-size:.92rem}
+.rsvp-row .when{color:#9fb0a4;font-size:.76rem;margin-top:2px}
 .rsvp-row .pax{color:var(--gold-soft);font-size:.82rem;font-weight:700}
 .rsvp-row .rm{background:none;border:none;color:#9fb0a4;cursor:pointer;font-size:.85rem}
 .rsvp-row .rm:hover{color:var(--terra)}
@@ -204,6 +205,11 @@ document.getElementById("rsvp-submit").addEventListener("click",async ()=>{
   }
 });
 
+function fmtRsvpTime(ms){
+  if(!ms) return "";
+  const d=new Date(ms);
+  return d.toLocaleDateString("en-GB",{day:"numeric",month:"short"}) + " · " + d.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
+}
 function renderAdmin(){
   if(!isAdminSession())return;
   document.getElementById("admin-panel").style.display="block";
@@ -212,7 +218,7 @@ function renderAdmin(){
   const list=document.getElementById("admin-list");
   if(!RSVPS.length){ list.innerHTML='<p style="color:#9fb0a4;font-size:.88rem">No RSVPs yet.</p>'; return; }
   list.innerHTML = RSVPS.slice().sort((a,b)=>b.submittedAt-a.submittedAt).map(r=>
-    '<div class="rsvp-row"><div><div class="who">'+r.name+'</div></div><div style="display:flex;align-items:center;gap:14px"><span class="pax">'+r.pax+(r.pax===1?' guest':' guests')+'</span><button class="rm" onclick="removeRsvp(\''+r.id+'\')">✕</button></div></div>'
+    '<div class="rsvp-row"><div><div class="who">'+r.name+'</div><div class="when">'+fmtRsvpTime(r.submittedAt)+'</div></div><div style="display:flex;align-items:center;gap:14px"><span class="pax">'+r.pax+(r.pax===1?' guest':' guests')+'</span><button class="rm" onclick="removeRsvp(\''+r.id+'\')">✕</button></div></div>'
   ).join("");
 }
 function removeRsvp(id){
