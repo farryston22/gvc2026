@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>After Party — UK Goan Vendors Cup 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700&display=swap');
+:root{
+  --pitch:#0c3b2e;--pitch-2:#0a3327;--midnight:#06231a;
+  --gold:#ecc24b;--gold-2:#d6a12f;--gold-soft:#f2d684;--terra:#d8623c;
+  --azulejo:#2f73b0;--cream:#fbf7ec;--line:rgba(244,236,214,.14);--line-strong:rgba(244,236,214,.28);
+  --r:20px;--r-sm:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'DM Sans',system-ui,sans-serif;color:var(--cream);min-height:100vh;
+  background:radial-gradient(120% 60% at 50% -10%, rgba(236,194,75,.14), transparent 55%),
+             linear-gradient(180deg,var(--pitch-2),var(--pitch) 55%,var(--midnight));
+  display:flex;justify-content:center;padding:5vh 18px 60px;
+}
+h1,h2,.anton{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.02em}
+.serif{font-family:'Fraunces',serif;font-style:italic}
+.wrap{max-width:520px;width:100%}
+.badges{display:flex;align-items:center;justify-content:center;gap:18px;margin-bottom:22px}
+.badges img{border-radius:50%;box-shadow:0 10px 30px -8px rgba(0,0,0,.6)}
+.badge-tourney{width:104px;height:104px;object-fit:cover}
+.badge-venue{width:84px;height:84px;object-fit:cover;background:#fff;padding:6px}
+.eyebrow{text-align:center;font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:.75rem;color:var(--gold-soft);margin-bottom:8px}
+h1.title{text-align:center;font-size:clamp(2.4rem,9vw,3.4rem);color:#fff;line-height:1}
+.tagline{text-align:center;color:#cdd6cd;margin-top:12px;font-size:1.02rem;line-height:1.5}
+.details{display:flex;flex-direction:column;gap:10px;margin:26px 0 8px}
+.detail-row{display:flex;gap:12px;align-items:flex-start;background:rgba(244,236,214,.05);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px 16px}
+.detail-row .ico{font-size:1.3rem;flex:0 0 auto}
+.detail-row .lbl{font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.68rem;color:var(--gold-soft)}
+.detail-row .val{color:#fff;font-weight:600;margin-top:2px;font-size:.95rem}
+.detail-row a{color:var(--gold-soft);text-decoration:underline;font-size:.82rem}
+.panel{background:rgba(244,236,214,.045);border:1px solid var(--line);border-radius:var(--r);padding:26px 24px;margin-top:26px}
+.panel h2{color:#fff;font-size:1.4rem;text-align:center;margin-bottom:4px}
+.panel .sub{text-align:center;color:#cdd6cd;font-size:.86rem;margin-bottom:20px}
+.field{margin-bottom:16px}
+.field label{display:block;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.7rem;color:var(--gold-soft);margin-bottom:7px}
+.field input{width:100%;padding:13px 14px;border-radius:10px;border:1px solid var(--line-strong);background:rgba(6,35,26,.5);color:#fff;font-size:1rem;font-family:inherit}
+.field input:focus{outline:none;border-color:var(--gold)}
+.pax-row{display:flex;align-items:center;gap:14px}
+.pax-btn{width:44px;height:44px;border-radius:10px;border:1px solid var(--line-strong);background:rgba(244,236,214,.06);color:#fff;font-size:1.3rem;font-weight:700;cursor:pointer;flex:0 0 auto}
+.pax-btn:hover{border-color:var(--gold);color:var(--gold)}
+.pax-num{font-family:'Anton';font-size:2rem;color:var(--gold);min-width:44px;text-align:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px;border-radius:999px;border:none;font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:.85rem;cursor:pointer;font-family:'DM Sans',sans-serif}
+.btn-gold{background:linear-gradient(180deg,var(--gold),var(--gold-2));color:var(--midnight)}
+.btn-gold:hover{filter:brightness(1.06)}
+.btn-gold:disabled{opacity:.5;cursor:not-allowed}
+.err{color:var(--terra);font-size:.85rem;margin-top:10px;text-align:center;display:none}
+.confirm{text-align:center;padding:10px 0}
+.confirm .tick{font-size:3rem;margin-bottom:10px}
+.confirm h2{color:#fff}
+.confirm .sub{margin-top:8px}
+.confirm .count{margin-top:18px;background:rgba(236,194,75,.1);border-radius:999px;display:inline-block;padding:8px 20px;font-family:'Anton';color:var(--gold-soft);font-size:.9rem;letter-spacing:.04em}
+footer{text-align:center;margin-top:36px;color:#8fa196;font-size:.78rem}
+
+/* admin */
+.admin-panel{margin-top:34px;border-top:1px dashed var(--line-strong);padding-top:26px}
+.admin-panel h3{color:#fff;font-size:1.1rem;margin-bottom:4px}
+.admin-total{font-family:'Anton';font-size:2rem;color:var(--gold);margin:10px 0 18px}
+.admin-total span{font-size:.85rem;color:#cdd6cd;font-family:'DM Sans';text-transform:uppercase;letter-spacing:.08em;margin-left:8px}
+.rsvp-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(244,236,214,.04);border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin-bottom:8px}
+.rsvp-row .who{font-weight:700;color:#fff;font-size:.92rem}
+.rsvp-row .when{color:#9fb0a4;font-size:.76rem;margin-top:2px}
+.rsvp-row .pax{color:var(--gold-soft);font-size:.82rem;font-weight:700}
+.rsvp-row .rm{background:none;border:none;color:#9fb0a4;cursor:pointer;font-size:.85rem}
+.rsvp-row .rm:hover{color:var(--terra)}
+.admin-gate{max-width:340px;margin:60px auto;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="badges">
+    <img class="badge-tourney" src="images/afterparty-badge.png" alt="UK Goan Vendors Cup">
+    <img class="badge-venue" src="images/dandelions.png" alt="The Dandelions">
+  </div>
+
+  <p class="eyebrow">You're invited</p>
+  <h1 class="title">The After Party</h1>
+  <p class="tagline">Once the final whistle blows on the UK Goan Vendors Cup, we're carrying on at <strong style="color:#fff">The Dandelions</strong>.</p>
+
+  <div class="details">
+    <div class="detail-row"><span class="ico">📅</span><div><div class="lbl">Date</div><div class="val">Sunday 30 August 2026 — straight after the Cup</div></div></div>
+    <div class="detail-row"><span class="ico">📍</span><div><div class="lbl">Venue</div><div class="val">The Dandelions</div><div style="color:#cdd6cd;font-size:.86rem;margin-top:2px">69 Whitton Rd, Hounslow TW3 2DG</div><a href="https://www.google.com/maps/search/?api=1&query=69+Whitton+Rd%2C+Hounslow+TW3+2DG" target="_blank" rel="noopener">Get directions ↗</a></div></div>
+  </div>
+
+  <div class="panel" id="rsvp-panel">
+    <h2>RSVP</h2>
+    <p class="sub">Takes 10 seconds — no account needed.</p>
+    <div id="rsvp-form">
+      <div class="field"><label for="r-name">Your name</label><input id="r-name" type="text" placeholder="e.g. Rizwan Fernandes" autocomplete="name"></div>
+      <div class="field"><label>Adults, including you</label>
+        <div class="pax-row">
+          <button class="pax-btn" type="button" id="pax-minus">−</button>
+          <div class="pax-num" id="pax-num">1</div>
+          <button class="pax-btn" type="button" id="pax-plus">+</button>
+        </div>
+      </div>
+      <div class="field"><label>Children under 7</label>
+        <div class="pax-row">
+          <button class="pax-btn" type="button" id="kids-minus">−</button>
+          <div class="pax-num" id="kids-num">0</div>
+          <button class="pax-btn" type="button" id="kids-plus">+</button>
+        </div>
+      </div>
+      <button class="btn btn-gold" id="rsvp-submit">Count me in 🎉</button>
+      <p class="err" id="rsvp-err"></p>
+    </div>
+    <div class="confirm" id="rsvp-confirm" style="display:none">
+      <div class="tick">🎉</div>
+      <h2>You're on the list!</h2>
+      <p class="sub">See you at The Dandelions after the final whistle.</p>
+      <div class="count" id="confirm-count"></div>
+    </div>
+  </div>
+
+  <div class="admin-gate" id="admin-gate" style="display:none">
+    <p class="eyebrow">Admin access</p><h2 style="color:#fff">Enter the admin code</h2>
+    <div class="field" style="margin-top:14px"><input id="admin-pass" type="password" placeholder="Admin code"></div>
+    <button class="btn btn-gold" id="admin-submit">Unlock</button>
+    <p class="err" id="admin-err">Incorrect code.</p>
+  </div>
+
+  <div class="admin-panel" id="admin-panel" style="display:none">
+    <h3>RSVPs so far</h3>
+    <div class="admin-total" id="admin-total">0 <span>guests confirmed</span></div>
+    <div id="admin-list"></div>
+  </div>
+
+  <footer>UK Goan Vendors Cup 2026 · Organised by Bunty, Brendon, Jonathan, Swiston &amp; Farryston</footer>
+</div>
+
+<script>
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBMssuO4ja3-jMAaghe0nnp40juHMoJXek",
+  authDomain: "gvc2026-1528a.firebaseapp.com",
+  projectId: "gvc2026-1528a",
+  storageBucket: "gvc2026-1528a.firebasestorage.app",
+  messagingSenderId: "456392981820",
+  appId: "1:456392981820:web:5b1e315780414b21f7f239"
+};
+const ADMIN_CODE = "gvc-bunty-2026";
+let GVC_DB=null, GVC_OFFLINE=true;
+function gvcInit(cb){
+  if(!FIREBASE_CONFIG.apiKey || FIREBASE_CONFIG.apiKey.indexOf("PASTE")===0){ GVC_OFFLINE=true; cb(); return; }
+  const s1=document.createElement("script"); s1.src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js";
+  s1.onload=()=>{
+    const s2=document.createElement("script"); s2.src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js";
+    s2.onload=()=>{ firebase.initializeApp(FIREBASE_CONFIG); GVC_DB=firebase.firestore(); GVC_OFFLINE=false; cb(); };
+    s2.onerror=()=>{ GVC_OFFLINE=true; cb(); };
+    document.head.appendChild(s2);
+  };
+  s1.onerror=()=>{ GVC_OFFLINE=true; cb(); };
+  document.head.appendChild(s1);
+}
+function gvcGet(col,doc,fallback){
+  return new Promise(res=>{
+    if(GVC_OFFLINE){ try{ const raw=localStorage.getItem("gvc_"+col+"_"+doc); res(raw?JSON.parse(raw):fallback);}catch(e){res(fallback);} return; }
+    GVC_DB.collection(col).doc(doc).get().then(d=>res(d.exists?d.data():fallback)).catch(()=>res(fallback));
+  });
+}
+function gvcSet(col,doc,data){
+  if(GVC_OFFLINE){ localStorage.setItem("gvc_"+col+"_"+doc, JSON.stringify(data)); return Promise.resolve(); }
+  return GVC_DB.collection(col).doc(doc).set(data,{merge:false});
+}
+function gvcWatch(col,doc,fallback,cb){
+  if(GVC_OFFLINE){
+    gvcGet(col,doc,fallback).then(cb);
+    window.addEventListener("storage",e=>{ if(e.key==="gvc_"+col+"_"+doc){ try{cb(JSON.parse(e.newValue));}catch(err){} } });
+    return;
+  }
+  GVC_DB.collection(col).doc(doc).onSnapshot(d=>{ cb(d.exists?d.data():fallback); },()=>cb(fallback));
+}
+
+let RSVPS=[];
+let pax=1;
+let kids=0;
+function isAdminSession(){ return sessionStorage.getItem("gvc_admin")==="1"; }
+
+document.getElementById("pax-minus").addEventListener("click",()=>{ pax=Math.max(1,pax-1); document.getElementById("pax-num").textContent=pax; });
+document.getElementById("pax-plus").addEventListener("click",()=>{ pax=Math.min(20,pax+1); document.getElementById("pax-num").textContent=pax; });
+document.getElementById("kids-minus").addEventListener("click",()=>{ kids=Math.max(0,kids-1); document.getElementById("kids-num").textContent=kids; });
+document.getElementById("kids-plus").addEventListener("click",()=>{ kids=Math.min(20,kids+1); document.getElementById("kids-num").textContent=kids; });
+
+document.getElementById("rsvp-submit").addEventListener("click",async ()=>{
+  const name=document.getElementById("r-name").value.trim();
+  const err=document.getElementById("rsvp-err");
+  if(!name){ err.textContent="Please enter your name."; err.style.display="block"; return; }
+  err.style.display="none";
+  const btn=document.getElementById("rsvp-submit");
+  btn.disabled=true; btn.textContent="Saving…";
+  const entry={id:"r"+Date.now(), name, pax, kids, submittedAt:Date.now()};
+  const attempted=RSVPS.concat([entry]);
+  try{
+    await Promise.race([
+      gvcSet("gvc2026","rsvp",{list:attempted}),
+      new Promise((_,reject)=>setTimeout(()=>reject(new Error("timeout")),10000))
+    ]);
+    RSVPS=attempted;
+    document.getElementById("rsvp-form").style.display="none";
+    document.getElementById("rsvp-confirm").style.display="block";
+    const parts=[pax+(pax===1?" adult":" adults")];
+    if(kids>0) parts.push(kids+(kids===1?" child":" children"));
+    document.getElementById("confirm-count").textContent = name + " · " + parts.join(", ");
+  }catch(e){
+    console.error("RSVP save failed:", e);
+    err.textContent = e && e.message==="timeout"
+      ? "This is taking too long — check your connection and try again."
+      : "Couldn't save your RSVP right now. Please try again in a moment.";
+    err.style.display="block";
+    btn.disabled=false; btn.textContent="Count me in 🎉";
+  }
+});
+
+function fmtRsvpTime(ms){
+  if(!ms) return "";
+  const d=new Date(ms);
+  return d.toLocaleDateString("en-GB",{day:"numeric",month:"short"}) + " · " + d.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
+}
+function renderAdmin(){
+  if(!isAdminSession())return;
+  document.getElementById("admin-panel").style.display="block";
+  const totalAdults=RSVPS.reduce((s,r)=>s+(r.pax||1),0);
+  const totalKids=RSVPS.reduce((s,r)=>s+(r.kids||0),0);
+  document.getElementById("admin-total").innerHTML = (totalAdults+totalKids) + ' <span>guests confirmed across ' + RSVPS.length + ' RSVPs</span><br><span style="font-family:\'DM Sans\';font-size:.8rem;font-weight:700;color:#cdd6cd;text-transform:none;letter-spacing:0">' + totalAdults + ' adults · ' + totalKids + ' children under 7</span>';
+  const list=document.getElementById("admin-list");
+  if(!RSVPS.length){ list.innerHTML='<p style="color:#9fb0a4;font-size:.88rem">No RSVPs yet.</p>'; return; }
+  list.innerHTML = RSVPS.slice().sort((a,b)=>b.submittedAt-a.submittedAt).map(r=>{
+    const adultsCount=r.pax||1;
+    const kidsCount=r.kids||0;
+    const paxLabel = adultsCount+(adultsCount===1?' adult':' adults') + (kidsCount>0 ? (' · '+kidsCount+(kidsCount===1?' child':' children')) : '');
+    return '<div class="rsvp-row"><div><div class="who">'+r.name+'</div><div class="when">'+fmtRsvpTime(r.submittedAt)+'</div></div><div style="display:flex;align-items:center;gap:14px"><span class="pax">'+paxLabel+'</span><button class="rm" onclick="removeRsvp(\''+r.id+'\')">✕</button></div></div>';
+  }).join("");
+}
+function removeRsvp(id){
+  RSVPS=RSVPS.filter(r=>r.id!==id);
+  gvcSet("gvc2026","rsvp",{list:RSVPS});
+  renderAdmin();
+}
+function watchRsvps(){
+  gvcWatch("gvc2026","rsvp",{list:[]},data=>{
+    RSVPS=(data&&data.list)||[];
+    renderAdmin();
+  });
+}
+function initAdminGate(){
+  if(location.hash.indexOf("admin=")>=0){
+    const code=location.hash.split("admin=")[1];
+    if(code===ADMIN_CODE){ sessionStorage.setItem("gvc_admin","1"); renderAdmin(); return; }
+  }
+  if(isAdminSession()){ renderAdmin(); return; }
+}
+
+gvcInit(()=>{
+  watchRsvps();
+  initAdminGate();
+});
+</script>
+</body>
+</html>

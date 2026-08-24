@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UK Goan Vendors Cup 2026 — 5-a-side Football Tournament</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap');
+:root{
+  --pitch:#0c3b2e;--pitch-2:#0a3327;--midnight:#06231a;--ink:#0e231c;
+  --gold:#ecc24b;--gold-2:#d6a12f;--gold-soft:#f2d684;--terra:#d8623c;--terra-2:#b94e2c;
+  --azulejo:#2f73b0;--azulejo-deep:#1d4f82;--sand:#f4ecd6;--cream:#fbf7ec;
+  --line:rgba(244,236,214,.16);--line-strong:rgba(244,236,214,.3);
+  --pot1:#3079c4;--pot2:#e07a2e;--pot3:#2f9e5b;--pot4:#7d5cc6;--pot5:#d2442f;--potL:#c4407f;
+  --shadow:0 24px 60px -28px rgba(0,0,0,.7);--maxw:1180px;--r:18px;--r-sm:12px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--pitch);color:var(--sand);font-family:'DM Sans',system-ui,sans-serif;font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none;cursor:pointer}
+body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:radial-gradient(120% 80% at 12% -10%, rgba(236,194,75,.16), transparent 55%),radial-gradient(120% 80% at 92% -6%, rgba(47,115,176,.16), transparent 55%),radial-gradient(140% 120% at 50% 120%, rgba(216,98,60,.12), transparent 60%),linear-gradient(180deg,var(--pitch-2),var(--pitch) 40%,var(--midnight))}
+.eyebrow{font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;letter-spacing:.02em;color:var(--gold);margin:0 0 .55rem}
+.kicker{font-weight:700;text-transform:uppercase;letter-spacing:.26em;font-size:.72rem;color:var(--gold-soft);margin:0 0 1rem}
+h1,h2,h3{font-family:'Anton',sans-serif;font-weight:400;line-height:.98;letter-spacing:.005em;text-transform:uppercase}
+h2{font-size:clamp(2rem,5vw,3.4rem);margin:0 0 1rem;color:#fff}
+h3{font-size:1.15rem;letter-spacing:.04em;margin:0 0 .5rem}
+.serif{font-family:'Fraunces',serif;text-transform:none;font-weight:400}
+p{margin:0 0 1rem}
+.lead{font-size:1.12rem;color:#e7dcc0}
+.muted{color:#bdc9c0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+section{padding:84px 0;position:relative}
+.section-head{max-width:760px;margin-bottom:42px}
+.center{text-align:center;margin-left:auto;margin-right:auto}
+.azulejo-band{height:34px;width:100%;background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNmNGVjZDYiLz4KICA8ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxZDRmODIiIHN0cm9rZS13aWR0aD0iMi40Ij4KICAgIDwhLS0gZGlhbW9uZCBmcmFtZSAtLT4KICAgIDxwYXRoIGQ9Ik0zMiA2IEw1OCAzMiBMMzIgNTggTDYgMzIgWiIvPgogICAgPCEtLSBpbm5lciBxdWF0cmVmb2lsIC0tPgogICAgPHBhdGggZD0iTTMyIDE4IEMzOCAxOCAzOCAyNiA0NCAyNiBDNDQgMzIgMzggMzIgMzggMzggQzM4IDQ0IDI2IDQ0IDI2IDM4IEMyMCAzOCAyMCAyNiAyNiAyNiBDMjYgMjAgMzIgMjAgMzIgMTggWiIgc3Ryb2tlPSIjMmY3M2IwIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8L2c+CiAgPCEtLSBjZW50cmFsIHJvc2V0dGUgLS0+CiAgPGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iNC40IiBmaWxsPSIjMWQ0ZjgyIi8+CiAgPGcgZmlsbD0iIzJmNzNiMCI+CiAgICA8Y2lyY2xlIGN4PSIzMiIgY3k9IjIwLjUiIHI9IjIuMSIvPgogICAgPGNpcmNsZSBjeD0iMzIiIGN5PSI0My41IiByPSIyLjEiLz4KICAgIDxjaXJjbGUgY3g9IjIwLjUiIGN5PSIzMiIgcj0iMi4xIi8+CiAgICA8Y2lyY2xlIGN4PSI0My41IiBjeT0iMzIiIHI9IjIuMSIvPgogIDwvZz4KICA8IS0tIGNvcm5lciBhY2NlbnRzIC0tPgogIDxnIGZpbGw9IiNjZjhiMmUiPgogICAgPGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIuMiIvPjxjaXJjbGUgY3g9IjYyIiBjeT0iMiIgcj0iMi4yIi8+CiAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iNjIiIHI9IjIuMiIvPjxjaXJjbGUgY3g9IjYyIiBjeT0iNjIiIHI9IjIuMiIvPgogIDwvZz4KPC9zdmc+Cg==");background-size:auto 34px;background-repeat:repeat-x;border-top:2px solid var(--gold-2);border-bottom:2px solid var(--gold-2);opacity:.95}
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:linear-gradient(180deg,rgba(6,35,26,.92),rgba(6,35,26,.74));border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+.brand{display:flex;align-items:center;gap:12px;font-family:'Anton';text-transform:uppercase;letter-spacing:.04em;color:#fff;font-size:1.02rem}
+.brand img{width:42px;height:42px;border-radius:50%;border:2px solid var(--gold-2);object-fit:cover}
+.brand small{display:block;font-weight:600;letter-spacing:.22em;font-size:.56rem;color:var(--gold);text-transform:uppercase;margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{font-weight:600;font-size:.83rem;letter-spacing:.04em;text-transform:uppercase;color:#d8e0d8;padding:9px 14px;border-radius:999px;transition:.2s}
+.nav-links a:hover{color:#fff;background:rgba(244,236,214,.08)}
+.nav-links a.active{color:var(--midnight);background:var(--gold)}
+.nav-cta{background:var(--terra)!important;color:#fff!important}
+.nav-cta:hover{background:var(--terra-2)!important}
+.nav-toggle{display:none;background:none;border:1px solid var(--line-strong);color:#fff;border-radius:10px;width:44px;height:40px;font-size:1.2rem;cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:.55rem;font-weight:700;font-size:.9rem;letter-spacing:.03em;text-transform:uppercase;padding:14px 26px;border-radius:999px;cursor:pointer;border:none;transition:.22s}
+.btn-gold{background:var(--gold);color:var(--midnight)}
+.btn-gold:hover{background:var(--gold-soft);transform:translateY(-2px)}
+.btn-terra{background:var(--terra);color:#fff}
+.btn-terra:hover{background:var(--terra-2);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--sand);border:1.5px solid var(--line-strong)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.page{display:none}
+.page.active{display:block}
+.hero{padding:0;position:relative;overflow:hidden}
+.hero-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding:70px 22px 84px}
+.hero-floodlights{position:absolute;inset:0;z-index:-1;pointer-events:none;background:conic-gradient(from 200deg at 8% -5%, rgba(236,194,75,.20), transparent 28%),conic-gradient(from 140deg at 96% -5%, rgba(236,194,75,.18), transparent 26%)}
+.hero h1{font-size:clamp(3.1rem,9vw,6.4rem);color:#fff;margin:0;text-shadow:0 6px 30px rgba(0,0,0,.4)}
+.hero h1 .accent{color:var(--gold)}
+.hero .subtitle{display:inline-block;margin:14px 0 0;padding:7px 18px;background:#fff;color:var(--midnight);font-family:'Anton';letter-spacing:.06em;font-size:clamp(1rem,2.4vw,1.5rem);transform:skewX(-7deg)}
+.hero .subtitle span{display:inline-block;transform:skewX(7deg)}
+.trio{display:flex;gap:18px;flex-wrap:wrap;margin:24px 0 6px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:.74rem;color:var(--gold-soft)}
+.trio span{display:flex;align-items:center;gap:8px}
+.trio span::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--terra)}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.badge-wrap{position:relative;display:flex;justify-content:center}
+.badge-wrap img{width:min(420px,86%);border-radius:50%;box-shadow:var(--shadow);border:5px solid var(--gold-2);animation:floaty 7s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.status-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.pill{display:flex;flex-direction:column;gap:2px;background:rgba(244,236,214,.06);border:1px solid var(--line);border-radius:var(--r-sm);padding:12px 18px;min-width:120px}
+.pill .k{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.pill .v{font-family:'Anton';font-size:1.05rem;color:#fff;letter-spacing:.03em}
+.statband{background:var(--midnight);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:48px 0}
+.stat{text-align:center;padding:8px}
+.stat .n{font-family:'Anton';font-size:clamp(2.4rem,5vw,3.6rem);color:var(--gold);line-height:1}
+.stat .l{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:#cdd6cd;font-weight:600;margin-top:6px}
+.panel{background:linear-gradient(180deg,rgba(244,236,214,.05),rgba(244,236,214,.02));border:1px solid var(--line);border-radius:var(--r);padding:30px}
+.grid{display:grid;gap:22px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.pot-card{display:flex;gap:16px;align-items:flex-start;border-left:5px solid var(--pc,var(--gold));background:rgba(244,236,214,.04);border-radius:var(--r-sm);padding:20px 22px;transition:.2s}
+.pot-card:hover{background:rgba(244,236,214,.07);transform:translateX(4px)}
+.pot-tag{flex:0 0 auto;width:54px;height:54px;border-radius:12px;display:grid;place-items:center;background:var(--pc);color:#fff;font-family:'Anton';font-size:.78rem;text-align:center;line-height:1;letter-spacing:.02em}
+.pot-card h3{color:#fff;margin-bottom:.25rem}
+.pot-card .count{color:var(--gold);font-weight:700;font-size:.85rem}
+.feature{background:rgba(244,236,214,.04);border:1px solid var(--line);border-radius:var(--r);padding:28px}
+.feature .ico{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:var(--terra);color:#fff;font-size:1.4rem;margin-bottom:14px}
+.feature h3{color:#fff}
+.roster-controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+.chip{font-weight:700;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;padding:9px 16px;border-radius:999px;cursor:pointer;background:rgba(244,236,214,.06);border:1px solid var(--line-strong);color:#d9e2d9;transition:.18s;display:inline-flex;align-items:center;gap:8px}
+.chip .dot{width:9px;height:9px;border-radius:50%;background:var(--cdot,var(--gold))}
+.chip:hover{color:#fff;border-color:var(--gold)}
+.chip.active{background:#fff;color:var(--midnight);border-color:#fff}
+.pool{margin-bottom:46px}
+.pool-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.pool-head .badge-num{width:46px;height:46px;border-radius:11px;background:var(--pc);color:#fff;display:grid;place-items:center;font-family:'Anton';font-size:.95rem}
+.pool-head h3{color:#fff;font-size:1.35rem;margin:0}
+.pool-head .sub{font-family:'Fraunces';font-style:italic;color:var(--gold);font-size:.95rem}
+.pool-head .ct{margin-left:auto;font-weight:700;color:#cdd6cd;font-size:.82rem;background:rgba(244,236,214,.06);padding:5px 12px;border-radius:999px;border:1px solid var(--line)}
+.kit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:14px}
+.kit{position:relative;background:rgba(244,236,214,.045);border:1px solid var(--line);border-radius:14px;padding:16px;overflow:hidden;transition:.2s}
+.kit::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--pc)}
+.kit:hover{transform:translateY(-3px);border-color:var(--pc);background:rgba(244,236,214,.07)}
+.kit .num{font-family:'Anton';font-size:1.05rem;color:var(--pc);opacity:.85;line-height:1}
+.kit .nm{font-weight:700;color:#fff;font-size:1.02rem;margin-top:2px;line-height:1.2}
+.kit .br{font-family:'Fraunces';font-style:italic;color:#cdd6cd;font-size:.9rem;margin-top:4px;display:block}
+.evt{display:grid;grid-template-columns:260px 1fr;gap:0;overflow:hidden;border-radius:var(--r);border:1px solid var(--line);background:rgba(244,236,214,.04)}
+.evt .img{background-size:cover;background-position:center;min-height:260px}
+.evt .body{padding:28px}
+.evt .body h3{color:#fff;font-size:1.5rem}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.meta span{background:rgba(244,236,214,.06);border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:.8rem;font-weight:600;color:#e7dcc0}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.tags b{background:var(--terra);color:#fff;border-radius:7px;padding:4px 10px;font-size:.76rem;font-weight:700}
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px}
+.value{background:rgba(244,236,214,.04);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px}
+.value .ico{font-size:1.5rem;margin-bottom:8px}
+.value h3{color:var(--gold);font-size:.92rem;letter-spacing:.06em}
+.value p{font-size:.9rem;color:#cdd6cd;margin:0}
+.cats{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.cats span{font-weight:600;font-size:.8rem;letter-spacing:.04em;border:1px dashed var(--line-strong);border-radius:999px;padding:6px 14px;color:#e7dcc0}
+.yn{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:620px}
+.yn .opt{border-radius:var(--r);padding:22px;text-align:center;font-family:'Anton';text-transform:uppercase;color:#fff;letter-spacing:.04em}
+.yn .yes{background:linear-gradient(180deg,#2f9e5b,#227744)}
+.yn .no{background:linear-gradient(180deg,#a23a2c,#7e2c20)}
+.yn .opt .big{font-size:2rem}
+.yn .opt small{display:block;font-weight:600;letter-spacing:.1em;font-size:.72rem;opacity:.9;margin-top:4px;font-family:'DM Sans'}
+.form{display:grid;gap:14px;max-width:560px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.field input,.field select,.field textarea{background:rgba(244,236,214,.05);border:1px solid var(--line-strong);border-radius:10px;padding:13px 15px;color:#fff;font-family:inherit;font-size:1rem}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--gold);border-color:var(--gold)}
+.field select option{color:#111}
+.note{font-size:.82rem;color:#bdc9c0}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.contact{background:rgba(244,236,214,.04);border:1px solid var(--line);border-radius:var(--r-sm);padding:18px}
+.contact .who{font-weight:700;color:#fff}
+.contact .role{font-size:.78rem;color:var(--gold);letter-spacing:.05em;text-transform:uppercase;font-weight:700}
+footer{background:var(--midnight);border-top:1px solid var(--line);padding:52px 0 30px;margin-top:20px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px;align-items:start}
+.foot-brand{display:flex;gap:14px;align-items:center}
+.foot-brand img{width:56px;height:56px;border-radius:50%;border:2px solid var(--gold-2)}
+.foot-brand .t{font-family:'Anton';color:#fff;font-size:1.1rem;line-height:1}
+.foot-col h4{font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--gold);margin:0 0 12px}
+.foot-col a{display:block;color:#cdd6cd;font-size:.92rem;padding:4px 0}
+.foot-col a:hover{color:#fff}
+.foot-bottom{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#9fb0a4;font-size:.82rem}
+.foot-bottom .serif{font-style:italic;color:var(--gold-soft)}
+.powered{margin-top:24px;text-align:center;line-height:1.7}
+.powered .pw-label{display:block;color:#9fb0a4;text-transform:uppercase;letter-spacing:.22em;font-size:.62rem;font-weight:700;margin-bottom:4px}
+.powered a{font-weight:800;font-size:.96rem;letter-spacing:.02em;background:linear-gradient(100deg,var(--gold) 0%,#fff6d8 25%,var(--gold) 45%,var(--terra) 70%,var(--gold) 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:pwshimmer 4.5s linear infinite}
+.powered a:hover{filter:brightness(1.18)}
+.powered .sep{color:var(--gold-2);margin:0 10px;font-weight:700}
+@keyframes pwshimmer{to{background-position:220% center}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;gap:30px;padding:48px 22px 64px}
+  .badge-wrap{order:-1}.badge-wrap img{width:min(300px,68%)}
+  .stats{grid-template-columns:repeat(2,1fr);gap:22px}
+  .g2,.g3{grid-template-columns:1fr}
+  .values{grid-template-columns:repeat(2,1fr)}
+  .evt{grid-template-columns:1fr}.evt .img{min-height:200px}
+  .foot-grid{grid-template-columns:1fr}
+  .nav-links{position:fixed;inset:70px 0 auto 0;flex-direction:column;align-items:stretch;gap:4px;background:var(--midnight);border-bottom:1px solid var(--line);padding:14px 22px 22px;transform:translateY(-120%);transition:transform .3s ease}
+  .nav-links.open{transform:none}
+  .nav-links a{padding:14px 16px}
+  .nav-toggle{display:block}
+}
+@media(max-width:520px){body{font-size:16px}.yn{grid-template-columns:1fr}.values{grid-template-columns:1fr}.trio{gap:12px}.brand{font-size:.92rem;gap:9px}.brand img{width:38px;height:38px}.brand span{white-space:nowrap}.brand small{white-space:nowrap}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" data-go="home">
+      <img src="images/logo.png" alt="UK Goan Vendors Cup badge">
+      <span>Vendors Cup<small>UK Goan · 2026</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a data-go="home" class="active">Home</a>
+      <a data-go="format">The Format</a>
+      <a data-go="sponsors">Sponsors</a>
+      <a data-go="live" class="nav-cta">Live Score</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== HOME ===================== -->
+<main class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-floodlights"></div>
+    <div class="wrap hero-inner">
+      <div>
+        <p class="kicker">Calling all UK Goan vendors</p>
+        <h1>UK Goan<br><span class="accent">Vendors Cup</span></h1>
+        <div class="subtitle"><span>5-a-side football tournament · 2026</span></div>
+        <div class="trio"><span>One Community</span><span>One Pitch</span><span>One Goal</span></div>
+        <div class="status-row">
+          <div class="pill"><span class="k">Date</span><span class="v">Sun 30 Aug 2026</span></div>
+          <div class="pill"><span class="k">Where</span><span class="v">Cranford Community College</span></div>
+          <div class="pill"><span class="k">Format</span><span class="v">Live Team Draw</span></div>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-gold" data-go="live">Live Score</a>
+          <a class="btn btn-ghost" href="#roster-section">See who's playing</a>
+        </div>
+      </div>
+      <div class="badge-wrap"><img src="images/logo.png" alt="UK Goan Vendors Cup 2026 badge"></div>
+    </div>
+  </section>
+
+  <div class="azulejo-band"></div>
+
+
+  <!-- ============ TOURNAMENT BRACKETS (added) ============ -->
+  <style>
+  .brk-wrap{padding:70px 0 40px}
+  .brk-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:22px 0 18px}
+  .brk-tab{font-weight:700;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;color:#d8e0d8;padding:11px 20px;border-radius:999px;cursor:pointer;background:rgba(244,236,214,.06);border:1px solid var(--line-strong);transition:.18s}
+  .brk-tab:hover{color:#fff;border-color:var(--gold)}
+  .brk-tab.active{background:var(--gold);color:var(--midnight);border-color:var(--gold)}
+  .brk-board{display:none}
+  .brk-board.active{display:block;animation:brkfade .35s ease}
+  @keyframes brkfade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* conference header chips */
+  .brk-bnames{display:flex;justify-content:space-between;gap:14px;margin-bottom:14px}
+  .brk-chip{font-family:'Anton';text-transform:uppercase;letter-spacing:.08em;font-size:1.05rem;color:#fff;padding:9px 26px;position:relative;clip-path:polygon(0 0,100% 0,calc(100% - 14px) 100%,0 100%)}
+  .brk-chip.b{clip-path:polygon(14px 0,100% 0,100% 100%,0 100%)}
+  .brk-chip.a{background:linear-gradient(90deg,var(--azulejo-deep),var(--azulejo))}
+  .brk-chip.b{background:linear-gradient(90deg,#2f9e5b,#1c6b3d)}
+
+  /* === MIRRORED BRACKET GRID === */
+  .brk-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:0 8px;align-items:stretch}
+  .brk-col{display:flex;flex-direction:column;justify-content:space-around}
+  .brk-col.center{justify-content:center}
+  /* slot card */
+  .brk-slot{position:relative;display:flex;align-items:center;gap:9px;background:#f4ecd6;border-radius:8px;padding:0;cursor:pointer;transition:.16s;width:100%;text-align:left;font-family:inherit;overflow:hidden;border:1px solid rgba(0,0,0,.15);min-height:46px}
+  .brk-slot:hover{transform:scale(1.02);box-shadow:0 6px 18px -6px rgba(0,0,0,.5)}
+  .brk-slot .bn{flex:0 0 auto;width:38px;align-self:stretch;display:grid;place-items:center;background:var(--pc,var(--gold));color:#fff;font-family:'Anton';font-size:1rem}
+  .brk-slot .bi{min-width:0;flex:1;padding:6px 10px 6px 4px}
+  .brk-slot .bteam{font-family:'Anton';letter-spacing:.03em;color:#0e231c;font-size:.95rem;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brk-slot .bsub{font-family:'Fraunces';font-style:italic;color:#5a6b5f;font-size:.7rem;display:block;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brk-slot .barrow{flex:0 0 auto;color:var(--pc,var(--gold));font-size:.9rem;padding-right:9px;opacity:.55;transition:.16s}
+  .brk-slot:hover .barrow{opacity:1;transform:translateX(2px)}
+  .brk-slot.right{flex-direction:row-reverse;text-align:right}
+  .brk-slot.right .bi{padding:6px 4px 6px 10px}
+  .brk-slot.right .barrow{padding-right:0;padding-left:9px;transform:scaleX(-1)}
+  .brk-slot.right:hover .barrow{transform:scaleX(-1) translateX(2px)}
+  .brk-slot.bye{border-style:solid;box-shadow:inset 0 0 0 1px var(--gold-2)}
+  .brk-pair.single{justify-content:center}
+  .byetag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.54rem;color:#0e231c;background:var(--gold-soft);border-radius:5px;padding:2px 6px;margin-right:4px;align-self:center}
+  .brk-slot.right .byetag{margin-right:0;margin-left:4px}
+
+  /* winner node card (A1/A2/SA etc) */
+  .brk-node{background:linear-gradient(180deg,rgba(244,236,214,.08),rgba(244,236,214,.03));border:1px solid var(--line-strong);border-radius:12px;padding:14px 12px;text-align:center;min-height:64px;display:flex;flex-direction:column;justify-content:center;gap:2px}
+  .brk-node .nt{font-family:'Anton';font-size:1.4rem;color:var(--gold);letter-spacing:.04em;line-height:1}
+  .brk-node .ns{font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:.58rem;color:#9fb0a4}
+
+  /* final centre */
+  .brk-finalbox{background:linear-gradient(180deg,#0c2c22,#08231a);border:2px solid var(--gold-2);border-radius:16px;padding:18px 14px 14px;text-align:center;box-shadow:0 0 30px -8px rgba(236,194,75,.4)}
+  .brk-finalbox .fl{font-family:'Anton';color:var(--gold);font-size:1.5rem;letter-spacing:.06em;margin-bottom:6px}
+  .brk-trophy{font-size:2.3rem;animation:brkfloat 4s ease-in-out infinite;line-height:1}
+  @keyframes brkfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .brk-finalbox .fc{font-family:'Anton';color:#fff;letter-spacing:.08em;font-size:.95rem;margin-top:6px}
+  .brk-finaltag{margin:10px auto 0;display:inline-block;border:1px solid var(--line-strong);border-radius:8px;padding:6px 14px;font-weight:700;letter-spacing:.1em;font-size:.62rem;text-transform:uppercase;color:#cdd6cd}
+
+  /* connectors */
+  .brk-pair{display:flex;flex-direction:column;gap:10px;position:relative;flex:1;justify-content:center}
+  .brk-pair + .brk-pair{margin-top:18px}
+  /* horizontal stubs out of leaf columns toward node columns */
+  .brk-grid > .brk-col:nth-child(1) .brk-slot::after,
+  .brk-grid > .brk-col:nth-child(2) .brk-node::after{content:"";position:absolute;top:50%;right:-8px;width:8px;height:2px;background:var(--line-strong)}
+  .brk-grid > .brk-col:nth-child(5) .brk-slot::after,
+  .brk-grid > .brk-col:nth-child(4) .brk-node::after{content:"";position:absolute;top:50%;left:-8px;width:8px;height:2px;background:var(--line-strong)}
+  .brk-slot,.brk-node{position:relative}
+
+  .brk-legend{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:26px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(244,236,214,.03)}
+  .brk-leg{padding:16px 18px;display:flex;flex-direction:column;gap:2px;border-right:1px solid var(--line)}
+  .brk-leg:last-child{border-right:none}
+  .brk-leg .lt{font-family:'Anton';letter-spacing:.06em;font-size:.9rem;color:var(--gold)}
+  .brk-leg .ld{font-size:.78rem;color:#bdc9c0}
+  .brk-foot{text-align:center;margin-top:18px;color:#9fb0a4;font-size:.84rem}
+  .brk-foot .serif{color:var(--gold-soft);font-style:italic}
+
+  .ball{display:inline-block;animation:brkroll 1.4s linear infinite}
+  @keyframes brkroll{to{transform:rotate(360deg)}}
+
+  /* squad popup */
+  .brk-ov{position:fixed;inset:0;z-index:200;display:none;align-items:flex-start;justify-content:center;padding:40px 18px;background:rgba(4,18,13,.8);backdrop-filter:blur(7px);overflow-y:auto}
+  .brk-ov.open{display:flex;animation:brkfade .25s ease}
+  .brk-card{position:relative;width:min(560px,100%);background:linear-gradient(180deg,#0e3a2c,#0a2c22);border:1px solid var(--line-strong);border-radius:20px;box-shadow:var(--shadow);overflow:hidden;animation:brkpop .3s cubic-bezier(.2,.8,.3,1.1)}
+  @keyframes brkpop{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+  .brk-top{position:relative;padding:26px 26px 20px;background:linear-gradient(135deg,var(--pc,var(--gold)) 0%,rgba(6,35,26,.2) 130%);overflow:hidden}
+  .brk-top::after{content:"";position:absolute;right:-30px;bottom:-40px;width:160px;height:160px;border-radius:50%;border:3px solid rgba(255,255,255,.18)}
+  .brk-top .tag{font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.64rem;color:rgba(6,35,26,.7)}
+  .brk-top .big{font-family:'Anton';font-size:2.4rem;color:#06231a;line-height:.9;margin-top:2px}
+  .brk-x{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:none;background:rgba(6,35,26,.32);color:#fff;font-size:1.2rem;cursor:pointer;display:grid;place-items:center;transition:.18s;z-index:3}
+  .brk-x:hover{background:rgba(6,35,26,.55);transform:rotate(90deg)}
+  .brk-body{padding:8px 18px 22px}
+  .brk-pl{display:flex;align-items:center;gap:14px;padding:12px 10px;border-bottom:1px solid var(--line);animation:brkslide .4s both}
+  .brk-pl:last-child{border-bottom:none}
+  @keyframes brkslide{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
+  .brk-pl .pnum{flex:0 0 auto;width:30px;height:30px;display:grid;place-items:center;font-family:'Anton';font-size:.95rem;color:var(--midnight);background:var(--gold);border-radius:8px}
+  .brk-pl .pn{font-weight:700;color:#fff;font-size:1rem;line-height:1.2}
+  .brk-empty{padding:26px 14px;text-align:center;color:#9fb0a4;font-family:'Fraunces';font-style:italic}
+
+  @media(max-width:1024px){
+    .brk-scrollx{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:10px}
+    .brk-grid{min-width:920px}
+  }
+  @media(max-width:640px){
+    .brk-legend{grid-template-columns:repeat(2,1fr)}
+    .brk-leg:nth-child(2){border-right:none}
+    .brk-pl .pnum{width:26px;height:26px;font-size:.85rem}
+    .brk-ov{padding:18px 10px}
+    .brk-chip{font-size:.9rem;padding:8px 18px}
+  }
+  </style>
+
+  <div class="azulejo-band"></div>
+
+  <section class="brk-wrap" id="brackets">
+    <div class="wrap">
+      <div class="section-head center reveal" style="margin-left:auto;margin-right:auto">
+        <p class="eyebrow center">Live draw · held on GoaPages UK Instagram</p>
+        <h2>Tournament Bracket</h2>
+        <p class="muted">The draw is done. Tap any team to see its full line-up &amp; roles ⚽</p>
+      </div>
+      <div class="brk-tabs">
+        <button class="brk-tab active" id="bt-boys" onclick="brkShow('boys')">Men's · 5-a-side · Vendors Cup</button>
+        <button class="brk-tab" id="bt-ladies" onclick="brkShow('ladies')">Ladies · 3-a-side · Penalty Shootout</button>
+      </div>
+
+      <div class="brk-board active" id="bb-boys"></div>
+      <div class="brk-board" id="bb-ladies"></div>
+
+      <div class="brk-legend">
+        <div class="brk-leg"><span class="lt">Round 1</span><span class="ld" id="lg1">14 teams · 6 matches</span></div>
+        <div class="brk-leg"><span class="lt">Semi-finals</span><span class="ld" id="lg2">+ 2 byes</span></div>
+        <div class="brk-leg"><span class="lt">Conf. Finals</span><span class="ld">Winner each side</span></div>
+        <div class="brk-leg"><span class="lt">Grand Final</span><span class="ld">1 match</span></div>
+      </div>
+      <p class="brk-foot">* In case of a draw, the match goes to extra time &amp; penalties.<br>
+        <span class="serif">Let the best team win.</span></p>
+    </div>
+  </section>
+
+  <div class="brk-ov" id="brk-ov" onclick="if(event.target===this)brkClose()">
+    <div class="brk-card" id="brk-card"></div>
+  </div>
+
+  <script>
+  /* ---------------- TEAM DATA ---------------- */
+  const BOYS={
+    1:["Dj Alex","Clanny Rodrigues","Noah Fernandes","Pranoy savio Fernandes","Dj Calliston","John Ataid","Mcvean Pereira"],
+    2:["Royen Vaz","Beckham Pereira","Brian Dias","Selvin Vaz","Noywen Fernandes","Anthony Miranda","Lloyd"],
+    3:["Dj Jhonathan","Chester colaco","WilliamBragaca","Princewell Fernandes","Jolan Fernandes","John venon D costa","Bunty Vaz"],
+    4:["Ronny Fernandes","Frazer Rodrigues (photography)","Nehden Fernandes","Haysten","Sheldon Vaz","Sanford Barreto","Simon D souza"],
+    5:["Agnelo lobo","Vito","Nash Pereira","Nash Photography","Demise Fernandes","Rlzwal Pereira","Swiston Antao"],
+    6:["Rhydwn Rebello","Rayson Antao","Jason Pereira","Armstrong Pereira","Benny Cardozo","Franisco Fernandes j3","Brendon Rato"],
+    7:["Frazer Fernandes 3kings","Rizlon Fernandes","Mitchu Rodrigues","Nazareth Luis","Aleixo Sequeira","Osmund D Silva","Marcelino Rodrgues/ James D s"],
+    8:["Jovito Af","Mevan Fernandes","Anthony Vaz photography","Jonas Afonso","Cyril Gomes","Myron Dias","Christopher Colaco/Shawnal Ca"],
+    9:["Lee GLA","Lionel Fernandes","Joywin Fernandes","Tito Maia","Oshane Picardo","Jonathan Diniz","Flacid Mendes"],
+    10:["Sam dias","Adrian Fernandes","Egan Mark","Junis Costa","Enrico Fernandes","Sholwart Carvalho","Brian Gonsalves"],
+    11:["Keegan Dcosta","Sameo Vaz","Mauvin D cunha","Joshua Afonso","Dj Velfern","Cletus Gonsalves","Dylan Rodrigues"],
+    12:["Morgan Fernandes","Joybert Almeida","Anthony Lester Fernandes","Dj Savio","Sergio Estibiero","Hason Fernandes","Anshawal De Souza / Darren Dc"],
+    13:["Samroy Cardoso","Fracisco P Fernandes","Nicklas Fernandes","Astin Fernandes Af","Dj Keane","Kane Lopes","Henry Cardozo"],
+    14:["Jovito Vaz","Peyton Pires","Fimber Fernandes","Edwin De Souza","Dj Manuel","Rizwan Fernandes","Ferran AF"]
+  };
+  const LADIES={
+    1:["Loviey eva","Frenzie Fernandes","Amanda Fernandes"],
+    2:["Akiva dacosta","Sherlyn","Gladrin"],
+    3:["Zelia Fernandes","Daisy barreto","Finola Fernandes"],
+    4:["Annet Fernandes","Tronica","Jewel"],
+    5:["Selsy","Adamantina","Madonna"],
+    6:["Elcy Fernandes","Marina ataide","Gracy/ sheila"],
+    7:["Maria p Fernandes","Pinky","Lanzia"],
+    8:["Cony","Aqvisha","Sanfie"]
+  };
+
+  const BRK_COLORS=['var(--pot1)','var(--pot2)','var(--pot3)','var(--pot4)','var(--pot5)','var(--potL)'];
+  const brkColor=n=>BRK_COLORS[(n-1)%BRK_COLORS.length];
+  const BRK_NAMES={boys:{},ladies:{}};
+  let BRK_MODE='boys';
+
+  function slot(team,div,side,bye){
+    if(team==null) return '';
+    const nm=BRK_NAMES[div][team]||'';
+    const cls='brk-slot'+(side==='right'?' right':'')+(bye?' bye':'');
+    const byeTag=bye?`<span class="byetag">BYE · advances</span>`:'';
+    return `<button class="${cls}" style="--pc:${brkColor(team)}" onclick="brkOpen('${div}',${team})">
+      <span class="bn">${team}</span>
+      <span class="bi"><span class="bteam">Team ${team}</span><span class="bsub">${bye?'bye · advances':(nm?nm:'name later')}</span></span>
+      ${byeTag}<span class="barrow">›</span></button>`;
+  }
+  function node(t,s){return `<div class="brk-node"><div class="nt">${t}</div><div class="ns">${s}</div></div>`;}
+
+  /* Build one SIDE. matches: array of [a,b] (b may be null = bye/single). */
+  function sideHTML(matches,nodeLabels,confLabel,div,side){
+    const leafCol = `<div class="brk-col">${
+      matches.map(m=>{
+        const bye = m[1]==null;
+        const inner = bye ? slot(m[0],div,side,true)
+                          : slot(m[0],div,side)+slot(m[1],div,side);
+        return `<div class="brk-pair${bye?' single':''}">${inner}</div>`;
+      }).join('')
+    }</div>`;
+    const nodeCol = `<div class="brk-col">
+      <div class="brk-pair">${node(nodeLabels[0],'Winner')}</div>
+      <div class="brk-pair">${node(nodeLabels[1],'Winner')}</div>
+    </div>`;
+    return {leafCol,nodeCol};
+  }
+
+
+  function buildBoys(){
+    // Seeding exactly as the hand-drawn sheet (top -> bottom):
+    // A: 9,7,12,11,3,4,6   B: 10,5,2,8,13,14,1
+    // Pairs follow the drawn connectors; the odd team is a BYE (advances).
+    // A leaf-pairs:  (9 v 7) (12 v 11) | (3 v 4) (6 bye)
+    const A=[[9,7],[12,11],[3,4],[6,null]];
+    // B leaf-pairs:  (10 v 5) (2 bye) | (8 v 13) (14 v 1)
+    const B=[[10,5],[2,null],[8,13],[14,1]];
+
+    const a=sideHTML(A,['A1','A2'],'SA','boys','left');
+    const b=sideHTML(B,['B1','B2'],'SB','boys','right');
+
+    const finalInner=`<div class="brk-finalbox">
+      <div class="fl">FINAL</div>
+      <div class="brk-trophy">🏆</div>
+      <div class="fc">CHAMPION</div>
+      <div class="brk-finaltag">Final Match</div>
+    </div>`;
+
+    document.getElementById('bb-boys').innerHTML=`
+      <div class="brk-bnames">
+        <div class="brk-chip a">Bracket A</div>
+        <div class="brk-chip b">Bracket B</div>
+      </div>
+      <div class="brk-scrollx"><div class="brk-grid">
+        ${a.leafCol}
+        ${a.nodeCol}
+        <div class="brk-col center" style="gap:22px">
+          <div class="brk-pair">${node('SA','Bracket A Winner')}</div>
+          <div class="brk-pair">${finalInner}</div>
+          <div class="brk-pair">${node('SB','Bracket B Winner')}</div>
+        </div>
+        ${b.nodeCol}
+        ${b.leafCol}
+      </div></div>`;
+    document.getElementById('lg1').textContent='14 teams · 6 matches';
+    document.getElementById('lg2').textContent='Team 6 & Team 1 advance on byes';
+  }
+
+  function buildLadies(){
+    // A: (6v3)(1v2)  B: (4v7)(8v5)  -> 2 leaves per side, 1 node per side
+    const A=[[6,3],[1,2]];
+    const B=[[4,7],[8,5]];
+    const leaf=(m,side)=>`<div class="brk-col">${m.map(p=>`<div class="brk-pair">${slot(p[0],'ladies',side)}${slot(p[1],'ladies',side)}</div>`).join('')}</div>`;
+    const nodeCol=(lbl,sub)=>`<div class="brk-col center"><div class="brk-pair">${node(lbl,sub)}</div></div>`;
+
+    const finalInner=`<div class="brk-finalbox">
+      <div class="fl">FINAL</div>
+      <div class="brk-trophy">🏆</div>
+      <div class="fc">CHAMPION</div>
+      <div class="brk-finaltag">Penalty Shootout</div>
+    </div>`;
+
+    document.getElementById('bb-ladies').innerHTML=`
+      <div class="brk-bnames">
+        <div class="brk-chip a">Side A</div>
+        <div class="brk-chip b">Side B</div>
+      </div>
+      <div class="brk-scrollx"><div class="brk-grid" style="grid-template-columns:1fr 1fr 1.1fr 1fr 1fr">
+        ${leaf(A,'left')}
+        ${nodeCol('SA','Side A Winner')}
+        <div class="brk-col center">${finalInner}</div>
+        ${nodeCol('SB','Side B Winner')}
+        ${leaf(B,'right')}
+      </div></div>`;
+  }
+
+  /* ---- squad popup ---- */
+  function brkOpen(div,n){
+    const data=(div==='boys'?BOYS:LADIES)[n]||[];
+    const ov=document.getElementById('brk-ov'), card=document.getElementById('brk-card');
+    const nm=BRK_NAMES[div][n]||'';
+    card.style.setProperty('--pc',brkColor(n));
+    let body;
+    if(data.length){
+      body=data.map((p,i)=>{
+        return `<div class="brk-pl" style="animation-delay:${i*45}ms"><span class="pnum">${i+1}</span><span class="pn">${p}</span></div>`;
+      }).join('');
+    }else{ body=`<div class="brk-empty">Line-up to be added for this team ⚽</div>`; }
+    card.innerHTML=`
+      <div class="brk-top">
+        <button class="brk-x" onclick="brkClose()" aria-label="Close">✕</button>
+        <div class="tag">${div==='boys'?'Vendors Cup':'Ladies'} · Team ${n} · <span class="ball">⚽</span></div>
+        <div class="big">Team ${n}</div>
+        <input value="${nm.replace(/"/g,'&quot;')}" placeholder="Add team name…"
+          style="margin-top:10px;width:100%;max-width:320px;background:rgba(6,35,26,.18);border:1px solid rgba(6,35,26,.3);border-radius:9px;padding:9px 12px;color:#06231a;font-family:'Fraunces';font-style:italic;font-size:1rem"
+          oninput="brkSetName('${div}',${n},this.value)">
+      </div>
+      <div class="brk-body">${body}</div>`;
+    ov.classList.add('open');document.body.style.overflow='hidden';
+  }
+  let brkNameSaveTimer=null;
+  function brkSetName(div,n,v){
+    BRK_NAMES[div][n]=v.trim();
+    BRK_MODE==='boys'?buildBoys():buildLadies();
+    clearTimeout(brkNameSaveTimer);
+    brkNameSaveTimer=setTimeout(()=>{ if(typeof gvcSet==='function') gvcSet('gvc2026','teamnames',BRK_NAMES); },600);
+  }
+  function brkClose(){document.getElementById('brk-ov').classList.remove('open');document.body.style.overflow='';}
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')brkClose();});
+
+  function brkShow(which){
+    BRK_MODE=which;
+    document.getElementById('bb-boys').classList.toggle('active',which==='boys');
+    document.getElementById('bb-ladies').classList.toggle('active',which==='ladies');
+    document.getElementById('bt-boys').classList.toggle('active',which==='boys');
+    document.getElementById('bt-ladies').classList.toggle('active',which==='ladies');
+    if(which==='ladies'){document.getElementById('lg1').textContent='8 teams · 4 matches';document.getElementById('lg2').textContent='2 per side';}
+    else{document.getElementById('lg1').textContent='14 teams · 6 matches';document.getElementById('lg2').textContent='Team 6 & Team 1 advance on byes';}
+    brkClose();
+  }
+
+  buildBoys();buildLadies();
+  </script>
+  <!-- ============ /TOURNAMENT BRACKETS ============ -->
+
+
+
+  <section>
+    <div class="wrap grid g2" style="align-items:center">
+      <div class="reveal"><p class="eyebrow">Why we're doing this</p><h2>Every vendor.<br>One ground.<br>For the first time.</h2></div>
+      <div class="reveal">
+        <p class="lead">We're bringing the whole Goan events industry in the UK together for a day of football, networking, fun and friendship — caterers, decorators, DJs, MCs, bands, photographers, videographers, bar teams, planners and more.</p>
+        <p class="muted">The motto is simple: foster the relationships between all vendors and grow the community. Whether you're behind the decks, the camera or the bar the rest of the year, on this day you're on the pitch together. Everyone is welcome — including our female vendors and content creators.</p>
+        <p class="serif" style="color:var(--gold-soft);font-size:1.2rem;font-style:italic">Let's play. Let's connect. Let's grow together.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="statband"><div class="wrap stats">
+    <div class="stat reveal"><div class="n" id="stat-total">110</div><div class="l">Vendors signed up</div></div>
+    <div class="stat reveal"><div class="n">6</div><div class="l">Talent pools</div></div>
+    <div class="stat reveal"><div class="n">5</div><div class="l">A side</div></div>
+    <div class="stat reveal"><div class="n">7</div><div class="l">Players per squad</div></div>
+  </div></div>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal"><p class="eyebrow">How it works</p><h2>Teams made on the day</h2>
+        <p class="muted">No pre-made teams. Every confirmed vendor goes into one of five pots. On the day, a live random draw pulls one player from each pot to build perfectly balanced squads — so you line up alongside vendors from every corner of the industry.</p></div>
+      <div class="grid g3">
+        <div class="feature reveal"><div class="ico">🎲</div><h3>Live team draw</h3><p class="muted">All entries enter their pot. Squads are drawn at random, live, in front of everyone.</p></div>
+        <div class="feature reveal"><div class="ico">⚽</div><h3>5 + 2 squads</h3><p class="muted">Five starters — one from each pot — plus two subs for rolling substitutions all day.</p></div>
+        <div class="feature reveal"><div class="ico">🤝</div><h3>Name your team</h3><p class="muted">Once you're drawn together, you pick your own team name and play as one.</p></div>
+      </div>
+      <div style="margin-top:26px" class="reveal"><a class="btn btn-terra" data-go="format">See the full format &amp; draw rules →</a></div>
+    </div>
+  </section>
+
+  <div class="azulejo-band"></div>
+
+  <section id="roster-section">
+    <div class="wrap">
+      <div class="section-head reveal"><p class="eyebrow">All teams put together</p><h2>The squad pools</h2>
+        <p class="muted">Everyone who's in, grouped by their pot. Tap a category to filter, or scroll the lot. New names are still coming in every day.</p></div>
+      <div class="roster-controls" id="roster-chips"></div>
+      <div id="roster"></div>
+    </div>
+  </section>
+
+  <div class="azulejo-band"></div>
+  <section>
+    <div class="wrap center" style="max-width:680px">
+      <p class="eyebrow center">Registration is closed</p><h2>The squads are set — now let's build the day</h2>
+      <p class="muted">Teams are drawn and the venue is locked in. Want to back the tournament, or keep an eye on the scores come matchday?</p>
+      <div class="hero-cta" style="justify-content:center;margin-top:22px"><a class="btn btn-gold" data-go="sponsors">Sponsor the Cup</a><a class="btn btn-ghost" data-go="live">Live Score</a></div>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== FORMAT ===================== -->
+<main class="page" id="page-format">
+  <section style="padding-bottom:46px"><div class="wrap">
+    <p class="kicker">5-a-side football tournament</p>
+    <h1 style="font-size:clamp(2.6rem,7vw,4.6rem);color:#fff">The Format</h1>
+    <p class="lead" style="max-width:680px;margin-top:14px">To keep things fair, balanced and full of new connections, no one brings a ready-made team. Every squad is built on the day through a <strong style="color:var(--gold)">live team draw</strong>.</p>
+  </div></section>
+
+  <div class="azulejo-band"></div>
+
+  <section><div class="wrap">
+    <div class="section-head"><p class="eyebrow">Step one</p><h2>Five vendor pots</h2>
+      <p class="muted">Every confirmed vendor is placed into a pot based on what they do. (Our ladies' line-up has its own plan — more on that in the group.)</p></div>
+    <div class="grid" id="pot-summary" style="gap:14px"></div>
+  </div></section>
+
+  <section style="padding-top:0"><div class="wrap">
+    <div class="section-head"><p class="eyebrow">Step two</p><h2>How a squad is built</h2></div>
+    <div class="grid g2">
+      <div class="panel"><div style="width:52px;height:52px;border-radius:12px;display:grid;place-items:center;background:var(--gold);color:var(--midnight);font-family:'Anton';font-size:1.3rem">5</div><h3 style="color:#fff;margin-top:14px">Five starting players</h3><p class="muted">One player drawn from each of the five pots, so every team has a DJ or band, an MC or baker, a decorator or caterer, a photographer or videographer, and a bar/other vendor.</p></div>
+      <div class="panel"><div style="width:52px;height:52px;border-radius:12px;display:grid;place-items:center;background:var(--terra);color:#fff;font-family:'Anton';font-size:1.3rem">2</div><h3 style="color:#fff;margin-top:14px">Two substitute players</h3><p class="muted">Subs are drawn separately and shared out evenly across teams. That makes a 7-player squad and allows rolling substitutions throughout the day.</p></div>
+    </div>
+    <div class="panel" style="margin-top:14px;border-color:var(--gold-2);background:linear-gradient(180deg,rgba(236,194,75,.1),rgba(236,194,75,.03))"><h3 style="color:var(--gold)">= Balanced 7-player squads</h3><p class="muted" style="margin:0">Every team ends up the same size and the same mix — so the football is competitive and the networking is built right in.</p></div>
+  </div></section>
+
+  <div class="azulejo-band"></div>
+  <section><div class="wrap grid g2" style="align-items:center">
+    <div><p class="eyebrow">The point of it all</p><h2>Why we draw teams this way</h2></div>
+    <div><ul style="list-style:none;padding:0;margin:0;display:grid;gap:14px">
+      <li class="panel" style="padding:18px 22px"><strong style="color:#fff">⚽ Fair and balanced</strong><br><span class="muted">No stacked teams — everyone has a real chance.</span></li>
+      <li class="panel" style="padding:18px 22px"><strong style="color:#fff">🤝 Networking built in</strong><br><span class="muted">You meet vendors from every category, not just your own.</span></li>
+      <li class="panel" style="padding:18px 22px"><strong style="color:#fff">🎉 Fun &amp; competitive</strong><br><span class="muted">Light, not tight — a great day of sport, food and music.</span></li>
+      <li class="panel" style="padding:18px 22px"><strong style="color:#fff">❤️ One community</strong><br><span class="muted">The UK Goan business community, together through football and friendship.</span></li>
+    </ul></div>
+  </div></section>
+</main>
+
+<!-- ===================== SPONSORS ===================== -->
+<style>
+.tier-card{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px;padding:32px 28px}
+.tier-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--tc,var(--gold))}
+.tier-card .tier-name{font-family:'Anton';color:#fff;font-size:1.3rem;letter-spacing:.03em;text-transform:uppercase}
+.tier-card .tier-tag{font-family:'Fraunces';font-style:italic;color:var(--gold);font-size:.92rem;margin-top:-6px}
+.tier-card .tier-price{font-family:'Anton';font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft);background:rgba(244,236,214,.07);border:1px solid var(--line);display:inline-block;padding:6px 14px;border-radius:999px;width:fit-content}
+.tier-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.tier-list li{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;color:#e7dcc0;line-height:1.4}
+.tier-list li b{flex:0 0 auto;color:var(--tc,var(--gold));font-size:1rem;line-height:1.3}
+.tier-card .btn{margin-top:auto;align-self:flex-start}
+.sponsor-slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.sponsor-card{position:relative;display:flex;gap:14px;align-items:flex-start;background:rgba(244,236,214,.045);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px}
+.sponsor-card .logo{flex:0 0 auto;width:52px;height:52px;border-radius:10px;background:rgba(244,236,214,.08);display:grid;place-items:center;overflow:hidden;font-family:'Anton';color:var(--gold);font-size:1.1rem}
+.sponsor-card .logo img{width:100%;height:100%;object-fit:contain}
+.sponsor-card .who{font-weight:700;color:#fff;font-size:.96rem;line-height:1.25}
+.sponsor-card .what{font-family:'Fraunces';font-style:italic;color:#cdd6cd;font-size:.85rem;margin-top:3px;display:block}
+.sponsor-card .amt{margin-top:6px;display:inline-block;font-family:'Anton';font-size:.78rem;letter-spacing:.05em;color:var(--gold-soft);background:rgba(236,194,75,.1);border-radius:999px;padding:3px 10px}
+.sponsor-card .rm{position:absolute;top:8px;right:8px;background:none;border:none;color:#9fb0a4;cursor:pointer;font-size:.85rem;opacity:.6}
+.sponsor-card .rm:hover{opacity:1;color:var(--terra)}
+.sponsor-total-card{background:rgba(244,236,214,.04);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px 22px}
+.sponsor-total-card .n{font-family:'Anton';font-size:2rem;color:var(--gold)}
+.sponsor-total-card .l{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#cdd6cd;font-weight:700;margin-top:2px}
+.sponsor-slot{border:1.5px dashed var(--line-strong);border-radius:var(--r-sm);padding:34px 14px;text-align:center;color:#8fa196;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.72rem;transition:.2s}
+.sponsor-slot:hover{border-color:var(--gold);color:var(--gold-soft)}
+.sponsor-first{border:1.5px solid var(--gold-2);background:rgba(236,194,75,.06);border-radius:var(--r-sm);padding:22px 26px;display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.sponsor-first .ico{font-size:1.8rem}
+.sponsor-first strong{color:var(--gold-soft)}
+@media(max-width:900px){.sponsor-first{flex-direction:column;text-align:center}}
+</style>
+
+<main class="page" id="page-sponsors">
+  <section style="padding-bottom:36px"><div class="wrap">
+    <p class="kicker">Backing the community</p>
+    <h1 style="font-size:clamp(2.6rem,7vw,4.6rem);color:#fff">Become a Sponsor</h1>
+    <p class="lead" style="max-width:680px;margin-top:14px">Team registration is closed and the draw is done — but sponsorship for the UK Goan Vendors Cup 2026 is still wide open. Put your business in front of every Goan event vendor in the UK, on and off the pitch.</p>
+    <div class="status-row">
+      <div class="pill"><span class="k">Sponsorship</span><span class="v">Closes 15 Aug</span></div>
+      <div class="pill"><span class="k">Reach</span><span class="v">125+ vendors</span></div>
+      <div class="pill"><span class="k">Final</span><span class="v">Sun 30 Aug 2026</span></div>
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn-gold" href="#sponsor-form">Enquire about sponsoring</a>
+      <a class="btn btn-ghost" href="#sponsor-tiers">See the packages</a>
+    </div>
+  </div></section>
+
+  <div class="azulejo-band"></div>
+
+  <section><div class="wrap">
+    <div class="section-head"><p class="eyebrow">Why sponsor the Cup</p><h2>One tournament, one community</h2><p class="muted">This isn't a generic sports sponsorship — it's a direct line to the caterers, DJs, decorators, photographers, MCs and bar teams who run the UK's Goan events scene.</p></div>
+    <div class="grid g2" style="grid-template-columns:repeat(4,1fr);gap:20px">
+      <div class="feature"><div class="ico">🎯</div><h3>Targeted reach</h3><p class="muted" style="margin:0;font-size:.92rem">In front of 125+ vendor businesses across six trade categories, not a general audience.</p></div>
+      <div class="feature"><div class="ico">📣</div><h3>Social visibility</h3><p class="muted" style="margin:0;font-size:.92rem">Featured across the GoaPages UK Instagram build-up, the live bracket and match-day content.</p></div>
+      <div class="feature"><div class="ico">🏆</div><h3>Grand Final presence</h3><p class="muted" style="margin:0;font-size:.92rem">Top-tier sponsors get pitch-side branding and a place at the trophy presentation.</p></div>
+      <div class="feature"><div class="ico">🤝</div><h3>Community goodwill</h3><p class="muted" style="margin:0;font-size:.92rem">Direct, visible support for a grassroots event run by and for the community.</p></div>
+    </div>
+  </div></section>
+
+  <div class="azulejo-band"></div>
+
+  <section id="sponsor-tiers"><div class="wrap">
+    <div class="section-head"><p class="eyebrow">Packages</p><h2>Ways to sponsor</h2><p class="muted">This tournament is organised entirely by the community with no external funding. Sponsor an item, put cash towards ground hire, or put your name on a trophy — every bit helps. <strong style="color:var(--gold)">Let us know by 15 August</strong> so we can finalise before the day.</p></div>
+    <div class="grid g3">
+      <div class="panel tier-card" style="--tc:var(--gold)">
+        <div class="tier-price">Your choice of item</div>
+        <div><div class="tier-name">Sponsor an Item</div><div class="tier-tag">Bibs, balls, medals &amp; more</div></div>
+        <ul class="tier-list">
+          <li><b>⚽</b> Pick an essential — bibs, footballs, medals, food, drinks, tents, sound, first aid</li>
+          <li><b>⚽</b> Name/logo on the Official Event Backdrop</li>
+          <li><b>⚽</b> Announced at the Presentation Ceremony</li>
+        </ul>
+        <a class="btn btn-gold" href="#sponsor-form">Enquire</a>
+      </div>
+      <div class="panel tier-card" style="--tc:var(--azulejo)">
+        <div class="tier-price">Any amount welcome</div>
+        <div><div class="tier-name">Cash Towards Ground Hire</div><div class="tier-tag">Help cover the pitch</div></div>
+        <ul class="tier-list">
+          <li><b>⚽</b> Contribute any amount towards ground hire costs</li>
+          <li><b>⚽</b> Name/logo on the Official Event Backdrop</li>
+          <li><b>⚽</b> Reduces the amount split across all participating vendors</li>
+        </ul>
+        <a class="btn btn-terra" href="#sponsor-form">Enquire</a>
+      </div>
+      <div class="panel tier-card" style="--tc:var(--terra)">
+        <div class="tier-price">8 trophies available</div>
+        <div><div class="tier-name">Sponsor a Trophy</div><div class="tier-tag">Put your name on the silverware</div></div>
+        <ul class="tier-list">
+          <li><b>⚽</b> Winners · Runners-up · Ladies Winners · Ladies Runners-up</li>
+          <li><b>⚽</b> Best Player (Final) · Best Player (Tournament)</li>
+          <li><b>⚽</b> Best Goalkeeper · Highest Goal Scorer</li>
+          <li><b>⚽</b> Your name announced at the trophy presentation</li>
+        </ul>
+        <a class="btn btn-ghost" href="#sponsor-form">Enquire</a>
+      </div>
+    </div>
+  </div></section>
+
+  <div class="azulejo-band"></div>
+
+  <section><div class="wrap">
+    <div class="section-head"><p class="eyebrow">Current sponsors</p><h2>Our supporters</h2><p class="muted">Every one of these came forward through the community WhatsApp group — thank you 🙏</p></div>
+    <div id="sponsor-admin-bar" style="display:none;margin-bottom:18px"></div>
+    <div id="sponsor-totals" class="grid g2" style="gap:14px;margin-bottom:26px"></div>
+    <h3 style="color:#fff;font-size:1.1rem;margin-bottom:14px">💰 Cash sponsors</h3>
+    <div id="sponsor-cash-list" class="sponsor-slots" style="margin-bottom:34px"></div>
+    <h3 style="color:#fff;font-size:1.1rem;margin-bottom:14px">🎁 Item &amp; in-kind sponsors</h3>
+    <div id="sponsor-item-list" class="sponsor-slots"></div>
+  </div></section>
+
+  <div class="azulejo-band"></div>
+
+  <section id="sponsor-form"><div class="wrap grid g2" style="align-items:start">
+    <div>
+      <p class="eyebrow">Ready to get involved?</p><h2>Build your enquiry</h2>
+      <p class="muted">Fill this in to generate a ready-to-send message, then copy it to whichever organiser you'd like to speak to. Nothing is submitted or stored here.</p>
+      <div class="contact-grid" style="margin-top:18px">
+        <div class="contact"><div class="role">Host &amp; admin</div><div class="who">Bunty Vas</div><span class="muted" style="font-size:.86rem">Energetic Host Bunty Vas</span></div>
+        <div class="contact"><div class="role">Coordination</div><div class="who">Brendon Rato</div><span class="muted" style="font-size:.86rem">Moonlit Moments</span></div>
+        <div class="contact"><div class="role">Admin</div><div class="who">Jonathan Barreto</div><span class="muted" style="font-size:.86rem">Night Blink DJ</span></div>
+        <div class="contact"><div class="role">Coordination</div><div class="who">Swiston Antao</div><span class="muted" style="font-size:.86rem">Swisan Creations</span></div>
+      </div>
+    </div>
+    <div class="panel" id="sponsor-enquiry">
+      <p class="eyebrow">Sponsorship enquiry</p><h3 style="color:#fff">Tell us about your business</h3>
+      <div class="form" style="margin-top:6px">
+        <div class="field"><label for="sp-business">Business / brand name</label><input id="sp-business" type="text" placeholder="e.g. Susegado Bar"></div>
+        <div class="field"><label for="sp-name">Contact name</label><input id="sp-name" type="text" placeholder="e.g. Rizwan Fernandes"></div>
+        <div class="field"><label for="sp-reach">Best way to reach you</label><input id="sp-reach" type="text" placeholder="Phone, email or Instagram handle"></div>
+        <div class="field"><label for="sp-tier">Package interested in</label>
+          <select id="sp-tier"><option value="">Select a package…</option><option>Sponsor an Item</option><option>Cash Towards Ground Hire</option><option>Sponsor a Trophy</option><option>Not sure yet — advise me</option></select>
+        </div>
+        <div class="field"><label for="sp-note">Anything else?</label><textarea id="sp-note" rows="3" placeholder="Optional message"></textarea></div>
+        <button class="btn btn-gold" type="button" id="sp-build">Generate my enquiry</button>
+        <div class="field" id="sp-out-wrap" style="display:none"><label for="sp-out">Copy this message</label><textarea id="sp-out" rows="6" readonly></textarea><button class="btn btn-ghost" type="button" id="sp-copy" style="margin-top:8px">Copy to clipboard</button></div>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<!-- ===================== LIVE SCORE ===================== -->
+<style>
+.live-hero{padding-bottom:24px}
+.live-status{display:inline-flex;align-items:center;gap:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.72rem;padding:6px 14px;border-radius:999px;background:rgba(244,236,214,.07);border:1px solid var(--line)}
+.live-status .dot{width:8px;height:8px;border-radius:50%;background:#6b7c70}
+.live-status.on .dot{background:#3ecf6e;box-shadow:0 0 0 3px rgba(62,207,110,.25);animation:livepulse 1.4s infinite}
+@keyframes livepulse{50%{opacity:.4}}
+.live-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+.live-tab{font-weight:700;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;color:#d8e0d8;padding:11px 20px;border-radius:999px;cursor:pointer;background:rgba(244,236,214,.06);border:1px solid var(--line-strong);transition:.18s}
+.live-tab.active{background:var(--gold);color:var(--midnight);border-color:var(--gold)}
+.round-group{margin-bottom:30px}
+.round-group h3{color:var(--gold-soft);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;font-family:'DM Sans';font-weight:700;margin-bottom:12px}
+.match-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.match-card{background:rgba(244,236,214,.045);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 18px;position:relative}
+.match-card.is-live{border-color:#3ecf6e;box-shadow:0 0 0 1px #3ecf6e}
+.match-card.is-complete{opacity:.78}
+.match-badge{position:absolute;top:12px;right:14px;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:rgba(244,236,214,.08);color:#cdd6cd}
+.match-badge.live{background:#3ecf6e;color:#06231a}
+.match-row{display:flex;align-items:center;gap:10px;padding:7px 0}
+.match-team{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.match-team .tlogo{flex:0 0 auto;width:32px;height:32px;border-radius:50%;background:rgba(244,236,214,.1);display:grid;place-items:center;font-size:.9rem}
+.match-team .tname{font-weight:700;color:#fff;font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.match-score{font-family:'Anton';font-size:1.3rem;color:var(--gold);min-width:26px;text-align:center}
+.match-vs{text-align:center;color:#9fb0a4;font-size:.7rem;font-weight:700;letter-spacing:.1em;margin:2px 0}
+.match-admin-ctrl{display:flex;align-items:center;gap:8px;margin-top:6px}
+.score-btn{width:26px;height:26px;border-radius:7px;border:1px solid var(--line-strong);background:rgba(244,236,214,.05);color:#fff;font-weight:700;cursor:pointer}
+.score-btn:hover{border-color:var(--gold);color:var(--gold)}
+.match-actions{display:flex;gap:8px;margin-top:12px}
+.match-actions .btn{padding:8px 14px;font-size:.7rem}
+.live-spotlight{background:linear-gradient(180deg,#0c2c22,#08231a);border:2px solid #3ecf6e;border-radius:var(--r);padding:26px;margin-bottom:30px;box-shadow:0 0 40px -10px rgba(62,207,110,.4)}
+.live-spotlight .tag{color:#3ecf6e;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.72rem;margin-bottom:10px}
+.live-spotlight .row{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap}
+.live-spotlight .team{display:flex;flex-direction:column;align-items:center;gap:8px}
+.live-spotlight .tlogo{width:64px;height:64px;border-radius:50%;background:rgba(244,236,214,.08);display:grid;place-items:center;font-size:1.6rem}
+.live-spotlight .tname{font-family:'Anton';color:#fff;font-size:1.1rem}
+.live-spotlight .score{font-family:'Anton';font-size:3.2rem;color:var(--gold)}
+.live-spotlight .sep{font-family:'Anton';font-size:2.2rem;color:#9fb0a4}
+.admin-gate{max-width:420px;margin:0 auto;text-align:center}
+body.kiosk .nav,body.kiosk footer,body.kiosk .azulejo-band{display:none!important}
+body.kiosk section{padding:24px 0}
+body.kiosk .live-spotlight .score{font-size:5rem}
+body.kiosk .live-spotlight .tname{font-size:1.6rem}
+</style>
+
+<main class="page" id="page-live">
+  <section class="live-hero"><div class="wrap">
+    <p class="kicker">Match day</p>
+    <h1 style="font-size:clamp(2.6rem,7vw,4.6rem);color:#fff">Live Score</h1>
+    <p class="lead" style="max-width:680px;margin-top:14px">Follow every match as it happens on Sunday 30 August. Winners advance straight into the bracket below — no refresh needed.</p>
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:10px">
+      <span class="live-status" id="live-conn"><span class="dot"></span><span id="live-conn-txt">Connecting…</span></span>
+      <a class="btn btn-ghost" id="live-fullscreen-link" href="led-wall.html" target="_blank" style="padding:8px 16px;font-size:.72rem">Open LED wall display ↗</a>
+    </div>
+  </div></section>
+
+  <div class="azulejo-band"></div>
+
+  <section><div class="wrap">
+    <div id="live-admin-gate" class="admin-gate" style="display:none">
+      <p class="eyebrow center">Admin access</p><h2>Enter the admin code</h2>
+      <div class="form" style="margin-top:14px"><input id="live-admin-pass" type="password" placeholder="Admin code"><button class="btn btn-gold" id="live-admin-submit" style="margin-top:10px">Unlock</button></div>
+      <p class="note" id="live-admin-err" style="color:var(--terra);display:none;margin-top:10px">Incorrect code.</p>
+    </div>
+
+    <div id="live-spotlight-mount"></div>
+
+    <div class="live-tabs">
+      <button class="live-tab active" data-comp="boys" onclick="liveShowComp('boys')">Men's · 5-a-side</button>
+      <button class="live-tab" data-comp="ladies" onclick="liveShowComp('ladies')">Ladies · Penalty Shootout</button>
+    </div>
+
+    <div id="live-board"></div>
+  </div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="foot-grid">
+    <div>
+      <div class="foot-brand"><img src="images/logo.png" alt="UK Goan Vendors Cup badge"><div class="t">UK Goan<br>Vendors Cup<br>2026</div></div>
+      <p class="muted" style="margin-top:16px;max-width:320px">A community tournament by Goan event vendors, for Goan event vendors. Powered by the Goan Event Vendors Association.</p>
+    </div>
+    <div class="foot-col"><h4>Explore</h4><a data-go="home">Home</a><a data-go="format">The Format</a><a data-go="sponsors">Sponsors</a><a data-go="live">Live Score</a></div>
+    <div class="foot-col"><h4>The day</h4><a>Sunday, 30 August 2026</a><a>Cranford Community College, London</a><a>5-a-side · Live team draw</a></div>
+  </div>
+  <div class="foot-bottom"><span>© <span data-year>2026</span> UK Goan Vendors Cup · Organised by Bunty, Brendon, Jonathan &amp; Swinston</span><span class="serif">Let's play. Let's connect. Let's grow together.</span></div>
+  <div class="powered">
+    <span class="pw-label">Powered by</span>
+    <a href="https://goapages.com" target="_blank" rel="noopener">GoaPages UK</a><span class="sep">/</span><a href="https://fotoboothrental.uk" target="_blank" rel="noopener">Fotobooth Rental UK</a>
+  </div>
+</div></footer>
+
+<script>const POTS=[
+{id:"pot1",num:"POT 1",color:"var(--pot1)",name:"DJs & Bands",sub:"The sound of the day",members:[["Jolan Fernandes","DJ Colour Blind"],["Jonathan Barreto","Night Blink DJ"],["Jovito Vaz","J Vaz Events"],["Sanford Barreto","Sanford Music"],["Royen Vaz","RV"],["Jonas Afonso","AFNZZ"],["Calliston Pereira","DJ Calliston"],["Noywen Fernandes","Noywens Music World"],["Keane Picardo","DJ Keane"],["Savio Leitao","DJ Savio Ltd"],["Enrico Fernandes","DJ"],["Tito Maia","DJ Tito Maia"],["Velfern Fernandes","LitVibes"],["Armstrong Pereira","ANP Ltd"],["Manuel Vas","DJ Manu3l"],["Flacid Mendes","DJ Flacid"],["Ronny Fernandes","RonnyGoesSolo"],["Christopher Colaco","V5 Band"]]},
+{id:"pot2",num:"POT 2",color:"var(--pot2)",name:"MCs & Bakers",sub:"Voices & sweet treats",members:[["Bunty Vas","Energetic Host Bunty Vas"],["Swiston Antao","Swisan Creations"],["Clanny Rodrigues","Chef's Kiss Pastry, Wembley"],["Dylan Rodrigues","Your Host Your Dost"],["Kane Lopes","Kim Bakes"]]},
+{id:"pot3",num:"POT 3",color:"var(--pot3)",name:"Decorators & Caterers",sub:"Setting the scene & the feast",members:[["Keegan Dacosta","Thousand Wishes"],["Rayson Antao","Fiora Creations"],["Samroy Cardoso","Bayleaf Ltd"],["Nazareth Luis","Fiora Creations"],["Simon Dsouza","Suntop Caterers"],["Lionel Fernandes","Grace Caterers"],["Sholwart Carvalho","Peppercorns Caterers"],["Francisco Fernandes","J3 Caterers"],["Rizlon Fernandes","CA Events"],["Nash Pereira","St Anthony Caterers, Wembley"],["Shawnal Carvalho","Peppercorns Caterers"],["Oshane Picardo","Peppercorns Caterers"],["James Dsouza","Suntop Caterers"],["Fimber Fernandes","3 Kings Caterers"],["Cyril Gomes","3 Kings Caterers"],["Adrian Fernandes","3 Kings"],["Morgan Fernandes","Axel Creations"],["Hanson Fernandes","Axel Creations"],["Noah Fernandes","Selsdeco"],["William Braganca","Simplicity of Goa"],["Demise Fernandes","Simplicity of Goa"],["John Venon D'costa","Simplicity of Goa"],["Cony Fernandes","Simplicity of Goa"],["Nehden Fernandes","Selsdeco"],["Egan Mark Goencar","Selsdeco"],["Brian Dias","GB Events"],["Nicklas Fernandes","3 Kings Caterers"]]},
+{id:"pot4",num:"POT 4",color:"var(--pot4)",name:"Photographers & Videographers",sub:"Capturing every moment",members:[["Nash Pereira","Nash Photography"],["Brendon Rato","Moonlit Moments"],["Beckham Pereira","Beckz Visualz"],["Mcvean Pereira","Mcvean Photography"],["Darren Da Costa","DarrenDacosta Photography"],["Anshawl De Sousa","Anshawl De Sousa"],["Fraser Rodrigues","Fraser Rodrigues Photography"],["Anthony Miranda","AC Videography"],["Mauvin D'cunha","Mauvin's Digital ShutterboX"],["Henry Cardozo","Henry's Royale Lens"],["Joywin Fernandes","Joywin's Clicks"],["Francisco P Fernandes","Moonlit Moments"],["Jason Pereira","Jason Pereira Photography"],["Edwin De Souza","Edrifah Photography"],["Pranoy Savio Fernandes","Motion.verse Studio"],["Jewel Fernandes","Chromatic Moments"],["Michu Rodrigues","Michu Art Studio"]]},
+{id:"pot5",num:"POT 5",color:"var(--pot5)",name:"Bar Team & Other Vendors",sub:"Bars, tents, sound, design & more",members:[["Brian Gonsalves","Gonsalves Property Services"],["Haysten","Haysty Fruit & Vegetable Carving"],["Rizwan Fernandes","Susegado Bar"],["Princewell Fernandes","Prince of Goodtimes Productions"],["Agnelo V Lobo","AGJES P"],["Joshua Afonso","AJs Creations & Events"],["Frazer Fernandes","3 Kings Caterers"],["Dixon Desouza","Twisted Lime Bar Service"],["Shenoy Noronha","Twisted Lime Bar Service"],["Dylan Desouza","Twisted Lime Bar Service"],["Rizwal Pereira","Underground Bartenders"],["Sheldon Vas","Cartooniverse Creations"],["Junius Costa","Cartooniverse Creations"],["Astin Fernandes","AF Tents"],["Osmund D'silva","Power House Sound"],["Aleixo Sequeira","The Dandelions"],["Peyton Pires","Triglight Visuals / D&C Studios"],["Rhydwyn Rebello","DreamTeam"],["Jonathan Diniz","Tuka Zai Toxem Designs"],["Selvin Vaz","ViVaz Bar Services"],["Altron Fernandes","Twisted Lime Bar Service"],["Benjamin Almeida","Twisted Lime Bar Service"],["Gilbert Dsouza","Twisted Lime Bar Service"],["Myron Dias","The Diaz Collective"],["Nash Rebelo","Twisted Lime Bar Service"],["Cletus Gonsalves","Venture Occasions Ltd"],["Sergio Estibiero","ViVaz Bar Services"],["Beny Cardozo","ViVaz Bar Services"],["Sameo Vaz","ViVaz Bar Services"],["Daglish Fernandes","Twisted Lime Bar Service"],["Joybert Almeida","ViVaz Bar Services"],["John Ataide","Simplicity of Goa, Goan Cuisine"]]},
+{id:"ladies",num:"LADIES",color:"var(--potL)",name:"Ladies",sub:"The ladies of the cup",members:[["Aqvisha Camelo","St Anthony Caterers"],["Daisy Barreto","Cakeybakey"],["Gladrin Fernandes","Rainbow's End"],["Frenzie Fernandes","Haysty Fruit & Vegetable Carving"],["Madonna Caiado","MC Madonna Caiado"],["Elcy Fernandes","Henry's Royale Lens"],["Pinky Fadte","Emcee Pinky Fadte"],["Selsy De Souza","Selsdeco"],["Marina Ataide","Simplicity of Goa"],["Lanzia Fernandes","Ziasbakes"],["Zelia Fernandes","Simplicity of Goa, Goan Cuisine"],["Loviey Eva","Simplicity of Goa, Goan Cuisine"],["Sheila D'Costa","Emcee Sheila D'Costa"],["Adamantina Silveira (ADA)","GB Events"],["Finola Fernandes","Mama's Cakes n Bakes"],["Amanda Fernandes","Emcee Amanda"],["Sanfie Dsouza","Fotobooth Rental UK"]]}
+];
+const TOTAL=POTS.reduce((s,p)=>s+p.members.length,0);
+
+function renderRoster(){
+  const mount=document.getElementById("roster"),chips=document.getElementById("roster-chips");
+  if(!mount)return;
+  chips.innerHTML=`<button class="chip active" data-f="all"><span class="dot" style="background:var(--gold)"></span>All ${TOTAL}</button>`+
+    POTS.map(p=>`<button class="chip" data-f="${p.id}"><span class="dot" style="background:${p.color}"></span>${p.name}</button>`).join("");
+  mount.innerHTML=POTS.map(p=>{
+    const cards=p.members.map((m,i)=>`<div class="kit"><div class="num">${String(i+1).padStart(2,"0")}</div><div class="nm">${m[0]}</div><span class="br">${m[1]}</span></div>`).join("");
+    return `<div class="pool" data-pool="${p.id}" style="--pc:${p.color}"><div class="pool-head"><div class="badge-num">${p.num}</div><div><h3>${p.name}</h3><div class="sub">${p.sub}</div></div><div class="ct">${p.members.length} vendors</div></div><div class="kit-grid">${cards}</div></div>`;
+  }).join("");
+  chips.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{
+    chips.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));c.classList.add("active");
+    const f=c.dataset.f;
+    mount.querySelectorAll(".pool").forEach(pool=>{pool.style.display=(f==="all"||pool.dataset.pool===f)?"":"none";});
+  }));
+}
+function renderPotSummary(){
+  const mount=document.getElementById("pot-summary");if(!mount)return;
+  mount.innerHTML=POTS.filter(p=>p.id!=="ladies").map(p=>`<div class="pot-card" style="--pc:${p.color}"><div class="pot-tag">${p.num}</div><div><h3>${p.name}</h3><div class="count">${p.members.length} vendors in this pot</div></div></div>`).join("");
+}
+function showPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id==="page-"+id));
+  document.querySelectorAll(".nav-links a").forEach(a=>a.classList.toggle("active",a.dataset.go===id&&!a.classList.contains("nav-cta")));
+  document.querySelector(".nav-links").classList.remove("open");
+  runReveal();window.scrollTo({top:0,behavior:"auto"});
+}
+function initNav(){
+  document.querySelectorAll("[data-go]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();showPage(a.dataset.go);}));
+  const t=document.querySelector(".nav-toggle"),links=document.querySelector(".nav-links");
+  if(t)t.addEventListener("click",()=>links.classList.toggle("open"));
+}
+function runReveal(){
+  const els=document.querySelectorAll(".page.active .reveal");
+  if(!("IntersectionObserver"in window)){els.forEach(e=>e.classList.add("in"));return;}
+  const io=new IntersectionObserver((en)=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.12});
+  els.forEach(e=>io.observe(e));
+}
+function initSponsorForm(){
+  const build=document.getElementById("sp-build");if(!build)return;
+  const out=document.getElementById("sp-out"),wrap=document.getElementById("sp-out-wrap"),copy=document.getElementById("sp-copy");
+  build.addEventListener("click",()=>{
+    const biz=(document.getElementById("sp-business").value||"").trim(),
+      n=(document.getElementById("sp-name").value||"").trim(),
+      reach=(document.getElementById("sp-reach").value||"").trim(),
+      tier=document.getElementById("sp-tier").value,
+      note=(document.getElementById("sp-note").value||"").trim();
+    wrap.style.display="block";
+    if(!biz||!n||!reach||!tier){out.value="Please fill in your business name, contact name, reach details and package first.";return;}
+    out.value="Hi \u2014 we'd like to sponsor the UK Goan Vendors Cup 2026 \u26BD\uD83C\uDFC6\n\n\u2022 Business / brand: "+biz+"\n\u2022 Contact name: "+n+"\n\u2022 Best way to reach us: "+reach+"\n\u2022 Package interested in: "+tier+(note?("\n\u2022 Note: "+note):"");
+  });
+  copy.addEventListener("click",()=>{out.select();try{document.execCommand("copy");copy.textContent="Copied \u2713";setTimeout(()=>copy.textContent="Copy to clipboard",1800);}catch(e){}});
+}
+document.addEventListener("DOMContentLoaded",()=>{
+  renderRoster();renderPotSummary();initNav();initSponsorForm();
+  document.querySelectorAll("[data-year]").forEach(e=>e.textContent=new Date().getFullYear());
+  const st=document.getElementById("stat-total");if(st)st.textContent=TOTAL;
+  runReveal();
+  gvcInit(()=>{
+    document.getElementById("live-conn-txt").textContent=GVC_OFFLINE?"Preview mode (local only)":"Live";
+    document.getElementById("live-conn").classList.toggle("on",!GVC_OFFLINE);
+    initSponsorsAdmin();
+    watchSponsors();
+    watchTeamNames();
+    liveInit();
+  });
+  if(location.search.indexOf("display=1")>=0){document.body.classList.add("kiosk");}
+  if(location.hash.indexOf("admin=")>=0){showLiveAdminGate();}
+});
+</script>
+<script>
+/* ============================================================
+   SHARED DATA LAYER — Firestore (cloud) with localStorage fallback.
+   To enable real cross-device sync, paste your Firebase project's
+   config below (Firebase Console → Project settings → your app).
+   Until then this runs in local-preview mode (admin changes only
+   visible in the same browser).
+   ============================================================ */
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBMssuO4ja3-jMAaghe0nnp40juHMoJXek",
+  authDomain: "gvc2026-1528a.firebaseapp.com",
+  projectId: "gvc2026-1528a",
+  storageBucket: "gvc2026-1528a.firebasestorage.app",
+  messagingSenderId: "456392981820",
+  appId: "1:456392981820:web:5b1e315780414b21f7f239"
+};
+const ADMIN_CODE = "gvc-bunty-2026";
+let GVC_DB=null, GVC_OFFLINE=true;
+function gvcInit(cb){
+  if(!FIREBASE_CONFIG.apiKey || FIREBASE_CONFIG.apiKey.indexOf("PASTE")===0){ GVC_OFFLINE=true; cb(); return; }
+  const s1=document.createElement("script"); s1.src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js";
+  s1.onload=()=>{
+    const s2=document.createElement("script"); s2.src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js";
+    s2.onload=()=>{ firebase.initializeApp(FIREBASE_CONFIG); GVC_DB=firebase.firestore(); GVC_OFFLINE=false; cb(); };
+    s2.onerror=()=>{ GVC_OFFLINE=true; cb(); };
+    document.head.appendChild(s2);
+  };
+  s1.onerror=()=>{ GVC_OFFLINE=true; cb(); };
+  document.head.appendChild(s1);
+}
+function gvcGet(col,doc,fallback){
+  return new Promise(res=>{
+    if(GVC_OFFLINE){ try{ const raw=localStorage.getItem("gvc_"+col+"_"+doc); res(raw?JSON.parse(raw):fallback);}catch(e){res(fallback);} return; }
+    GVC_DB.collection(col).doc(doc).get().then(d=>res(d.exists?d.data():fallback)).catch(()=>res(fallback));
+  });
+}
+function gvcSet(col,doc,data){
+  if(GVC_OFFLINE){
+    localStorage.setItem("gvc_"+col+"_"+doc, JSON.stringify(data));
+    window.dispatchEvent(new CustomEvent("gvc-local-"+col+"-"+doc,{detail:data}));
+    return Promise.resolve();
+  }
+  return GVC_DB.collection(col).doc(doc).set(data,{merge:false});
+}
+function gvcWatch(col,doc,fallback,cb){
+  if(GVC_OFFLINE){
+    gvcGet(col,doc,fallback).then(cb);
+    window.addEventListener("gvc-local-"+col+"-"+doc,e=>cb(e.detail));
+    return;
+  }
+  GVC_DB.collection(col).doc(doc).onSnapshot(d=>{ cb(d.exists?d.data():fallback); },()=>cb(fallback));
+}
+function isAdminSession(){ return sessionStorage.getItem("gvc_admin")==="1"; }
+function pngFileToDataURL(file,maxW){
+  return new Promise((resolve,reject)=>{
+    if(file.type!=="image/png"){reject(new Error("Please choose a PNG file."));return;}
+    if(file.size>800000){reject(new Error("Please choose a PNG under 800KB."));return;}
+    const img=new Image(),reader=new FileReader();
+    reader.onload=e=>{
+      img.onload=()=>{
+        const scale=Math.min(1,maxW/img.width);
+        const w=Math.round(img.width*scale),h=Math.round(img.height*scale);
+        const c=document.createElement("canvas");c.width=w;c.height=h;
+        c.getContext("2d").drawImage(img,0,0,w,h);
+        resolve(c.toDataURL("image/png"));
+      };
+      img.onerror=()=>reject(new Error("Couldn't read that image."));
+      img.src=e.target.result;
+    };
+    reader.onerror=()=>reject(new Error("Couldn't read that file."));
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ============================================================
+   SPONSORS — seeded from the WhatsApp group's sponsor shoutouts
+   ============================================================ */
+const SPONSORS_SEED=[
+  {id:"s1",name:"Darren D'Costa Photography",type:"item",desc:"Match footballs"},
+  {id:"s2",name:"St Anthony Caterers (Nash)",type:"item",desc:"8 cases of water"},
+  {id:"s3",name:"Nash Photography",type:"item",desc:"Official First Aider on the day"},
+  {id:"s4",name:"Selvin",type:"item",desc:"First aid kit + certified first aider"},
+  {id:"s5",name:"Infinity Material Handling Ltd",type:"item",desc:"Player bibs"},
+  {id:"s6",name:"VR Events (Alison Botwell)",type:"item",desc:"Sparklers for the trophy lift"},
+  {id:"s7",name:"Frank Furtado Productions",type:"item",desc:"All tournament trophies"},
+  {id:"s8",name:"Motionverse Studio (Pranoy)",type:"item",desc:"Winners & runners-up medals (7 gold, 7 silver)"},
+  {id:"s9",name:"AC Videography (Anthony Miranda)",type:"item",desc:"Lucozade & sandwiches"},
+  {id:"s10",name:"A well-wisher",type:"item",desc:"Generator"},
+  {id:"s11",name:"A well-wisher",type:"item",desc:"Portable PA system + 2 mics"},
+  {id:"s12",name:"Swiston Antao",type:"item",desc:"LED wall"},
+  {id:"s13",name:"AF Tents",type:"item",desc:"Tents & chairs"},
+  {id:"s14",name:"A well-wisher",type:"cash",desc:"Cash + 4 cases of water",amount:200},
+  {id:"s15",name:"Moonlit Moments (Brendon Rato)",type:"cash",desc:"Cash towards ground hire",amount:null},
+  {id:"s16",name:"Cakes by Corte",type:"cash",desc:"Cash towards ground hire",amount:null},
+  {id:"s17",name:"Darren D'Costa Photography",type:"cash",desc:"Cash towards ground hire",amount:null},
+  {id:"s18",name:"Suntop Caterers (Simon)",type:"cash",desc:"Cash towards ground hire",amount:null},
+  {id:"s19",name:"Motionverse Studio (Pranoy)",type:"cash",desc:"Cash towards ground hire",amount:null},
+  {id:"s20",name:"Axel Creation (Morgan)",type:"cash",desc:"Cash towards ground hire",amount:null}
+];
+let SPONSORS=SPONSORS_SEED.slice();
+
+function sponsorInitials(name){ return name.replace(/[^A-Za-z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase()||"?"; }
+function sponsorCard(s,admin){
+  const logo=s.logo?`<img src="${s.logo}" alt="">`:sponsorInitials(s.name);
+  const amt=s.amount?`<span class="amt">£${s.amount}</span>`:"";
+  const rm=admin?`<button class="rm" onclick="removeSponsor('${s.id}')" title="Remove">✕</button>`:"";
+  return `<div class="sponsor-card">${rm}<div class="logo">${logo}</div><div><div class="who">${s.name}</div><span class="what">${s.desc}</span>${amt}</div></div>`;
+}
+function renderSponsors(){
+  const cashList=SPONSORS.filter(s=>s.type==="cash"), itemList=SPONSORS.filter(s=>s.type==="item");
+  const admin=isAdminSession();
+  const cashMount=document.getElementById("sponsor-cash-list"), itemMount=document.getElementById("sponsor-item-list"), totalsMount=document.getElementById("sponsor-totals"), barMount=document.getElementById("sponsor-admin-bar");
+  if(!cashMount)return;
+  cashMount.innerHTML=cashList.map(s=>sponsorCard(s,admin)).join("")||`<div class="sponsor-slot">Be the first cash sponsor</div>`;
+  itemMount.innerHTML=itemList.map(s=>sponsorCard(s,admin)).join("")||`<div class="sponsor-slot">Be the first item sponsor</div>`;
+  const cashKnown=cashList.reduce((sum,s)=>sum+(s.amount||0),0);
+  const cashPledgedNoAmount=cashList.filter(s=>!s.amount).length;
+  totalsMount.innerHTML=`
+    <div class="sponsor-total-card"><div class="n">£${cashKnown}${cashPledgedNoAmount?'+':''}</div><div class="l">Cash confirmed${cashPledgedNoAmount?` (+${cashPledgedNoAmount} pledged, amount TBC)`:''}</div></div>
+    <div class="sponsor-total-card"><div class="n">${itemList.length}</div><div class="l">Items sponsored</div></div>`;
+  if(admin){
+    barMount.style.display="block";
+    barMount.innerHTML=`<div class="panel" style="padding:20px 22px">
+      <p class="eyebrow" style="margin-bottom:10px">Admin · Add a sponsor</p>
+      <div class="grid g2" style="gap:10px">
+        <div class="field"><label>Sponsor / business name</label><input id="adm-sp-name" type="text"></div>
+        <div class="field"><label>Type</label><select id="adm-sp-type"><option value="item">Item / in-kind</option><option value="cash">Cash</option></select></div>
+        <div class="field"><label>What they sponsored</label><input id="adm-sp-desc" type="text" placeholder="e.g. Cash towards ground hire"></div>
+        <div class="field"><label>Amount (£, cash only)</label><input id="adm-sp-amt" type="number" placeholder="Leave blank if TBC"></div>
+        <div class="field"><label>Logo (PNG, optional)</label><input id="adm-sp-logo" type="file" accept="image/png"></div>
+      </div>
+      <button class="btn btn-gold" style="margin-top:10px" onclick="addSponsor()">Add sponsor</button>
+      <p class="note" id="adm-sp-err" style="color:var(--terra);display:none;margin-top:8px"></p>
+    </div>`;
+  }else{ barMount.style.display="none"; }
+}
+async function addSponsor(){
+  const name=document.getElementById("adm-sp-name").value.trim();
+  const type=document.getElementById("adm-sp-type").value;
+  const desc=document.getElementById("adm-sp-desc").value.trim();
+  const amtRaw=document.getElementById("adm-sp-amt").value;
+  const fileInput=document.getElementById("adm-sp-logo");
+  const err=document.getElementById("adm-sp-err");
+  err.style.display="none";
+  if(!name||!desc){err.textContent="Please fill in the sponsor name and what they sponsored.";err.style.display="block";return;}
+  const entry={id:"s"+Date.now(),name,type,desc,amount:amtRaw?Number(amtRaw):null};
+  if(fileInput.files[0]){
+    try{ entry.logo=await pngFileToDataURL(fileInput.files[0],240); }
+    catch(e){ err.textContent=e.message; err.style.display="block"; return; }
+  }
+  const attempted=SPONSORS.concat([entry]);
+  try{
+    await Promise.race([
+      gvcSet("gvc2026","sponsors",{list:attempted}),
+      new Promise((_,reject)=>setTimeout(()=>reject(new Error("timeout")),10000))
+    ]);
+    SPONSORS=attempted;
+    renderSponsors();
+  }catch(e){
+    console.error("Sponsor save failed:", e);
+    err.textContent = e && e.message==="timeout" ? "Taking too long — check your connection and try again." : "Couldn't save the sponsor right now. Try again in a moment.";
+    err.style.display="block";
+  }
+}
+function removeSponsor(id){
+  SPONSORS=SPONSORS.filter(s=>s.id!==id);
+  gvcSet("gvc2026","sponsors",{list:SPONSORS});
+  renderSponsors();
+}
+function watchSponsors(){
+  gvcWatch("gvc2026","sponsors",{list:SPONSORS_SEED},data=>{
+    SPONSORS=(data&&data.list&&data.list.length)?data.list:SPONSORS_SEED;
+    renderSponsors();
+  });
+}
+function initSponsorsAdmin(){
+  if(location.hash.indexOf("admin=")>=0){
+    const code=location.hash.split("admin=")[1];
+    if(code===ADMIN_CODE) sessionStorage.setItem("gvc_admin","1");
+  }
+}
+
+/* ============================================================
+   LIVE SCORE — matches, auto-advance winners, admin controls
+   ============================================================ */
+const MATCH_DEFS={
+  boys:[
+    {id:"A1",teamA:9,teamB:7,round:"Round 1",feeds:{id:"AS1",slot:"a"}},
+    {id:"A2",teamA:12,teamB:11,round:"Round 1",feeds:{id:"AS1",slot:"b"}},
+    {id:"A3",teamA:3,teamB:4,round:"Round 1",feeds:{id:"AS2",slot:"a"}},
+    {id:"A4",teamA:6,teamB:null,round:"Round 1",bye:true,feeds:{id:"AS2",slot:"b"}},
+    {id:"AS1",teamA:null,teamB:null,round:"Semi-Final",feeds:{id:"AF",slot:"a"}},
+    {id:"AS2",teamA:null,teamB:null,round:"Semi-Final",feeds:{id:"AF",slot:"b"}},
+    {id:"AF",teamA:null,teamB:null,round:"Bracket A Final",feeds:{id:"GF",slot:"a"}},
+    {id:"B1",teamA:10,teamB:5,round:"Round 1",feeds:{id:"BS1",slot:"a"}},
+    {id:"B2",teamA:2,teamB:null,round:"Round 1",bye:true,feeds:{id:"BS1",slot:"b"}},
+    {id:"B3",teamA:8,teamB:13,round:"Round 1",feeds:{id:"BS2",slot:"a"}},
+    {id:"B4",teamA:14,teamB:1,round:"Round 1",feeds:{id:"BS2",slot:"b"}},
+    {id:"BS1",teamA:null,teamB:null,round:"Semi-Final",feeds:{id:"BF",slot:"a"}},
+    {id:"BS2",teamA:null,teamB:null,round:"Semi-Final",feeds:{id:"BF",slot:"b"}},
+    {id:"BF",teamA:null,teamB:null,round:"Bracket B Final",feeds:{id:"GF",slot:"b"}},
+    {id:"GF",teamA:null,teamB:null,round:"Grand Final",feeds:null}
+  ],
+  ladies:[
+    {id:"LA1",teamA:6,teamB:3,round:"Round 1",feeds:{id:"LAF",slot:"a"}},
+    {id:"LA2",teamA:1,teamB:2,round:"Round 1",feeds:{id:"LAF",slot:"b"}},
+    {id:"LAF",teamA:null,teamB:null,round:"Side A Final",feeds:{id:"LGF",slot:"a"}},
+    {id:"LB1",teamA:4,teamB:7,round:"Round 1",feeds:{id:"LBF",slot:"a"}},
+    {id:"LB2",teamA:8,teamB:5,round:"Round 1",feeds:{id:"LBF",slot:"b"}},
+    {id:"LBF",teamA:null,teamB:null,round:"Side B Final",feeds:{id:"LGF",slot:"b"}},
+    {id:"LGF",teamA:null,teamB:null,round:"Grand Final",feeds:null}
+  ]
+};
+function liveDefaultState(){
+  const state={boys:{},ladies:{}};
+  ["boys","ladies"].forEach(comp=>{
+    MATCH_DEFS[comp].forEach(m=>{
+      state[comp][m.id]={teamA:m.teamA,teamB:m.teamB,scoreA:0,scoreB:0,status:m.bye?"complete":"scheduled",winner:m.bye?m.teamA:null};
+    });
+    // propagate byes into their target slot
+    MATCH_DEFS[comp].forEach(m=>{
+      if(m.bye && m.feeds){
+        const target=state[comp][m.feeds.id];
+        if(m.feeds.slot==="a")target.teamA=m.teamA; else target.teamB=m.teamA;
+      }
+    });
+  });
+  return state;
+}
+let LIVE_STATE=liveDefaultState();
+let LIVE_COMP="boys";
+
+function liveTeamName(comp,n){
+  if(n==null)return "TBD";
+  const names=(comp==="boys"?BRK_NAMES.boys:BRK_NAMES.ladies)||{};
+  return names[n] || ("Team "+n);
+}
+function liveMatchDef(comp,id){ return MATCH_DEFS[comp].find(m=>m.id===id); }
+
+function liveRenderBoard(){
+  const mount=document.getElementById("live-board"); if(!mount)return;
+  const admin=isAdminSession();
+  const rounds=[...new Set(MATCH_DEFS[LIVE_COMP].map(m=>m.round))];
+  let spotlightHTML="";
+  let html="";
+  rounds.forEach(round=>{
+    const matches=MATCH_DEFS[LIVE_COMP].filter(m=>m.round===round);
+    html+=`<div class="round-group"><h3>${round}</h3><div class="match-grid">`;
+    matches.forEach(def=>{
+      const st=LIVE_STATE[LIVE_COMP][def.id];
+      if(def.bye){
+        html+=`<div class="match-card is-complete"><div class="match-badge">Bye</div>
+          <div class="match-row"><div class="match-team"><span class="tlogo">🛡</span><span class="tname">${liveTeamName(LIVE_COMP,def.teamA)}</span></div></div>
+          <div class="match-vs">advances automatically</div></div>`;
+        return;
+      }
+      const badge=st.status==="live"?'<div class="match-badge live">● Live</div>':st.status==="complete"?'<div class="match-badge">Full time</div>':'<div class="match-badge">Scheduled</div>';
+      const teamAName=liveTeamName(LIVE_COMP,st.teamA), teamBName=liveTeamName(LIVE_COMP,st.teamB);
+      const canPlay=st.teamA!=null&&st.teamB!=null;
+      let adminCtrl="";
+      if(admin&&canPlay&&st.status!=="complete"){
+        adminCtrl=`<div class="match-admin-ctrl">
+          <button class="score-btn" onclick="liveAdjust('${def.id}','A',-1)">−</button>
+          <span style="font-size:.7rem;color:#9fb0a4">${teamAName.split(' ')[0]}</span>
+          <button class="score-btn" onclick="liveAdjust('${def.id}','A',1)">+</button>
+          <span style="flex:1"></span>
+          <button class="score-btn" onclick="liveAdjust('${def.id}','B',-1)">−</button>
+          <span style="font-size:.7rem;color:#9fb0a4">${teamBName.split(' ')[0]}</span>
+          <button class="score-btn" onclick="liveAdjust('${def.id}','B',1)">+</button>
+        </div>
+        <div class="match-actions">
+          ${st.status==="scheduled"?`<button class="btn btn-terra" onclick="liveSetStatus('${def.id}','live')">Start match</button>`:''}
+          ${st.status==="live"?`<button class="btn btn-gold" onclick="liveEndMatch('${def.id}')">Full time</button>`:''}
+        </div>`;
+      }
+      html+=`<div class="match-card${st.status==='live'?' is-live':''}${st.status==='complete'?' is-complete':''}">${badge}
+        <div class="match-row"><div class="match-team"><span class="tlogo">🛡</span><span class="tname">${teamAName}</span></div><span class="match-score">${st.scoreA}</span></div>
+        <div class="match-vs">vs</div>
+        <div class="match-row"><div class="match-team"><span class="tlogo">🛡</span><span class="tname">${teamBName}</span></div><span class="match-score">${st.scoreB}</span></div>
+        ${adminCtrl}</div>`;
+      if(st.status==="live"){
+        spotlightHTML=`<div class="live-spotlight"><div class="tag">● Live now — ${round}</div><div class="row">
+          <div class="team"><div class="tlogo">🛡</div><div class="tname">${teamAName}</div></div>
+          <div class="score">${st.scoreA}</div><div class="sep">–</div><div class="score">${st.scoreB}</div>
+          <div class="team"><div class="tlogo">🛡</div><div class="tname">${teamBName}</div></div>
+        </div></div>`;
+      }
+    });
+    html+=`</div></div>`;
+  });
+  mount.innerHTML=html;
+  document.getElementById("live-spotlight-mount").innerHTML=spotlightHTML;
+}
+function liveAdjust(id,which,delta){
+  const st=LIVE_STATE[LIVE_COMP][id];
+  const key=which==="A"?"scoreA":"scoreB";
+  st[key]=Math.max(0,st[key]+delta);
+  liveSave();
+}
+function liveSetStatus(id,status){
+  LIVE_STATE[LIVE_COMP][id].status=status;
+  liveSave();
+}
+function liveEndMatch(id){
+  const st=LIVE_STATE[LIVE_COMP][id];
+  if(st.scoreA===st.scoreB){ alert("Scores are level — enter the result after extra time / penalties before ending the match."); return; }
+  st.status="complete";
+  st.winner=st.scoreA>st.scoreB?st.teamA:st.teamB;
+  st.endedAt=Date.now();
+  const def=liveMatchDef(LIVE_COMP,id);
+  if(def.feeds){
+    const target=LIVE_STATE[LIVE_COMP][def.feeds.id];
+    if(def.feeds.slot==="a")target.teamA=st.winner; else target.teamB=st.winner;
+  }
+  liveSave();
+}
+function liveSave(){
+  gvcSet("gvc2026","live",LIVE_STATE).catch(e=>{
+    console.error("Live score save failed:", e);
+    const badge=document.getElementById("live-conn-txt");
+    if(badge){ badge.textContent="Sync failed — check connection"; document.getElementById("live-conn").classList.remove("on"); }
+  });
+  liveRenderBoard();
+}
+function liveShowComp(comp){
+  LIVE_COMP=comp;
+  document.querySelectorAll(".live-tab").forEach(t=>t.classList.toggle("active",t.dataset.comp===comp));
+  liveRenderBoard();
+}
+function liveInit(){
+  gvcWatch("gvc2026","live",liveDefaultState(),data=>{
+    LIVE_STATE=(data&&data.boys)?data:liveDefaultState();
+    liveRenderBoard();
+  });
+}
+function watchTeamNames(){
+  gvcWatch("gvc2026","teamnames",{boys:{},ladies:{}},data=>{
+    if(!data)return;
+    Object.assign(BRK_NAMES.boys,data.boys||{});
+    Object.assign(BRK_NAMES.ladies,data.ladies||{});
+    if(typeof buildBoys==="function"){buildBoys();buildLadies();}
+    liveRenderBoard();
+  });
+}
+function showLiveAdminGate(){
+  document.querySelector('[data-go="live"]')&&showPage("live");
+  const gate=document.getElementById("live-admin-gate");
+  if(!gate)return;
+  if(isAdminSession()){ liveRenderBoard(); renderSponsors(); return; }
+  gate.style.display="block";
+  document.getElementById("live-admin-submit").addEventListener("click",()=>{
+    const val=document.getElementById("live-admin-pass").value;
+    if(val===ADMIN_CODE){
+      sessionStorage.setItem("gvc_admin","1");
+      gate.style.display="none";
+      liveRenderBoard(); renderSponsors();
+    }else{
+      document.getElementById("live-admin-err").style.display="block";
+    }
+  });
+}
+
+</script>
+</body>
+</html>
