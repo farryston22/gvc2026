@@ -52,7 +52,7 @@ h1,h2,.anton{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spac
 @keyframes pulse{50%{opacity:.35}}
 .matchup{display:flex;align-items:center;justify-content:center;gap:5vw}
 .team{display:flex;flex-direction:column;align-items:center;gap:1.4vh;width:26vw}
-.shield{width:11vh;height:11vh;border-radius:50%;background:rgba(244,236,214,.09);border:.3vh solid var(--gold-2);display:grid;place-items:center;font-family:'Anton',sans-serif;font-size:4vh;color:var(--gold)}
+.shield{width:11vh;height:11vh;border-radius:50%;background:rgba(244,236,214,.09);border:.3vh solid var(--gold-2);display:grid;place-items:center;font-family:'Anton',sans-serif;font-size:4vh;color:var(--gold);overflow:hidden}
 .tname{font-family:'Anton',sans-serif;font-size:3.4vh;text-align:center;line-height:1.05;color:#fff;max-width:26vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .score{font-family:'Anton',sans-serif;font-size:11vh;line-height:1;color:var(--gold)}
 .sep{font-family:'Anton',sans-serif;font-size:6vh;color:#9fb0a4}
@@ -159,7 +159,18 @@ const MATCH_DEFS={
   ]
 };
 
-let LIVE=null, NAMES={boys:{},ladies:{}}, SPONSORS=[];
+let LIVE=null, NAMES={boys:{
+  1:"Xit Kodi United", 2:"Di Teka", 3:"Suseghad FC", 4:"Uzo FC",
+  5:"Amigos Ghalya Sodun", 6:"Chokmokit Noketram", 7:"Ami Goekar",
+  9:"Antach Pavle", 10:"Urrak Boys", 11:"Cockroach FC",
+  12:"Vendors United", 13:"Goemche Bhurge", 14:"Godgodo"
+},ladies:{}}, SPONSORS=[];
+const TEAM_LOGOS={boys:{
+  1:"images/team-1.png", 2:"images/team-2.png", 3:"images/team-3.png", 4:"images/team-4.png",
+  5:"images/team-5.png", 6:"images/team-6.png", 7:"images/team-7.png",
+  9:"images/team-9.png", 10:"images/team-10.png", 11:"images/team-11.png",
+  12:"images/team-12.png", 13:"images/team-13.png", 14:"images/team-14.png"
+},ladies:{}};
 let slideIndex=0, currentSlides=[];
 
 function teamName(comp,n){
@@ -171,6 +182,10 @@ function initials(comp,n){
   const nm=teamName(comp,n);
   if(nm.indexOf("Team ")===0) return "⚽";
   return nm.replace(/[^A-Za-z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase()||"⚽";
+}
+function shieldHTML(comp,n){
+  const logo=(TEAM_LOGOS[comp]||{})[n];
+  return logo ? `<img src="${logo}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%">` : initials(comp,n);
 }
 
 function computeSlides(){
@@ -231,7 +246,7 @@ function slideHTML(s){
   }
   const {comp,def,st}=s;
   const aN=teamName(comp,st.teamA), bN=teamName(comp,st.teamB);
-  const aI=initials(comp,st.teamA), bI=initials(comp,st.teamB);
+  const aI=shieldHTML(comp,st.teamA), bI=shieldHTML(comp,st.teamB);
   const tag = s.type==="live" ? `<div class="live-tag"><span class="dot"></span> LIVE NOW</div>`
             : s.type==="next" ? `<div class="round-tag">Up Next</div>`
             : `<div class="result-tag">FULL TIME</div>`;
@@ -272,7 +287,7 @@ gvcInit(()=>{
   document.getElementById("conn-badge").textContent=GVC_OFFLINE?"PREVIEW MODE (LOCAL ONLY)":"LIVE";
   document.getElementById("conn-badge").style.color=GVC_OFFLINE?"#9fb0a4":"#3ecf6e";
   gvcWatch("gvc2026","live",null,data=>{ LIVE=data; renderStage(); });
-  gvcWatch("gvc2026","teamnames",{boys:{},ladies:{}},data=>{ NAMES=data||{boys:{},ladies:{}}; renderStage(); });
+  gvcWatch("gvc2026","teamnames",{boys:{},ladies:{}},data=>{ if(data){ Object.assign(NAMES.boys,data.boys||{}); Object.assign(NAMES.ladies,data.ladies||{}); } renderStage(); });
   gvcWatch("gvc2026","sponsors",{list:[]},data=>{ SPONSORS=(data&&data.list)||[]; renderTicker(); });
   setInterval(advanceSlide,8000);
   setInterval(tickClock,1000);

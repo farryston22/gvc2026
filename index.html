@@ -188,8 +188,9 @@ footer{background:var(--midnight);border-top:1px solid var(--line);padding:52px 
     <nav class="nav-links">
       <a data-go="home" class="active">Home</a>
       <a data-go="format">The Format</a>
+      <a data-go="teams">Teams</a>
       <a data-go="sponsors">Sponsors</a>
-      <a data-go="live" class="nav-cta">Live Score</a>
+      <a href="#live-section" onclick="goLive(event)" class="nav-cta">Live Score</a>
     </nav>
   </div>
 </header>
@@ -200,7 +201,6 @@ footer{background:var(--midnight);border-top:1px solid var(--line);padding:52px 
     <div class="hero-floodlights"></div>
     <div class="wrap hero-inner">
       <div>
-        <p class="kicker">Calling all UK Goan vendors</p>
         <h1>UK Goan<br><span class="accent">Vendors Cup</span></h1>
         <div class="subtitle"><span>5-a-side football tournament · 2026</span></div>
         <div class="trio"><span>One Community</span><span>One Pitch</span><span>One Goal</span></div>
@@ -210,18 +210,74 @@ footer{background:var(--midnight);border-top:1px solid var(--line);padding:52px 
           <div class="pill"><span class="k">Format</span><span class="v">Live Team Draw</span></div>
         </div>
         <div class="hero-cta">
-          <a class="btn btn-gold" data-go="live">Live Score</a>
-          <a class="btn btn-ghost" href="#roster-section">See who's playing</a>
+          <a class="btn btn-gold" href="#live-section" onclick="goLive(event)">Live Score</a>
+          <a class="btn btn-ghost" data-go="teams">See who's playing</a>
         </div>
       </div>
       <div class="badge-wrap"><img src="images/logo.png" alt="UK Goan Vendors Cup 2026 badge"></div>
     </div>
   </section>
 
+  <!-- ===================== LIVE SCORE (embedded on Home) ===================== -->
+<style>
+.live-hero{padding-bottom:24px}
+.live-status{display:inline-flex;align-items:center;gap:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.72rem;padding:6px 14px;border-radius:999px;background:rgba(244,236,214,.07);border:1px solid var(--line)}
+.live-status .dot{width:8px;height:8px;border-radius:50%;background:#6b7c70}
+.live-status.on .dot{background:#3ecf6e;box-shadow:0 0 0 3px rgba(62,207,110,.25);animation:livepulse 1.4s infinite}
+@keyframes livepulse{50%{opacity:.4}}
+.live-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+.live-tab{font-weight:700;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;color:#d8e0d8;padding:11px 20px;border-radius:999px;cursor:pointer;background:rgba(244,236,214,.06);border:1px solid var(--line-strong);transition:.18s}
+.live-tab.active{background:var(--gold);color:var(--midnight);border-color:var(--gold)}
+.round-group{margin-bottom:30px}
+.round-group h3{color:var(--gold-soft);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;font-family:'DM Sans';font-weight:700;margin-bottom:12px}
+.match-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.match-card{background:rgba(244,236,214,.045);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 18px;position:relative}
+.match-card.is-live{border-color:#3ecf6e;box-shadow:0 0 0 1px #3ecf6e}
+.match-card.is-complete{opacity:.78}
+.match-badge{position:absolute;top:12px;right:14px;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:rgba(244,236,214,.08);color:#cdd6cd}
+.match-badge.live{background:#3ecf6e;color:#06231a}
+.match-row{display:flex;align-items:center;gap:10px;padding:7px 0}
+.match-team{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.match-team .tlogo{flex:0 0 auto;width:32px;height:32px;border-radius:50%;background:rgba(244,236,214,.1);display:grid;place-items:center;font-size:.9rem;overflow:hidden}
+.match-team .tlogo img{width:100%;height:100%;object-fit:cover}
+.match-team .tname{font-weight:700;color:#fff;font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.match-score{font-family:'Anton';font-size:1.3rem;color:var(--gold);min-width:26px;text-align:center}
+.match-vs{text-align:center;color:#9fb0a4;font-size:.7rem;font-weight:700;letter-spacing:.1em;margin:2px 0}
+.match-admin-ctrl{display:flex;align-items:center;gap:8px;margin-top:6px}
+.score-btn{width:26px;height:26px;border-radius:7px;border:1px solid var(--line-strong);background:rgba(244,236,214,.05);color:#fff;font-weight:700;cursor:pointer}
+.score-btn:hover{border-color:var(--gold);color:var(--gold)}
+.match-actions{display:flex;gap:8px;margin-top:12px}
+.match-actions .btn{padding:8px 14px;font-size:.7rem}
+.live-spotlight{background:linear-gradient(180deg,#0c2c22,#08231a);border:2px solid #3ecf6e;border-radius:var(--r);padding:26px;margin-bottom:30px;box-shadow:0 0 40px -10px rgba(62,207,110,.4)}
+.live-spotlight .tag{color:#3ecf6e;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.72rem;margin-bottom:10px}
+.live-spotlight .row{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap}
+.live-spotlight .team{display:flex;flex-direction:column;align-items:center;gap:8px}
+.live-spotlight .tlogo{width:64px;height:64px;border-radius:50%;background:rgba(244,236,214,.08);display:grid;place-items:center;font-size:1.6rem;overflow:hidden}
+.live-spotlight .tlogo img{width:100%;height:100%;object-fit:cover}
+.live-spotlight .tname{font-family:'Anton';color:#fff;font-size:1.1rem}
+.live-spotlight .score{font-family:'Anton';font-size:3.2rem;color:var(--gold)}
+.live-spotlight .sep{font-family:'Anton';font-size:2.2rem;color:#9fb0a4}
+.admin-gate{max-width:420px;margin:0 auto;text-align:center}
+body.kiosk .nav,body.kiosk footer,body.kiosk .azulejo-band{display:none!important}
+body.kiosk section{padding:24px 0}
+body.kiosk .live-spotlight .score{font-size:5rem}
+body.kiosk .live-spotlight .tname{font-size:1.6rem}
+</style>
+
+<div id="live-section">
+  <section class="live-hero"><div class="wrap">
+    <p class="kicker">Match day</p>
+    <h2 style="font-size:clamp(2.2rem,6vw,3.6rem);color:#fff">Live Score</h2>
+    <p class="lead" style="max-width:680px;margin-top:14px">Follow every match as it happens on Sunday 30 August. Winners advance straight into the bracket below — no refresh needed.</p>
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:10px">
+      <span class="live-status" id="live-conn"><span class="dot"></span><span id="live-conn-txt">Connecting…</span></span>
+      <a class="btn btn-ghost" id="live-fullscreen-link" href="led-wall.html" target="_blank" style="padding:8px 16px;font-size:.72rem">Open LED wall display ↗</a>
+    </div>
+  </div></section>
+
   <div class="azulejo-band"></div>
 
-
-  <!-- ============ TOURNAMENT BRACKETS (added) ============ -->
+    <!-- ============ TOURNAMENT BRACKETS (added) ============ -->
   <style>
   .brk-wrap{padding:70px 0 40px}
   .brk-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:22px 0 18px}
@@ -246,7 +302,8 @@ footer{background:var(--midnight);border-top:1px solid var(--line);padding:52px 
   /* slot card */
   .brk-slot{position:relative;display:flex;align-items:center;gap:9px;background:#f4ecd6;border-radius:8px;padding:0;cursor:pointer;transition:.16s;width:100%;text-align:left;font-family:inherit;overflow:hidden;border:1px solid rgba(0,0,0,.15);min-height:46px}
   .brk-slot:hover{transform:scale(1.02);box-shadow:0 6px 18px -6px rgba(0,0,0,.5)}
-  .brk-slot .bn{flex:0 0 auto;width:38px;align-self:stretch;display:grid;place-items:center;background:var(--pc,var(--gold));color:#fff;font-family:'Anton';font-size:1rem}
+  .brk-slot .bn{flex:0 0 auto;width:38px;align-self:stretch;display:grid;place-items:center;background:var(--pc,var(--gold));color:#fff;font-family:'Anton';font-size:1rem;overflow:hidden;padding:4px}
+  .brk-slot .bn img{width:100%;height:100%;object-fit:contain;border-radius:4px}
   .brk-slot .bi{min-width:0;flex:1;padding:6px 10px 6px 4px}
   .brk-slot .bteam{font-family:'Anton';letter-spacing:.03em;color:#0e231c;font-size:.95rem;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .brk-slot .bsub{font-family:'Fraunces';font-style:italic;color:#5a6b5f;font-size:.7rem;display:block;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -390,17 +447,33 @@ footer{background:var(--midnight);border-top:1px solid var(--line);padding:52px 
 
   const BRK_COLORS=['var(--pot1)','var(--pot2)','var(--pot3)','var(--pot4)','var(--pot5)','var(--potL)'];
   const brkColor=n=>BRK_COLORS[(n-1)%BRK_COLORS.length];
-  const BRK_NAMES={boys:{},ladies:{}};
+  const BRK_NAMES={boys:{
+    1:"Xit Kodi United", 2:"Di Teka", 3:"Suseghad FC", 4:"Uzo FC",
+    5:"Amigos Ghalya Sodun", 6:"Chokmokit Noketram", 7:"Ami Goekar",
+    9:"Antach Pavle", 10:"Urrak Boys", 11:"Cockroach FC",
+    12:"Vendors United", 13:"Goemche Bhurge", 14:"Godgodo"
+  },ladies:{}};
+  const TEAM_LOGOS={boys:{
+    1:"images/team-1.png", 2:"images/team-2.png", 3:"images/team-3.png", 4:"images/team-4.png",
+    5:"images/team-5.png", 6:"images/team-6.png", 7:"images/team-7.png",
+    9:"images/team-9.png", 10:"images/team-10.png", 11:"images/team-11.png",
+    12:"images/team-12.png", 13:"images/team-13.png", 14:"images/team-14.png"
+  },ladies:{}};
+  function teamLogo(div,n){ return (TEAM_LOGOS[div]||{})[n]||''; }
   let BRK_MODE='boys';
 
   function slot(team,div,side,bye){
     if(team==null) return '';
     const nm=BRK_NAMES[div][team]||'';
+    const logo=teamLogo(div,team);
     const cls='brk-slot'+(side==='right'?' right':'')+(bye?' bye':'');
     const byeTag=bye?`<span class="byetag">BYE · advances</span>`:'';
+    const mainLabel = nm ? nm : `Team ${team}`;
+    const subLabel = bye ? 'bye · advances' : (nm ? `Team ${team}` : 'name later');
+    const bn = logo ? `<img src="${logo}" alt="">` : team;
     return `<button class="${cls}" style="--pc:${brkColor(team)}" onclick="brkOpen('${div}',${team})">
-      <span class="bn">${team}</span>
-      <span class="bi"><span class="bteam">Team ${team}</span><span class="bsub">${bye?'bye · advances':(nm?nm:'name later')}</span></span>
+      <span class="bn">${bn}</span>
+      <span class="bi"><span class="bteam">${mainLabel}</span><span class="bsub">${subLabel}</span></span>
       ${byeTag}<span class="barrow">›</span></button>`;
   }
   function node(t,s){return `<div class="brk-node"><div class="nt">${t}</div><div class="ns">${s}</div></div>`;}
@@ -495,6 +568,7 @@ footer{background:var(--midnight);border-top:1px solid var(--line);padding:52px 
     const data=(div==='boys'?BOYS:LADIES)[n]||[];
     const ov=document.getElementById('brk-ov'), card=document.getElementById('brk-card');
     const nm=BRK_NAMES[div][n]||'';
+    const logo=teamLogo(div,n);
     card.style.setProperty('--pc',brkColor(n));
     let body;
     if(data.length){
@@ -502,11 +576,13 @@ footer{background:var(--midnight);border-top:1px solid var(--line);padding:52px 
         return `<div class="brk-pl" style="animation-delay:${i*45}ms"><span class="pnum">${i+1}</span><span class="pn">${p}</span></div>`;
       }).join('');
     }else{ body=`<div class="brk-empty">Line-up to be added for this team ⚽</div>`; }
+    const logoHTML = logo ? `<img src="${logo}" alt="" style="width:64px;height:64px;object-fit:contain;border-radius:12px;background:rgba(255,255,255,.5);padding:4px;position:absolute;right:26px;top:22px">` : '';
     card.innerHTML=`
       <div class="brk-top">
         <button class="brk-x" onclick="brkClose()" aria-label="Close">✕</button>
+        ${logoHTML}
         <div class="tag">${div==='boys'?'Vendors Cup':'Ladies'} · Team ${n} · <span class="ball">⚽</span></div>
-        <div class="big">Team ${n}</div>
+        <div class="big">${nm?nm:'Team '+n}</div>
         <input value="${nm.replace(/"/g,'&quot;')}" placeholder="Add team name…"
           style="margin-top:10px;width:100%;max-width:320px;background:rgba(6,35,26,.18);border:1px solid rgba(6,35,26,.3);border-radius:9px;padding:9px 12px;color:#06231a;font-family:'Fraunces';font-style:italic;font-size:1rem"
           oninput="brkSetName('${div}',${n},this.value)">
@@ -539,6 +615,30 @@ footer{background:var(--midnight);border-top:1px solid var(--line);padding:52px 
   </script>
   <!-- ============ /TOURNAMENT BRACKETS ============ -->
 
+  <div class="azulejo-band"></div>
+
+  <section><div class="wrap">
+    <div id="live-admin-gate" class="admin-gate" style="display:none">
+      <p class="eyebrow center">Admin access</p><h2>Enter the admin code</h2>
+      <div class="form" style="margin-top:14px"><input id="live-admin-pass" type="password" placeholder="Admin code"><button class="btn btn-gold" id="live-admin-submit" style="margin-top:10px">Unlock</button></div>
+      <p class="note" id="live-admin-err" style="color:var(--terra);display:none;margin-top:10px">Incorrect code.</p>
+    </div>
+
+    <div id="live-spotlight-mount"></div>
+
+    <div class="live-tabs">
+      <button class="live-tab active" data-comp="boys" onclick="liveShowComp('boys')">Men's · 5-a-side</button>
+      <button class="live-tab" data-comp="ladies" onclick="liveShowComp('ladies')">Ladies · Penalty Shootout</button>
+    </div>
+
+    <div id="live-board"></div>
+  </div></section>
+</div>
+
+  <div class="azulejo-band"></div>
+
+  
+
 
 
   <section>
@@ -559,36 +659,12 @@ footer{background:var(--midnight);border-top:1px solid var(--line);padding:52px 
     <div class="stat reveal"><div class="n">7</div><div class="l">Players per squad</div></div>
   </div></div>
 
-  <section>
-    <div class="wrap">
-      <div class="section-head reveal"><p class="eyebrow">How it works</p><h2>Teams made on the day</h2>
-        <p class="muted">No pre-made teams. Every confirmed vendor goes into one of five pots. On the day, a live random draw pulls one player from each pot to build perfectly balanced squads — so you line up alongside vendors from every corner of the industry.</p></div>
-      <div class="grid g3">
-        <div class="feature reveal"><div class="ico">🎲</div><h3>Live team draw</h3><p class="muted">All entries enter their pot. Squads are drawn at random, live, in front of everyone.</p></div>
-        <div class="feature reveal"><div class="ico">⚽</div><h3>5 + 2 squads</h3><p class="muted">Five starters — one from each pot — plus two subs for rolling substitutions all day.</p></div>
-        <div class="feature reveal"><div class="ico">🤝</div><h3>Name your team</h3><p class="muted">Once you're drawn together, you pick your own team name and play as one.</p></div>
-      </div>
-      <div style="margin-top:26px" class="reveal"><a class="btn btn-terra" data-go="format">See the full format &amp; draw rules →</a></div>
-    </div>
-  </section>
-
-  <div class="azulejo-band"></div>
-
-  <section id="roster-section">
-    <div class="wrap">
-      <div class="section-head reveal"><p class="eyebrow">All teams put together</p><h2>The squad pools</h2>
-        <p class="muted">Everyone who's in, grouped by their pot. Tap a category to filter, or scroll the lot. New names are still coming in every day.</p></div>
-      <div class="roster-controls" id="roster-chips"></div>
-      <div id="roster"></div>
-    </div>
-  </section>
-
   <div class="azulejo-band"></div>
   <section>
     <div class="wrap center" style="max-width:680px">
-      <p class="eyebrow center">Registration is closed</p><h2>The squads are set — now let's build the day</h2>
-      <p class="muted">Teams are drawn and the venue is locked in. Want to back the tournament, or keep an eye on the scores come matchday?</p>
-      <div class="hero-cta" style="justify-content:center;margin-top:22px"><a class="btn btn-gold" data-go="sponsors">Sponsor the Cup</a><a class="btn btn-ghost" data-go="live">Live Score</a></div>
+      <p class="eyebrow center">It's matchday</p><h2>Everything you need for Sunday</h2>
+      <p class="muted">Check the bracket, follow the score live, or see who's playing.</p>
+      <div class="hero-cta" style="justify-content:center;margin-top:22px"><a class="btn btn-gold" href="#live-section" onclick="goLive(event)">Live Score</a><a class="btn btn-ghost" data-go="teams">See the Teams</a></div>
     </div>
   </section>
 </main>
@@ -628,6 +704,26 @@ footer{background:var(--midnight);border-top:1px solid var(--line);padding:52px 
       <li class="panel" style="padding:18px 22px"><strong style="color:#fff">❤️ One community</strong><br><span class="muted">The UK Goan business community, together through football and friendship.</span></li>
     </ul></div>
   </div></section>
+</main>
+
+<!-- ===================== TEAMS ===================== -->
+<main class="page" id="page-teams">
+  <section style="padding-bottom:20px"><div class="wrap">
+    <p class="kicker">Match day</p>
+    <h1 style="font-size:clamp(2.6rem,7vw,4.6rem);color:#fff">The Teams</h1>
+    <p class="lead" style="max-width:680px;margin-top:14px">Every vendor taking part, grouped by their pot. Tap a category to filter, or scroll the lot.</p>
+  </div></section>
+
+  <div class="azulejo-band"></div>
+
+  <section id="roster-section">
+    <div class="wrap">
+      <div class="section-head reveal"><p class="eyebrow">All teams put together</p><h2>The squad pools</h2>
+        <p class="muted">Everyone who's in, grouped by their pot. Tap a category to filter, or scroll the lot. New names are still coming in every day.</p></div>
+      <div class="roster-controls" id="roster-chips"></div>
+      <div id="roster"></div>
+    </div>
+  </section>
 </main>
 
 <!-- ===================== SPONSORS ===================== -->
@@ -770,80 +866,7 @@ footer{background:var(--midnight);border-top:1px solid var(--line);padding:52px 
   </div></section>
 </main>
 
-<!-- ===================== LIVE SCORE ===================== -->
-<style>
-.live-hero{padding-bottom:24px}
-.live-status{display:inline-flex;align-items:center;gap:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.72rem;padding:6px 14px;border-radius:999px;background:rgba(244,236,214,.07);border:1px solid var(--line)}
-.live-status .dot{width:8px;height:8px;border-radius:50%;background:#6b7c70}
-.live-status.on .dot{background:#3ecf6e;box-shadow:0 0 0 3px rgba(62,207,110,.25);animation:livepulse 1.4s infinite}
-@keyframes livepulse{50%{opacity:.4}}
-.live-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
-.live-tab{font-weight:700;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;color:#d8e0d8;padding:11px 20px;border-radius:999px;cursor:pointer;background:rgba(244,236,214,.06);border:1px solid var(--line-strong);transition:.18s}
-.live-tab.active{background:var(--gold);color:var(--midnight);border-color:var(--gold)}
-.round-group{margin-bottom:30px}
-.round-group h3{color:var(--gold-soft);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;font-family:'DM Sans';font-weight:700;margin-bottom:12px}
-.match-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.match-card{background:rgba(244,236,214,.045);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 18px;position:relative}
-.match-card.is-live{border-color:#3ecf6e;box-shadow:0 0 0 1px #3ecf6e}
-.match-card.is-complete{opacity:.78}
-.match-badge{position:absolute;top:12px;right:14px;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:rgba(244,236,214,.08);color:#cdd6cd}
-.match-badge.live{background:#3ecf6e;color:#06231a}
-.match-row{display:flex;align-items:center;gap:10px;padding:7px 0}
-.match-team{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
-.match-team .tlogo{flex:0 0 auto;width:32px;height:32px;border-radius:50%;background:rgba(244,236,214,.1);display:grid;place-items:center;font-size:.9rem}
-.match-team .tname{font-weight:700;color:#fff;font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.match-score{font-family:'Anton';font-size:1.3rem;color:var(--gold);min-width:26px;text-align:center}
-.match-vs{text-align:center;color:#9fb0a4;font-size:.7rem;font-weight:700;letter-spacing:.1em;margin:2px 0}
-.match-admin-ctrl{display:flex;align-items:center;gap:8px;margin-top:6px}
-.score-btn{width:26px;height:26px;border-radius:7px;border:1px solid var(--line-strong);background:rgba(244,236,214,.05);color:#fff;font-weight:700;cursor:pointer}
-.score-btn:hover{border-color:var(--gold);color:var(--gold)}
-.match-actions{display:flex;gap:8px;margin-top:12px}
-.match-actions .btn{padding:8px 14px;font-size:.7rem}
-.live-spotlight{background:linear-gradient(180deg,#0c2c22,#08231a);border:2px solid #3ecf6e;border-radius:var(--r);padding:26px;margin-bottom:30px;box-shadow:0 0 40px -10px rgba(62,207,110,.4)}
-.live-spotlight .tag{color:#3ecf6e;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.72rem;margin-bottom:10px}
-.live-spotlight .row{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap}
-.live-spotlight .team{display:flex;flex-direction:column;align-items:center;gap:8px}
-.live-spotlight .tlogo{width:64px;height:64px;border-radius:50%;background:rgba(244,236,214,.08);display:grid;place-items:center;font-size:1.6rem}
-.live-spotlight .tname{font-family:'Anton';color:#fff;font-size:1.1rem}
-.live-spotlight .score{font-family:'Anton';font-size:3.2rem;color:var(--gold)}
-.live-spotlight .sep{font-family:'Anton';font-size:2.2rem;color:#9fb0a4}
-.admin-gate{max-width:420px;margin:0 auto;text-align:center}
-body.kiosk .nav,body.kiosk footer,body.kiosk .azulejo-band{display:none!important}
-body.kiosk section{padding:24px 0}
-body.kiosk .live-spotlight .score{font-size:5rem}
-body.kiosk .live-spotlight .tname{font-size:1.6rem}
-</style>
 
-<main class="page" id="page-live">
-  <section class="live-hero"><div class="wrap">
-    <p class="kicker">Match day</p>
-    <h1 style="font-size:clamp(2.6rem,7vw,4.6rem);color:#fff">Live Score</h1>
-    <p class="lead" style="max-width:680px;margin-top:14px">Follow every match as it happens on Sunday 30 August. Winners advance straight into the bracket below — no refresh needed.</p>
-    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:10px">
-      <span class="live-status" id="live-conn"><span class="dot"></span><span id="live-conn-txt">Connecting…</span></span>
-      <a class="btn btn-ghost" id="live-fullscreen-link" href="led-wall.html" target="_blank" style="padding:8px 16px;font-size:.72rem">Open LED wall display ↗</a>
-    </div>
-  </div></section>
-
-  <div class="azulejo-band"></div>
-
-  <section><div class="wrap">
-    <div id="live-admin-gate" class="admin-gate" style="display:none">
-      <p class="eyebrow center">Admin access</p><h2>Enter the admin code</h2>
-      <div class="form" style="margin-top:14px"><input id="live-admin-pass" type="password" placeholder="Admin code"><button class="btn btn-gold" id="live-admin-submit" style="margin-top:10px">Unlock</button></div>
-      <p class="note" id="live-admin-err" style="color:var(--terra);display:none;margin-top:10px">Incorrect code.</p>
-    </div>
-
-    <div id="live-spotlight-mount"></div>
-
-    <div class="live-tabs">
-      <button class="live-tab active" data-comp="boys" onclick="liveShowComp('boys')">Men's · 5-a-side</button>
-      <button class="live-tab" data-comp="ladies" onclick="liveShowComp('ladies')">Ladies · Penalty Shootout</button>
-    </div>
-
-    <div id="live-board"></div>
-  </div></section>
-</main>
 
 <footer><div class="wrap">
   <div class="foot-grid">
@@ -851,7 +874,7 @@ body.kiosk .live-spotlight .tname{font-size:1.6rem}
       <div class="foot-brand"><img src="images/logo.png" alt="UK Goan Vendors Cup badge"><div class="t">UK Goan<br>Vendors Cup<br>2026</div></div>
       <p class="muted" style="margin-top:16px;max-width:320px">A community tournament by Goan event vendors, for Goan event vendors. Powered by the Goan Event Vendors Association.</p>
     </div>
-    <div class="foot-col"><h4>Explore</h4><a data-go="home">Home</a><a data-go="format">The Format</a><a data-go="sponsors">Sponsors</a><a data-go="live">Live Score</a></div>
+    <div class="foot-col"><h4>Explore</h4><a data-go="home">Home</a><a data-go="format">The Format</a><a data-go="teams">Teams</a><a data-go="sponsors">Sponsors</a><a href="#live-section" onclick="goLive(event)">Live Score</a></div>
     <div class="foot-col"><h4>The day</h4><a>Sunday, 30 August 2026</a><a>Cranford Community College, London</a><a>5-a-side · Live team draw</a></div>
   </div>
   <div class="foot-bottom"><span>© <span data-year>2026</span> UK Goan Vendors Cup · Organised by Bunty, Brendon, Jonathan &amp; Swinston</span><span class="serif">Let's play. Let's connect. Let's grow together.</span></div>
@@ -1176,6 +1199,10 @@ function liveTeamName(comp,n){
   const names=(comp==="boys"?BRK_NAMES.boys:BRK_NAMES.ladies)||{};
   return names[n] || ("Team "+n);
 }
+function liveTeamLogoHTML(comp,n){
+  const logo=teamLogo(comp,n);
+  return logo ? `<img src="${logo}" alt="">` : '🛡';
+}
 function liveMatchDef(comp,id){ return MATCH_DEFS[comp].find(m=>m.id===id); }
 
 function liveRenderBoard(){
@@ -1191,7 +1218,7 @@ function liveRenderBoard(){
       const st=LIVE_STATE[LIVE_COMP][def.id];
       if(def.bye){
         html+=`<div class="match-card is-complete"><div class="match-badge">Bye</div>
-          <div class="match-row"><div class="match-team"><span class="tlogo">🛡</span><span class="tname">${liveTeamName(LIVE_COMP,def.teamA)}</span></div></div>
+          <div class="match-row"><div class="match-team"><span class="tlogo">${liveTeamLogoHTML(LIVE_COMP,def.teamA)}</span><span class="tname">${liveTeamName(LIVE_COMP,def.teamA)}</span></div></div>
           <div class="match-vs">advances automatically</div></div>`;
         return;
       }
@@ -1215,15 +1242,15 @@ function liveRenderBoard(){
         </div>`;
       }
       html+=`<div class="match-card${st.status==='live'?' is-live':''}${st.status==='complete'?' is-complete':''}">${badge}
-        <div class="match-row"><div class="match-team"><span class="tlogo">🛡</span><span class="tname">${teamAName}</span></div><span class="match-score">${st.scoreA}</span></div>
+        <div class="match-row"><div class="match-team"><span class="tlogo">${liveTeamLogoHTML(LIVE_COMP,st.teamA)}</span><span class="tname">${teamAName}</span></div><span class="match-score">${st.scoreA}</span></div>
         <div class="match-vs">vs</div>
-        <div class="match-row"><div class="match-team"><span class="tlogo">🛡</span><span class="tname">${teamBName}</span></div><span class="match-score">${st.scoreB}</span></div>
+        <div class="match-row"><div class="match-team"><span class="tlogo">${liveTeamLogoHTML(LIVE_COMP,st.teamB)}</span><span class="tname">${teamBName}</span></div><span class="match-score">${st.scoreB}</span></div>
         ${adminCtrl}</div>`;
       if(st.status==="live"){
         spotlightHTML=`<div class="live-spotlight"><div class="tag">● Live now — ${round}</div><div class="row">
-          <div class="team"><div class="tlogo">🛡</div><div class="tname">${teamAName}</div></div>
+          <div class="team"><div class="tlogo">${liveTeamLogoHTML(LIVE_COMP,st.teamA)}</div><div class="tname">${teamAName}</div></div>
           <div class="score">${st.scoreA}</div><div class="sep">–</div><div class="score">${st.scoreB}</div>
-          <div class="team"><div class="tlogo">🛡</div><div class="tname">${teamBName}</div></div>
+          <div class="team"><div class="tlogo">${liveTeamLogoHTML(LIVE_COMP,st.teamB)}</div><div class="tname">${teamBName}</div></div>
         </div></div>`;
       }
     });
@@ -1283,8 +1310,14 @@ function watchTeamNames(){
     liveRenderBoard();
   });
 }
+function goLive(e){
+  if(e) e.preventDefault();
+  showPage("home");
+  setTimeout(()=>{ const el=document.getElementById("live-section"); if(el) el.scrollIntoView({behavior:"smooth"}); },60);
+}
 function showLiveAdminGate(){
-  document.querySelector('[data-go="live"]')&&showPage("live");
+  showPage("home");
+  setTimeout(()=>{ const el=document.getElementById("live-section"); if(el) el.scrollIntoView({behavior:"smooth"}); },60);
   const gate=document.getElementById("live-admin-gate");
   if(!gate)return;
   if(isAdminSession()){ liveRenderBoard(); renderSponsors(); return; }
