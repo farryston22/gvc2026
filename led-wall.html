@@ -284,6 +284,8 @@ function renderTicker(){
     : `<div class="crawl-chip-lw"><span class="cname">${s.name}</span></div>`;
   const chips=SPONSORS.map(chip).join("");
   mount.innerHTML=chips+chips;
+  const pxPerSecond=60;
+  mount.style.animationDuration=Math.max(30,mount.offsetWidth/pxPerSecond)+"s";
 }
 function tickClock(){
   const d=new Date();

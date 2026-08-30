@@ -1021,6 +1021,9 @@ function renderSponsorCrawl(){
     : `<div class="crawl-chip"><span class="cname">${s.name}</span></div>`;
   const chips=SPONSORS.map(chip).join("");
   mount.innerHTML=chips+chips;
+  const pxPerSecond=45;
+  const singleCopyWidth=mount.scrollWidth/2;
+  mount.style.animationDuration=Math.max(20,singleCopyWidth/pxPerSecond)+"s";
 }
 function renderSponsors(){
   renderSponsorCrawl();
