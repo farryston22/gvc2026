@@ -642,6 +642,8 @@ body.kiosk .live-spotlight .tname{font-size:1.6rem}
 
     <div id="live-spotlight-mount"></div>
 
+    <div id="live-admin-tools" style="display:none;margin-bottom:14px"></div>
+
     <div class="live-tabs">
       <button class="live-tab active" data-comp="boys" onclick="liveShowComp('boys')">Men's · 5-a-side</button>
       <button class="live-tab" data-comp="ladies" onclick="liveShowComp('ladies')">Ladies · Penalty Shootout</button>
@@ -1202,6 +1204,13 @@ function liveRenderBoard(){
   const admin=isAdminSession();
   const gate=document.getElementById("live-admin-gate");
   if(gate&&admin) gate.style.display="none";
+  const toolsMount=document.getElementById("live-admin-tools");
+  if(toolsMount){
+    if(admin){
+      toolsMount.style.display="block";
+      toolsMount.innerHTML=`<button class="btn btn-ghost" style="font-size:.72rem;padding:9px 16px" onclick="confirmResetLiveScores()">↺ Reset all scores</button>`;
+    }else{ toolsMount.style.display="none"; }
+  }
   const rounds=[...new Set(MATCH_DEFS[LIVE_COMP].map(m=>m.round))];
   let spotlightHTML="";
   let html="";
@@ -1294,6 +1303,12 @@ function liveInit(){
     LIVE_STATE=(data&&data.boys)?data:liveDefaultState();
     liveRenderBoard();
   });
+}
+function confirmResetLiveScores(){
+  if(!confirm("Reset ALL match scores back to 0-0 and Scheduled? This clears every result and bracket advance.")) return;
+  LIVE_STATE=liveDefaultState();
+  gvcSet("gvc2026","live",LIVE_STATE).catch(e=>console.error("Reset failed:",e));
+  liveRenderBoard();
 }
 function watchTeamNames(){
   gvcWatch("gvc2026","teamnames",{boys:{},ladies:{}},data=>{
