@@ -177,6 +177,24 @@ const TEAM_LOGOS={boys:{
 },ladies:{}};
 let slideIndex=0, currentSlides=[];
 
+function timerElapsedSeconds(st){
+  if(!st) return 0;
+  let sec=st.timerElapsed||0;
+  if(st.timerRunning && st.timerStartedAt) sec += (Date.now()-st.timerStartedAt)/1000;
+  return Math.max(0,Math.floor(sec));
+}
+function fmtClock(sec){
+  const m=Math.floor(sec/60), s=sec%60;
+  return String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+}
+setInterval(()=>{
+  const cur=currentSlides[slideIndex];
+  if(cur && cur.type==="live"){
+    const el=document.getElementById("led-live-clock");
+    if(el) el.textContent=fmtClock(timerElapsedSeconds(cur.st));
+  }
+},1000);
+
 function teamName(comp,n){
   if(n==null)return "TBD";
   const nm=(NAMES[comp]||{})[n];
@@ -251,7 +269,7 @@ function slideHTML(s){
   const {comp,def,st}=s;
   const aN=teamName(comp,st.teamA), bN=teamName(comp,st.teamB);
   const aI=shieldHTML(comp,st.teamA), bI=shieldHTML(comp,st.teamB);
-  const tag = s.type==="live" ? `<div class="live-tag"><span class="dot"></span> LIVE NOW</div>`
+  const tag = s.type==="live" ? `<div class="live-tag"><span class="dot"></span> LIVE NOW  ·  <span id="led-live-clock">${fmtClock(timerElapsedSeconds(st))}</span></div>`
             : s.type==="next" ? `<div class="round-tag">Up Next</div>`
             : `<div class="result-tag">FULL TIME</div>`;
   return `<div style="display:flex;flex-direction:column;align-items:center;gap:1.6vh">

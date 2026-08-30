@@ -991,32 +991,32 @@ const SPONSORS_SEED=[
   {id:"c2",name:"Darren D'Costa Photography",type:"cash",desc:"Darren",amount:100,logo:"images/sponsor-darren-dcosta.png"},
   {id:"c3",name:"Suntop Caterers",type:"cash",desc:"Simon",amount:200},
   {id:"c4",name:"DSP",type:"cash",desc:"Dominic",amount:100},
-  {id:"c5",name:"Motion Verse Studio",type:"cash",desc:"Pranoy",amount:100},
+  {id:"c5",name:"Motion Verse Studio",type:"cash",desc:"Pranoy",amount:100,logo:"images/sponsor-motion-verse-studio.png"},
   {id:"c6",name:"Axel",type:"cash",desc:"Morgan",amount:100,logo:"images/sponsor-axel-creations.png"},
   {id:"c7",name:"Chefs Kiss Pastry",type:"cash",desc:"Clanny",amount:100,logo:"images/sponsor-chefs-kiss-pastry.png"},
-  {id:"c8",name:"DJ Colour Blind",type:"cash",desc:"Jolan",amount:100},
+  {id:"c8",name:"DJ Colour Blind",type:"cash",desc:"Jolan",amount:100,logo:"images/sponsor-dj-colour-blind.png"},
   {id:"c9",name:"KFS Interiors",type:"cash",desc:"Brandon",amount:50,logo:"images/sponsor-kfs-interiors.png"},
-  {id:"c10",name:"Henry's Royale Lens",type:"cash",desc:"Anthony",amount:100},
+  {id:"c10",name:"Henry's Royale Lens",type:"cash",desc:"Anthony",amount:100,logo:"images/sponsor-henrys-royale-lens.png"},
   {id:"c11",name:"Cakes by Corte",type:"cash",desc:"Mishello",amount:200},
   {id:"c12",name:"Peppercorn Caterers",type:"cash",desc:"Carvalho",amount:100,logo:"images/sponsor-peppercorn-caterers.png"},
-  {id:"c13",name:"Simplicity of Goa",type:"cash",desc:"William",amount:50},
+  {id:"c13",name:"Simplicity of Goa",type:"cash",desc:"William",amount:50,logo:"images/sponsor-simplicity-of-goa.png"},
   {id:"c14",name:"A well-wisher",type:"cash",desc:"Referred by Jonathan Barreto",amount:250},
   {id:"c15",name:"Mums Delight Caterers",type:"cash",desc:"Freddy",amount:100},
   {id:"c16",name:"Party Craftter",type:"cash",desc:"Gladston",amount:150,logo:"images/sponsor-party-craftter.png"},
   {id:"p1",name:"Darren D'Costa Photography",type:"item",desc:"Footballs",logo:"images/sponsor-darren-dcosta.png"},
-  {id:"p2",name:"ViVaz Bar Services",type:"item",desc:"First aid kit (Selvin)"},
+  {id:"p2",name:"ViVaz Bar Services",type:"item",desc:"First aid kit (Selvin)",logo:"images/sponsor-vivaz-bar.png"},
   {id:"p3",name:"St Anthony Caterers",type:"item",desc:"8 cases of water (Nash)",logo:"images/sponsor-st-anthony-caterers.png"},
   {id:"p4",name:"Nash Photography",type:"item",desc:"Photography"},
   {id:"p5",name:"Amcho Vaddo",type:"item",desc:"Portable JBL speaker (Melvon)"},
   {id:"p6",name:"Infinity Material Handling",type:"item",desc:"Bibs (DJ Backspin)",logo:"images/sponsor-infinity-material-handling.png"},
   {id:"p7",name:"VR Event",type:"item",desc:"Cold pyros (Alison)"},
   {id:"p8",name:"Motion Verse Studios",type:"item",desc:"Medals (Pranoy)"},
-  {id:"p9",name:"Frank Furtado Productions",type:"item",desc:"Trophies"},
+  {id:"p9",name:"Frank Furtado Productions",type:"item",desc:"Trophies",logo:"images/sponsor-frank-furtado.png"},
   {id:"p10",name:"AC Videography",type:"item",desc:"Lucozade + sandwiches (Anthony)"},
   {id:"p11",name:"A well-wisher",type:"item",desc:"Generator"},
   {id:"p12",name:"Swisan Creations",type:"item",desc:"LED wall (Swiston)",logo:"images/sponsor-swisan-creations.png"},
   {id:"p13",name:"AF Tents",type:"item",desc:"Tents + chairs (Astin)"},
-  {id:"p14",name:"Showbiz Global",type:"item",desc:"Venue hire assist (Calvin)"},
+  {id:"p14",name:"Showbiz Global",type:"item",desc:"Venue hire assist (Calvin)",logo:"images/sponsor-showbiz-global.png"},
   {id:"p15",name:"GoaPages / Fotobooth Rental UK",type:"item",desc:"Website (Farryston)",logo:"images/sponsor-goapages.png"},
   {id:"p16",name:"KR Visual",type:"item",desc:"Photography (Langstan)"},
   {id:"p17",name:"The Dandelions",type:"item",desc:"After-party venue (Alexio)",logo:"images/sponsor-thedandelions.png"}
@@ -1173,7 +1173,7 @@ function liveDefaultState(){
   const state={boys:{},ladies:{}};
   ["boys","ladies"].forEach(comp=>{
     MATCH_DEFS[comp].forEach(m=>{
-      state[comp][m.id]={teamA:m.teamA,teamB:m.teamB,scoreA:0,scoreB:0,status:m.bye?"complete":"scheduled",winner:m.bye?m.teamA:null};
+      state[comp][m.id]={teamA:m.teamA,teamB:m.teamB,scoreA:0,scoreB:0,status:m.bye?"complete":"scheduled",winner:m.bye?m.teamA:null,timerElapsed:0,timerRunning:false,timerStartedAt:null};
     });
     // propagate byes into their target slot
     MATCH_DEFS[comp].forEach(m=>{
@@ -1187,6 +1187,43 @@ function liveDefaultState(){
 }
 let LIVE_STATE=liveDefaultState();
 let LIVE_COMP="boys";
+
+function timerElapsedSeconds(st){
+  if(!st) return 0;
+  let sec=st.timerElapsed||0;
+  if(st.timerRunning && st.timerStartedAt) sec += (Date.now()-st.timerStartedAt)/1000;
+  return Math.max(0,Math.floor(sec));
+}
+function fmtClock(sec){
+  const m=Math.floor(sec/60), s=sec%60;
+  return String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+}
+function liveToggleTimer(id){
+  const st=LIVE_STATE[LIVE_COMP][id];
+  if(!st) return;
+  if(st.timerRunning){
+    st.timerElapsed=timerElapsedSeconds(st);
+    st.timerRunning=false;
+    st.timerStartedAt=null;
+  }else{
+    st.timerRunning=true;
+    st.timerStartedAt=Date.now();
+  }
+  liveSave();
+}
+setInterval(()=>{
+  ["boys","ladies"].forEach(comp=>{
+    Object.keys(LIVE_STATE[comp]||{}).forEach(id=>{
+      const st=LIVE_STATE[comp][id];
+      if(st && st.timerRunning){
+        const el=document.getElementById("clock-"+comp+"-"+id);
+        if(el) el.textContent=fmtClock(timerElapsedSeconds(st));
+        const elSpot=document.getElementById("spotlight-clock");
+        if(elSpot && comp===LIVE_COMP) elSpot.textContent=fmtClock(timerElapsedSeconds(st));
+      }
+    });
+  });
+},1000);
 
 function liveTeamName(comp,n){
   if(n==null)return "TBD";
@@ -1225,7 +1262,7 @@ function liveRenderBoard(){
           <div class="match-vs">advances automatically</div></div>`;
         return;
       }
-      const badge=st.status==="live"?'<div class="match-badge live">● Live</div>':st.status==="complete"?'<div class="match-badge">Full time</div>':'<div class="match-badge">Scheduled</div>';
+      const badge=st.status==="live"?`<div class="match-badge live">● Live <span id="clock-${LIVE_COMP}-${def.id}">${fmtClock(timerElapsedSeconds(st))}</span></div>`:st.status==="complete"?'<div class="match-badge">Full time</div>':'<div class="match-badge">Scheduled</div>';
       const teamAName=liveTeamName(LIVE_COMP,st.teamA), teamBName=liveTeamName(LIVE_COMP,st.teamB);
       const canPlay=st.teamA!=null&&st.teamB!=null;
       let adminCtrl="";
@@ -1243,6 +1280,7 @@ function liveRenderBoard(){
           <div class="match-actions">
             ${st.status==="scheduled"?`<button class="btn btn-terra" onclick="liveSetStatus('${def.id}','live')">Start match</button>`:''}
             ${st.status==="live"?`<button class="btn btn-gold" onclick="liveEndMatch('${def.id}')">Full time</button>`:''}
+            ${st.status==="live"?`<button class="btn btn-ghost" onclick="liveToggleTimer('${def.id}')" style="font-size:.65rem;padding:8px 12px">${st.timerRunning?'⏸ Pause timer':'▶ Start timer'}</button>`:''}
             ${st.status==="live"?`<button class="btn btn-ghost" onclick="resetSingleMatch('${def.id}')" style="font-size:.65rem;padding:8px 12px">↺ Reset</button>`:''}
           </div>`;
         }else{
@@ -1257,7 +1295,7 @@ function liveRenderBoard(){
         <div class="match-row"><div class="match-team"><span class="tlogo">${liveTeamLogoHTML(LIVE_COMP,st.teamB)}</span><span class="tname">${teamBName}</span></div><span class="match-score">${st.scoreB}</span></div>
         ${adminCtrl}</div>`;
       if(st.status==="live"){
-        spotlightHTML=`<div class="live-spotlight"><div class="tag">● Live now — ${round}</div><div class="row">
+        spotlightHTML=`<div class="live-spotlight"><div class="tag">● Live now — ${round}  ·  <span id="spotlight-clock">${fmtClock(timerElapsedSeconds(st))}</span></div><div class="row">
           <div class="team"><div class="tlogo">${liveTeamLogoHTML(LIVE_COMP,st.teamA)}</div><div class="tname">${teamAName}</div></div>
           <div class="score">${st.scoreA}</div><div class="sep">–</div><div class="score">${st.scoreB}</div>
           <div class="team"><div class="tlogo">${liveTeamLogoHTML(LIVE_COMP,st.teamB)}</div><div class="tname">${teamBName}</div></div>
@@ -1285,6 +1323,9 @@ function liveEndMatch(id){
   st.status="complete";
   st.winner=st.scoreA>st.scoreB?st.teamA:st.teamB;
   st.endedAt=Date.now();
+  st.timerElapsed=timerElapsedSeconds(st);
+  st.timerRunning=false;
+  st.timerStartedAt=null;
   const def=liveMatchDef(LIVE_COMP,id);
   if(def.feeds){
     const target=LIVE_STATE[LIVE_COMP][def.feeds.id];
@@ -1306,6 +1347,7 @@ function resetSingleMatch(id){
   }
   if(!confirm("Reset this match back to 0-0 and Scheduled? This only affects this one match.")) return;
   st.scoreA=0; st.scoreB=0; st.status="scheduled"; st.winner=null; delete st.endedAt;
+  st.timerElapsed=0; st.timerRunning=false; st.timerStartedAt=null;
   if(def.feeds){
     const target=LIVE_STATE[LIVE_COMP][def.feeds.id];
     if(target){
