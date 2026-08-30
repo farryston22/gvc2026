@@ -48,6 +48,7 @@ h1,h2,.anton{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spac
 /* live/next/result match layout */
 .round-tag{font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:1.8vh;color:var(--gold-soft)}
 .live-tag{display:inline-flex;align-items:center;gap:.8vh;font-family:'Anton',sans-serif;font-size:2.2vh;color:var(--live);letter-spacing:.06em}
+.big-clock{font-family:'Anton',sans-serif;font-size:12vh;color:var(--gold);letter-spacing:.04em;line-height:1;text-shadow:0 0 3vh rgba(236,194,75,.4)}
 .live-tag .dot{width:1.6vh;height:1.6vh;border-radius:50%;background:var(--live);box-shadow:0 0 0 .6vh rgba(62,207,110,.25);animation:pulse 1.3s infinite}
 @keyframes pulse{50%{opacity:.35}}
 .matchup{display:flex;align-items:center;justify-content:center;gap:5vw}
@@ -269,12 +270,14 @@ function slideHTML(s){
   const {comp,def,st}=s;
   const aN=teamName(comp,st.teamA), bN=teamName(comp,st.teamB);
   const aI=shieldHTML(comp,st.teamA), bI=shieldHTML(comp,st.teamB);
-  const tag = s.type==="live" ? `<div class="live-tag"><span class="dot"></span> LIVE NOW  ·  <span id="led-live-clock">${fmtClock(timerElapsedSeconds(st))}</span></div>`
+  const tag = s.type==="live" ? `<div class="live-tag"><span class="dot"></span> LIVE NOW</div>`
             : s.type==="next" ? `<div class="round-tag">Up Next</div>`
             : `<div class="result-tag">FULL TIME</div>`;
+  const clockHTML = s.type==="live" ? `<div class="big-clock" id="led-live-clock">${fmtClock(timerElapsedSeconds(st))}</div>` : "";
   return `<div style="display:flex;flex-direction:column;align-items:center;gap:1.6vh">
     <div class="round-tag">${comp==="boys"?"Men's":"Ladies"} · ${def.round}</div>
     ${tag}
+    ${clockHTML}
     <div class="matchup">
       <div class="team"><div class="shield">${aI}</div><div class="tname">${aN}</div></div>
       <div class="score">${st.scoreA}</div>
