@@ -278,7 +278,7 @@ function advanceSlide(){
 }
 function renderTicker(){
   const mount=document.getElementById("ticker-move");
-  if(!SPONSORS.length){ mount.innerHTML='<span class="crawl-chip-lw"><span class="cname">Sponsor this tournament — see goanvendors.uk/#sponsors</span></span>'; return; }
+  if(!SPONSORS.length){ mount.innerHTML=""; return; }
   const chip=s=> s.logo
     ? `<div class="crawl-chip-lw"><div class="clogo"><img src="${s.logo}" alt=""></div><span class="cname">${s.name}</span></div>`
     : `<div class="crawl-chip-lw"><span class="cname">${s.name}</span></div>`;

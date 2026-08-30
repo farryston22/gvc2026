@@ -1099,8 +1099,13 @@ async function attachSponsorLogo(id,input){
   }
 }
 function watchSponsors(){
-  gvcWatch("gvc2026","sponsors",{list:SPONSORS_SEED},data=>{
-    SPONSORS=(data&&data.list&&data.list.length)?data.list:SPONSORS_SEED;
+  gvcWatch("gvc2026","sponsors",{list:[]},data=>{
+    if(data && data.list && data.list.length){
+      SPONSORS=data.list;
+    }else{
+      SPONSORS=SPONSORS_SEED;
+      gvcSet("gvc2026","sponsors",{list:SPONSORS_SEED}).catch(e=>console.error("Sponsor seed push failed:",e));
+    }
     renderSponsors();
   });
 }
