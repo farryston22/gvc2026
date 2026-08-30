@@ -227,8 +227,8 @@ function computeSlides(){
       });
     });
     if(lastResult) slides.push(lastResult);
+    slides.push({type:"brand"});
   }
-  slides.push({type:"brand"});
   return slides.length?slides:[{type:"idle"}];
 }
 

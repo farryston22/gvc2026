@@ -1016,7 +1016,8 @@ const SPONSORS_SEED=[
   {id:"p13",name:"AF Tents",type:"item",desc:"Tents + chairs (Astin)"},
   {id:"p14",name:"Showbiz Global",type:"item",desc:"Venue hire assist (Calvin)"},
   {id:"p15",name:"GoaPages / Fotobooth Rental UK",type:"item",desc:"Website (Farryston)",logo:"images/sponsor-goapages.png"},
-  {id:"p16",name:"KR Visual",type:"item",desc:"Photography (Langstan)"}
+  {id:"p16",name:"KR Visual",type:"item",desc:"Photography (Langstan)"},
+  {id:"p17",name:"The Dandelions",type:"item",desc:"After-party venue (Alexio)",logo:"images/sponsor-thedandelions.png"}
 ];
 let SPONSORS=SPONSORS_SEED.slice();
 
@@ -1199,6 +1200,8 @@ function liveMatchDef(comp,id){ return MATCH_DEFS[comp].find(m=>m.id===id); }
 function liveRenderBoard(){
   const mount=document.getElementById("live-board"); if(!mount)return;
   const admin=isAdminSession();
+  const gate=document.getElementById("live-admin-gate");
+  if(gate&&admin) gate.style.display="none";
   const rounds=[...new Set(MATCH_DEFS[LIVE_COMP].map(m=>m.round))];
   let spotlightHTML="";
   let html="";
