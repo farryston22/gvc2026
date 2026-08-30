@@ -1229,20 +1229,27 @@ function liveRenderBoard(){
       const teamAName=liveTeamName(LIVE_COMP,st.teamA), teamBName=liveTeamName(LIVE_COMP,st.teamB);
       const canPlay=st.teamA!=null&&st.teamB!=null;
       let adminCtrl="";
-      if(admin&&canPlay&&st.status!=="complete"){
-        adminCtrl=`<div class="match-admin-ctrl">
-          <button class="score-btn" onclick="liveAdjust('${def.id}','A',-1)">−</button>
-          <span style="font-size:.7rem;color:#9fb0a4">${teamAName.split(' ')[0]}</span>
-          <button class="score-btn" onclick="liveAdjust('${def.id}','A',1)">+</button>
-          <span style="flex:1"></span>
-          <button class="score-btn" onclick="liveAdjust('${def.id}','B',-1)">−</button>
-          <span style="font-size:.7rem;color:#9fb0a4">${teamBName.split(' ')[0]}</span>
-          <button class="score-btn" onclick="liveAdjust('${def.id}','B',1)">+</button>
-        </div>
-        <div class="match-actions">
-          ${st.status==="scheduled"?`<button class="btn btn-terra" onclick="liveSetStatus('${def.id}','live')">Start match</button>`:''}
-          ${st.status==="live"?`<button class="btn btn-gold" onclick="liveEndMatch('${def.id}')">Full time</button>`:''}
-        </div>`;
+      if(admin&&canPlay){
+        if(st.status!=="complete"){
+          adminCtrl=`<div class="match-admin-ctrl">
+            <button class="score-btn" onclick="liveAdjust('${def.id}','A',-1)">−</button>
+            <span style="font-size:.7rem;color:#9fb0a4">${teamAName.split(' ')[0]}</span>
+            <button class="score-btn" onclick="liveAdjust('${def.id}','A',1)">+</button>
+            <span style="flex:1"></span>
+            <button class="score-btn" onclick="liveAdjust('${def.id}','B',-1)">−</button>
+            <span style="font-size:.7rem;color:#9fb0a4">${teamBName.split(' ')[0]}</span>
+            <button class="score-btn" onclick="liveAdjust('${def.id}','B',1)">+</button>
+          </div>
+          <div class="match-actions">
+            ${st.status==="scheduled"?`<button class="btn btn-terra" onclick="liveSetStatus('${def.id}','live')">Start match</button>`:''}
+            ${st.status==="live"?`<button class="btn btn-gold" onclick="liveEndMatch('${def.id}')">Full time</button>`:''}
+            ${st.status==="live"?`<button class="btn btn-ghost" onclick="resetSingleMatch('${def.id}')" style="font-size:.65rem;padding:8px 12px">↺ Reset</button>`:''}
+          </div>`;
+        }else{
+          adminCtrl=`<div class="match-actions">
+            <button class="btn btn-ghost" onclick="resetSingleMatch('${def.id}')" style="font-size:.65rem;padding:8px 12px">↺ Reset this match</button>
+          </div>`;
+        }
       }
       html+=`<div class="match-card${st.status==='live'?' is-live':''}${st.status==='complete'?' is-complete':''}">${badge}
         <div class="match-row"><div class="match-team"><span class="tlogo">${liveTeamLogoHTML(LIVE_COMP,st.teamA)}</span><span class="tname">${teamAName}</span></div><span class="match-score">${st.scoreA}</span></div>
@@ -1282,6 +1289,28 @@ function liveEndMatch(id){
   if(def.feeds){
     const target=LIVE_STATE[LIVE_COMP][def.feeds.id];
     if(def.feeds.slot==="a")target.teamA=st.winner; else target.teamB=st.winner;
+  }
+  liveSave();
+}
+function resetSingleMatch(id){
+  const st=LIVE_STATE[LIVE_COMP][id];
+  const def=liveMatchDef(LIVE_COMP,id);
+  if(!st||!def) return;
+  if(def.feeds && st.winner!=null){
+    const target=LIVE_STATE[LIVE_COMP][def.feeds.id];
+    const winnerAdvanced = target && (target.teamA===st.winner || target.teamB===st.winner);
+    if(winnerAdvanced && target.status!=="scheduled"){
+      alert("This team has already played in the next round. Reset that match first, then come back and reset this one.");
+      return;
+    }
+  }
+  if(!confirm("Reset this match back to 0-0 and Scheduled? This only affects this one match.")) return;
+  st.scoreA=0; st.scoreB=0; st.status="scheduled"; st.winner=null; delete st.endedAt;
+  if(def.feeds){
+    const target=LIVE_STATE[LIVE_COMP][def.feeds.id];
+    if(target){
+      if(def.feeds.slot==="a") target.teamA=null; else target.teamB=null;
+    }
   }
   liveSave();
 }
