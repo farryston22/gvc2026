@@ -61,6 +61,7 @@ h1,h2,.anton{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spac
 
 /* branding slide */
 .brand-slide{text-align:center}
+.brand-slide .logo{width:24vh;height:24vh;border-radius:50%;object-fit:cover;box-shadow:0 0 6vh -1vh rgba(236,194,75,.55);margin:0 auto 2vh}
 .brand-slide .big{font-family:'Anton',sans-serif;font-size:6.5vh;color:#fff;line-height:1}
 .brand-slide .big .accent{color:var(--gold)}
 .brand-slide .sub{font-size:2vh;color:var(--gold-soft);font-family:'Fraunces';font-style:italic;margin-top:1.5vh}
@@ -238,7 +239,7 @@ function slideHTML(s){
   }
   if(s.type==="brand"){
     return `<div class="brand-slide">
-      <div class="big">One Community · <span class="accent">One Pitch</span> · One Goal</div>
+      <img class="logo" src="images/logo.png" alt="UK Goan Vendors Cup">
       <div class="sub">UK Goan Vendors Cup 2026</div>
       <div class="meta">
         <div>Date<b>Sun 30 Aug</b></div>
