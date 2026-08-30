@@ -637,9 +637,17 @@ body.kiosk .live-spotlight .tname{font-size:1.6rem}
 
   <div class="azulejo-band"></div>
 
-  
+  <section>
+    <div class="wrap center" style="max-width:720px">
+      <p class="eyebrow center">£1,950+ raised and counting</p>
+      <h2>Backed by the community</h2>
+      <p class="muted">Cash, kit, trophies, sound, tents and more — every one of these came from a UK Goan vendor who believes in the Cup. See who made it happen.</p>
+      <div style="margin-top:22px"><a class="btn btn-gold" data-go="sponsors" style="padding:20px 44px;font-size:1rem">🏆 See Our Sponsors</a></div>
+    </div>
+    <div class="sponsor-crawl-wrap" style="margin-top:36px"><div class="sponsor-crawl-track" id="home-sponsor-crawl"></div></div>
+  </section>
 
-
+  <div class="azulejo-band"></div>
 
   <section>
     <div class="wrap grid g2" style="align-items:center">
@@ -739,7 +747,10 @@ body.kiosk .live-spotlight .tname{font-size:1.6rem}
 .tier-card .btn{margin-top:auto;align-self:flex-start}
 .sponsor-slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
 .sponsor-card{position:relative;display:flex;gap:14px;align-items:flex-start;background:rgba(244,236,214,.045);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px}
-.sponsor-card .logo{flex:0 0 auto;width:52px;height:52px;border-radius:10px;background:rgba(244,236,214,.08);display:grid;place-items:center;overflow:hidden;font-family:'Anton';color:var(--gold);font-size:1.1rem}
+.sponsor-card .logo-wrap{position:relative;flex:0 0 auto}
+.sponsor-card .logo{width:52px;height:52px;border-radius:10px;background:rgba(244,236,214,.08);display:grid;place-items:center;overflow:hidden;font-family:'Anton';color:var(--gold);font-size:1.1rem}
+.logo-upload-btn{position:absolute;bottom:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:var(--gold);color:var(--midnight);display:grid;place-items:center;font-size:.75rem;font-weight:700;cursor:pointer;border:2px solid var(--pitch);z-index:2}
+.logo-upload-btn:hover{filter:brightness(1.1)}
 .sponsor-card .logo img{width:100%;height:100%;object-fit:contain}
 .sponsor-card .who{font-weight:700;color:#fff;font-size:.96rem;line-height:1.25}
 .sponsor-card .what{font-family:'Fraunces';font-style:italic;color:#cdd6cd;font-size:.85rem;margin-top:3px;display:block}
@@ -747,6 +758,14 @@ body.kiosk .live-spotlight .tname{font-size:1.6rem}
 .sponsor-card .rm{position:absolute;top:8px;right:8px;background:none;border:none;color:#9fb0a4;cursor:pointer;font-size:.85rem;opacity:.6}
 .sponsor-card .rm:hover{opacity:1;color:var(--terra)}
 .sponsor-total-card{background:rgba(244,236,214,.04);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px 22px}
+.sponsor-crawl-wrap{width:100%;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(244,236,214,.03);padding:18px 0}
+.sponsor-crawl-track{display:inline-flex;gap:36px;white-space:nowrap;animation:crawl 34s linear infinite}
+.sponsor-crawl-wrap:hover .sponsor-crawl-track{animation-play-state:paused}
+@keyframes crawl{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.crawl-chip{display:inline-flex;align-items:center;gap:10px;flex:0 0 auto}
+.crawl-chip .clogo{width:40px;height:40px;border-radius:8px;background:rgba(244,236,214,.08);display:grid;place-items:center;overflow:hidden;font-family:'Anton';color:var(--gold);font-size:.9rem}
+.crawl-chip .clogo img{width:100%;height:100%;object-fit:contain}
+.crawl-chip .cname{font-weight:700;color:#e7dcc0;font-size:.9rem;white-space:nowrap}
 .sponsor-total-card .n{font-family:'Anton';font-size:2rem;color:var(--gold)}
 .sponsor-total-card .l{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#cdd6cd;font-weight:700;margin-top:2px}
 .sponsor-slot{border:1.5px dashed var(--line-strong);border-radius:var(--r-sm);padding:34px 14px;text-align:center;color:#8fa196;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.72rem;transition:.2s}
@@ -759,110 +778,20 @@ body.kiosk .live-spotlight .tname{font-size:1.6rem}
 
 <main class="page" id="page-sponsors">
   <section style="padding-bottom:36px"><div class="wrap">
-    <p class="kicker">Backing the community</p>
-    <h1 style="font-size:clamp(2.6rem,7vw,4.6rem);color:#fff">Become a Sponsor</h1>
-    <p class="lead" style="max-width:680px;margin-top:14px">Team registration is closed and the draw is done — but sponsorship for the UK Goan Vendors Cup 2026 is still wide open. Put your business in front of every Goan event vendor in the UK, on and off the pitch.</p>
-    <div class="status-row">
-      <div class="pill"><span class="k">Sponsorship</span><span class="v">Closes 15 Aug</span></div>
-      <div class="pill"><span class="k">Reach</span><span class="v">125+ vendors</span></div>
-      <div class="pill"><span class="k">Final</span><span class="v">Sun 30 Aug 2026</span></div>
-    </div>
-    <div class="hero-cta">
-      <a class="btn btn-gold" href="#sponsor-form">Enquire about sponsoring</a>
-      <a class="btn btn-ghost" href="#sponsor-tiers">See the packages</a>
-    </div>
+    <p class="kicker">Backed by the community</p>
+    <h1 style="font-size:clamp(2.6rem,7vw,4.6rem);color:#fff">Our Supporters</h1>
+    <p class="lead" style="max-width:680px;margin-top:14px">Every one of these came forward through the community WhatsApp group — thank you 🙏</p>
   </div></section>
 
   <div class="azulejo-band"></div>
 
   <section><div class="wrap">
-    <div class="section-head"><p class="eyebrow">Why sponsor the Cup</p><h2>One tournament, one community</h2><p class="muted">This isn't a generic sports sponsorship — it's a direct line to the caterers, DJs, decorators, photographers, MCs and bar teams who run the UK's Goan events scene.</p></div>
-    <div class="grid g2" style="grid-template-columns:repeat(4,1fr);gap:20px">
-      <div class="feature"><div class="ico">🎯</div><h3>Targeted reach</h3><p class="muted" style="margin:0;font-size:.92rem">In front of 125+ vendor businesses across six trade categories, not a general audience.</p></div>
-      <div class="feature"><div class="ico">📣</div><h3>Social visibility</h3><p class="muted" style="margin:0;font-size:.92rem">Featured across the GoaPages UK Instagram build-up, the live bracket and match-day content.</p></div>
-      <div class="feature"><div class="ico">🏆</div><h3>Grand Final presence</h3><p class="muted" style="margin:0;font-size:.92rem">Top-tier sponsors get pitch-side branding and a place at the trophy presentation.</p></div>
-      <div class="feature"><div class="ico">🤝</div><h3>Community goodwill</h3><p class="muted" style="margin:0;font-size:.92rem">Direct, visible support for a grassroots event run by and for the community.</p></div>
-    </div>
-  </div></section>
-
-  <div class="azulejo-band"></div>
-
-  <section id="sponsor-tiers"><div class="wrap">
-    <div class="section-head"><p class="eyebrow">Packages</p><h2>Ways to sponsor</h2><p class="muted">This tournament is organised entirely by the community with no external funding. Sponsor an item, put cash towards ground hire, or put your name on a trophy — every bit helps. <strong style="color:var(--gold)">Let us know by 15 August</strong> so we can finalise before the day.</p></div>
-    <div class="grid g3">
-      <div class="panel tier-card" style="--tc:var(--gold)">
-        <div class="tier-price">Your choice of item</div>
-        <div><div class="tier-name">Sponsor an Item</div><div class="tier-tag">Bibs, balls, medals &amp; more</div></div>
-        <ul class="tier-list">
-          <li><b>⚽</b> Pick an essential — bibs, footballs, medals, food, drinks, tents, sound, first aid</li>
-          <li><b>⚽</b> Name/logo on the Official Event Backdrop</li>
-          <li><b>⚽</b> Announced at the Presentation Ceremony</li>
-        </ul>
-        <a class="btn btn-gold" href="#sponsor-form">Enquire</a>
-      </div>
-      <div class="panel tier-card" style="--tc:var(--azulejo)">
-        <div class="tier-price">Any amount welcome</div>
-        <div><div class="tier-name">Cash Towards Ground Hire</div><div class="tier-tag">Help cover the pitch</div></div>
-        <ul class="tier-list">
-          <li><b>⚽</b> Contribute any amount towards ground hire costs</li>
-          <li><b>⚽</b> Name/logo on the Official Event Backdrop</li>
-          <li><b>⚽</b> Reduces the amount split across all participating vendors</li>
-        </ul>
-        <a class="btn btn-terra" href="#sponsor-form">Enquire</a>
-      </div>
-      <div class="panel tier-card" style="--tc:var(--terra)">
-        <div class="tier-price">8 trophies available</div>
-        <div><div class="tier-name">Sponsor a Trophy</div><div class="tier-tag">Put your name on the silverware</div></div>
-        <ul class="tier-list">
-          <li><b>⚽</b> Winners · Runners-up · Ladies Winners · Ladies Runners-up</li>
-          <li><b>⚽</b> Best Player (Final) · Best Player (Tournament)</li>
-          <li><b>⚽</b> Best Goalkeeper · Highest Goal Scorer</li>
-          <li><b>⚽</b> Your name announced at the trophy presentation</li>
-        </ul>
-        <a class="btn btn-ghost" href="#sponsor-form">Enquire</a>
-      </div>
-    </div>
-  </div></section>
-
-  <div class="azulejo-band"></div>
-
-  <section><div class="wrap">
-    <div class="section-head"><p class="eyebrow">Current sponsors</p><h2>Our supporters</h2><p class="muted">Every one of these came forward through the community WhatsApp group — thank you 🙏</p></div>
     <div id="sponsor-admin-bar" style="display:none;margin-bottom:18px"></div>
     <div id="sponsor-totals" class="grid g2" style="gap:14px;margin-bottom:26px"></div>
-    <h3 style="color:#fff;font-size:1.1rem;margin-bottom:14px">💰 Cash sponsors</h3>
+    <h3 style="color:#fff;font-size:1.1rem;margin-bottom:14px">💰 Cash Sponsors</h3>
     <div id="sponsor-cash-list" class="sponsor-slots" style="margin-bottom:34px"></div>
-    <h3 style="color:#fff;font-size:1.1rem;margin-bottom:14px">🎁 Item &amp; in-kind sponsors</h3>
+    <h3 style="color:#fff;font-size:1.1rem;margin-bottom:14px">🎁 Sponsor Particulars</h3>
     <div id="sponsor-item-list" class="sponsor-slots"></div>
-  </div></section>
-
-  <div class="azulejo-band"></div>
-
-  <section id="sponsor-form"><div class="wrap grid g2" style="align-items:start">
-    <div>
-      <p class="eyebrow">Ready to get involved?</p><h2>Build your enquiry</h2>
-      <p class="muted">Fill this in to generate a ready-to-send message, then copy it to whichever organiser you'd like to speak to. Nothing is submitted or stored here.</p>
-      <div class="contact-grid" style="margin-top:18px">
-        <div class="contact"><div class="role">Host &amp; admin</div><div class="who">Bunty Vas</div><span class="muted" style="font-size:.86rem">Energetic Host Bunty Vas</span></div>
-        <div class="contact"><div class="role">Coordination</div><div class="who">Brendon Rato</div><span class="muted" style="font-size:.86rem">Moonlit Moments</span></div>
-        <div class="contact"><div class="role">Admin</div><div class="who">Jonathan Barreto</div><span class="muted" style="font-size:.86rem">Night Blink DJ</span></div>
-        <div class="contact"><div class="role">Coordination</div><div class="who">Swiston Antao</div><span class="muted" style="font-size:.86rem">Swisan Creations</span></div>
-      </div>
-    </div>
-    <div class="panel" id="sponsor-enquiry">
-      <p class="eyebrow">Sponsorship enquiry</p><h3 style="color:#fff">Tell us about your business</h3>
-      <div class="form" style="margin-top:6px">
-        <div class="field"><label for="sp-business">Business / brand name</label><input id="sp-business" type="text" placeholder="e.g. Susegado Bar"></div>
-        <div class="field"><label for="sp-name">Contact name</label><input id="sp-name" type="text" placeholder="e.g. Rizwan Fernandes"></div>
-        <div class="field"><label for="sp-reach">Best way to reach you</label><input id="sp-reach" type="text" placeholder="Phone, email or Instagram handle"></div>
-        <div class="field"><label for="sp-tier">Package interested in</label>
-          <select id="sp-tier"><option value="">Select a package…</option><option>Sponsor an Item</option><option>Cash Towards Ground Hire</option><option>Sponsor a Trophy</option><option>Not sure yet — advise me</option></select>
-        </div>
-        <div class="field"><label for="sp-note">Anything else?</label><textarea id="sp-note" rows="3" placeholder="Optional message"></textarea></div>
-        <button class="btn btn-gold" type="button" id="sp-build">Generate my enquiry</button>
-        <div class="field" id="sp-out-wrap" style="display:none"><label for="sp-out">Copy this message</label><textarea id="sp-out" rows="6" readonly></textarea><button class="btn btn-ghost" type="button" id="sp-copy" style="margin-top:8px">Copy to clipboard</button></div>
-      </div>
-    </div>
   </div></section>
 </main>
 
@@ -1040,26 +969,38 @@ function pngFileToDataURL(file,maxW){
    SPONSORS — seeded from the WhatsApp group's sponsor shoutouts
    ============================================================ */
 const SPONSORS_SEED=[
-  {id:"s1",name:"Darren D'Costa Photography",type:"item",desc:"Match footballs"},
-  {id:"s2",name:"St Anthony Caterers (Nash)",type:"item",desc:"8 cases of water"},
-  {id:"s3",name:"Nash Photography",type:"item",desc:"Official First Aider on the day"},
-  {id:"s4",name:"Selvin",type:"item",desc:"First aid kit + certified first aider"},
-  {id:"s5",name:"Infinity Material Handling Ltd",type:"item",desc:"Player bibs"},
-  {id:"s6",name:"VR Events (Alison Botwell)",type:"item",desc:"Sparklers for the trophy lift"},
-  {id:"s7",name:"Frank Furtado Productions",type:"item",desc:"All tournament trophies"},
-  {id:"s8",name:"Motionverse Studio (Pranoy)",type:"item",desc:"Winners & runners-up medals (7 gold, 7 silver)"},
-  {id:"s9",name:"AC Videography (Anthony Miranda)",type:"item",desc:"Lucozade & sandwiches"},
-  {id:"s10",name:"A well-wisher",type:"item",desc:"Generator"},
-  {id:"s11",name:"A well-wisher",type:"item",desc:"Portable PA system + 2 mics"},
-  {id:"s12",name:"Swiston Antao",type:"item",desc:"LED wall"},
-  {id:"s13",name:"AF Tents",type:"item",desc:"Tents & chairs"},
-  {id:"s14",name:"A well-wisher",type:"cash",desc:"Cash + 4 cases of water",amount:200},
-  {id:"s15",name:"Moonlit Moments (Brendon Rato)",type:"cash",desc:"Cash towards ground hire",amount:null},
-  {id:"s16",name:"Cakes by Corte",type:"cash",desc:"Cash towards ground hire",amount:null},
-  {id:"s17",name:"Darren D'Costa Photography",type:"cash",desc:"Cash towards ground hire",amount:null},
-  {id:"s18",name:"Suntop Caterers (Simon)",type:"cash",desc:"Cash towards ground hire",amount:null},
-  {id:"s19",name:"Motionverse Studio (Pranoy)",type:"cash",desc:"Cash towards ground hire",amount:null},
-  {id:"s20",name:"Axel Creation (Morgan)",type:"cash",desc:"Cash towards ground hire",amount:null}
+  {id:"c1",name:"Moonlit Moments",type:"cash",desc:"Brandon",amount:150,logo:"images/sponsor-moonlit-moments.png"},
+  {id:"c2",name:"Darren D'Costa Photography",type:"cash",desc:"Darren",amount:100,logo:"images/sponsor-darren-dcosta.png"},
+  {id:"c3",name:"Suntop Caterers",type:"cash",desc:"Simon",amount:200},
+  {id:"c4",name:"DSP",type:"cash",desc:"Dominic",amount:100},
+  {id:"c5",name:"Motion Verse Studio",type:"cash",desc:"Pranoy",amount:100},
+  {id:"c6",name:"Axel",type:"cash",desc:"Morgan",amount:100,logo:"images/sponsor-axel-creations.png"},
+  {id:"c7",name:"Chefs Kiss Pastry",type:"cash",desc:"Clanny",amount:100,logo:"images/sponsor-chefs-kiss-pastry.png"},
+  {id:"c8",name:"DJ Colour Blind",type:"cash",desc:"Jolan",amount:100},
+  {id:"c9",name:"KFS Interiors",type:"cash",desc:"Brandon",amount:50,logo:"images/sponsor-kfs-interiors.png"},
+  {id:"c10",name:"Henry's Royale Lens",type:"cash",desc:"Anthony",amount:100},
+  {id:"c11",name:"Cakes by Corte",type:"cash",desc:"Mishello",amount:200},
+  {id:"c12",name:"Peppercorn Caterers",type:"cash",desc:"Carvalho",amount:100,logo:"images/sponsor-peppercorn-caterers.png"},
+  {id:"c13",name:"Simplicity of Goa",type:"cash",desc:"William",amount:50},
+  {id:"c14",name:"A well-wisher",type:"cash",desc:"Referred by Jonathan Barreto",amount:250},
+  {id:"c15",name:"Mums Delight Caterers",type:"cash",desc:"Freddy",amount:100},
+  {id:"c16",name:"Party Craftter",type:"cash",desc:"Gladston",amount:150,logo:"images/sponsor-party-craftter.png"},
+  {id:"p1",name:"Darren D'Costa Photography",type:"item",desc:"Footballs",logo:"images/sponsor-darren-dcosta.png"},
+  {id:"p2",name:"ViVaz Bar Services",type:"item",desc:"First aid kit (Selvin)"},
+  {id:"p3",name:"St Anthony Caterers",type:"item",desc:"8 cases of water (Nash)",logo:"images/sponsor-st-anthony-caterers.png"},
+  {id:"p4",name:"Nash Photography",type:"item",desc:"Photography"},
+  {id:"p5",name:"Amcho Vaddo",type:"item",desc:"Portable JBL speaker (Melvon)"},
+  {id:"p6",name:"Infinity Material Handling",type:"item",desc:"Bibs (DJ Backspin)",logo:"images/sponsor-infinity-material-handling.png"},
+  {id:"p7",name:"VR Event",type:"item",desc:"Cold pyros (Alison)"},
+  {id:"p8",name:"Motion Verse Studios",type:"item",desc:"Medals (Pranoy)"},
+  {id:"p9",name:"Frank Furtado Productions",type:"item",desc:"Trophies"},
+  {id:"p10",name:"AC Videography",type:"item",desc:"Lucozade + sandwiches (Anthony)"},
+  {id:"p11",name:"A well-wisher",type:"item",desc:"Generator"},
+  {id:"p12",name:"Swisan Creations",type:"item",desc:"LED wall (Swiston)",logo:"images/sponsor-swisan-creations.png"},
+  {id:"p13",name:"AF Tents",type:"item",desc:"Tents + chairs (Astin)"},
+  {id:"p14",name:"Showbiz Global",type:"item",desc:"Venue hire assist (Calvin)"},
+  {id:"p15",name:"GoaPages / Fotobooth Rental UK",type:"item",desc:"Website (Farryston)",logo:"images/sponsor-goapages.png"},
+  {id:"p16",name:"KR Visual",type:"item",desc:"Photography (Langstan)"}
 ];
 let SPONSORS=SPONSORS_SEED.slice();
 
@@ -1068,9 +1009,21 @@ function sponsorCard(s,admin){
   const logo=s.logo?`<img src="${s.logo}" alt="">`:sponsorInitials(s.name);
   const amt=s.amount?`<span class="amt">£${s.amount}</span>`:"";
   const rm=admin?`<button class="rm" onclick="removeSponsor('${s.id}')" title="Remove">✕</button>`:"";
-  return `<div class="sponsor-card">${rm}<div class="logo">${logo}</div><div><div class="who">${s.name}</div><span class="what">${s.desc}</span>${amt}</div></div>`;
+  const uploadBtn=admin?`<label class="logo-upload-btn" title="${s.logo?'Replace logo':'Add logo'}">${s.logo?'↻':'+'}<input type="file" accept="image/png" style="display:none" onchange="attachSponsorLogo('${s.id}',this)"></label>`:"";
+  return `<div class="sponsor-card">${rm}<div class="logo-wrap"><div class="logo">${logo}</div>${uploadBtn}</div><div><div class="who">${s.name}</div><span class="what">${s.desc}</span>${amt}</div></div>`;
+}
+function renderSponsorCrawl(){
+  const mount=document.getElementById("home-sponsor-crawl");
+  if(!mount)return;
+  if(!SPONSORS.length){ mount.innerHTML=""; return; }
+  const chip=s=> s.logo
+    ? `<div class="crawl-chip"><div class="clogo"><img src="${s.logo}" alt=""></div><span class="cname">${s.name}</span></div>`
+    : `<div class="crawl-chip"><span class="cname">${s.name}</span></div>`;
+  const chips=SPONSORS.map(chip).join("");
+  mount.innerHTML=chips+chips;
 }
 function renderSponsors(){
+  renderSponsorCrawl();
   const cashList=SPONSORS.filter(s=>s.type==="cash"), itemList=SPONSORS.filter(s=>s.type==="item");
   const admin=isAdminSession();
   const cashMount=document.getElementById("sponsor-cash-list"), itemMount=document.getElementById("sponsor-item-list"), totalsMount=document.getElementById("sponsor-totals"), barMount=document.getElementById("sponsor-admin-bar");
@@ -1081,14 +1034,14 @@ function renderSponsors(){
   const cashPledgedNoAmount=cashList.filter(s=>!s.amount).length;
   totalsMount.innerHTML=`
     <div class="sponsor-total-card"><div class="n">£${cashKnown}${cashPledgedNoAmount?'+':''}</div><div class="l">Cash confirmed${cashPledgedNoAmount?` (+${cashPledgedNoAmount} pledged, amount TBC)`:''}</div></div>
-    <div class="sponsor-total-card"><div class="n">${itemList.length}</div><div class="l">Items sponsored</div></div>`;
+    <div class="sponsor-total-card"><div class="n">${itemList.length}</div><div class="l">Particulars sponsored</div></div>`;
   if(admin){
     barMount.style.display="block";
     barMount.innerHTML=`<div class="panel" style="padding:20px 22px">
       <p class="eyebrow" style="margin-bottom:10px">Admin · Add a sponsor</p>
       <div class="grid g2" style="gap:10px">
         <div class="field"><label>Sponsor / business name</label><input id="adm-sp-name" type="text"></div>
-        <div class="field"><label>Type</label><select id="adm-sp-type"><option value="item">Item / in-kind</option><option value="cash">Cash</option></select></div>
+        <div class="field"><label>Type</label><select id="adm-sp-type"><option value="item">Particulars</option><option value="cash">Cash</option></select></div>
         <div class="field"><label>What they sponsored</label><input id="adm-sp-desc" type="text" placeholder="e.g. Cash towards ground hire"></div>
         <div class="field"><label>Amount (£, cash only)</label><input id="adm-sp-amt" type="number" placeholder="Leave blank if TBC"></div>
         <div class="field"><label>Logo (PNG, optional)</label><input id="adm-sp-logo" type="file" accept="image/png"></div>
@@ -1130,6 +1083,20 @@ function removeSponsor(id){
   SPONSORS=SPONSORS.filter(s=>s.id!==id);
   gvcSet("gvc2026","sponsors",{list:SPONSORS});
   renderSponsors();
+}
+async function attachSponsorLogo(id,input){
+  const file=input.files[0];
+  if(!file)return;
+  try{
+    const dataUrl=await pngFileToDataURL(file,240);
+    const target=SPONSORS.find(s=>s.id===id);
+    if(!target)return;
+    target.logo=dataUrl;
+    await gvcSet("gvc2026","sponsors",{list:SPONSORS});
+    renderSponsors();
+  }catch(e){
+    alert(e.message||"Couldn't attach that logo — please try a PNG under 800KB.");
+  }
 }
 function watchSponsors(){
   gvcWatch("gvc2026","sponsors",{list:SPONSORS_SEED},data=>{

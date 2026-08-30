@@ -73,11 +73,14 @@ h1,h2,.anton{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spac
 .idle-slide .anton{font-size:3vh;color:#fff}
 
 /* ===== bottom ticker ===== */
-.ticker-wrap{flex:0 0 auto;border-top:.2vh solid rgba(244,236,214,.18);background:rgba(6,35,26,.7);overflow:hidden;height:5.5vh;display:flex;align-items:center}
-.ticker-label{flex:0 0 auto;background:var(--gold);color:var(--midnight);font-family:'Anton',sans-serif;font-size:1.8vh;letter-spacing:.06em;padding:0 1.6vw;height:100%;display:flex;align-items:center;white-space:nowrap}
+.ticker-wrap{flex:0 0 auto;border-top:.3vh solid rgba(244,236,214,.18);background:rgba(6,35,26,.75);overflow:hidden;height:25vh;display:flex;align-items:center}
+.ticker-label{flex:0 0 auto;background:var(--gold);color:var(--midnight);font-family:'Anton',sans-serif;font-size:2.2vh;letter-spacing:.06em;padding:0 1.6vw;height:100%;display:flex;align-items:center;justify-content:center;white-space:nowrap;text-align:center;writing-mode:horizontal-tb}
 .ticker-track{flex:1;overflow:hidden;position:relative;height:100%;display:flex;align-items:center}
-.ticker-move{display:inline-flex;gap:5vw;white-space:nowrap;animation:scroll 32s linear infinite;padding-left:100%;font-size:1.9vh;font-weight:600;color:var(--cream)}
-.ticker-move b{color:var(--gold-soft)}
+.ticker-move{display:inline-flex;align-items:center;gap:5vw;white-space:nowrap;animation:scroll 38s linear infinite;padding-left:100%}
+.crawl-chip-lw{display:inline-flex;align-items:center;gap:1.4vh;flex:0 0 auto}
+.crawl-chip-lw .clogo{width:15vh;height:15vh;border-radius:1.4vh;background:rgba(244,236,214,.09);display:grid;place-items:center;overflow:hidden}
+.crawl-chip-lw .clogo img{width:100%;height:100%;object-fit:contain}
+.crawl-chip-lw .cname{font-family:'Anton',sans-serif;font-size:2.4vh;color:var(--cream);white-space:nowrap}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
 .offline-badge{position:fixed;top:1.2vh;right:1.4vw;font-size:1.2vh;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9fb0a4;background:rgba(244,236,214,.08);padding:.6vh 1vh;border-radius:1vh;z-index:10}
@@ -275,8 +278,12 @@ function advanceSlide(){
 }
 function renderTicker(){
   const mount=document.getElementById("ticker-move");
-  if(!SPONSORS.length){ mount.innerHTML="Sponsor this tournament — see goanvendors.uk/#sponsors"; return; }
-  mount.innerHTML=SPONSORS.map(s=>`<span><b>${s.name}</b> — ${s.desc}</span>`).join("<span>·</span>");
+  if(!SPONSORS.length){ mount.innerHTML='<span class="crawl-chip-lw"><span class="cname">Sponsor this tournament — see goanvendors.uk/#sponsors</span></span>'; return; }
+  const chip=s=> s.logo
+    ? `<div class="crawl-chip-lw"><div class="clogo"><img src="${s.logo}" alt=""></div><span class="cname">${s.name}</span></div>`
+    : `<div class="crawl-chip-lw"><span class="cname">${s.name}</span></div>`;
+  const chips=SPONSORS.map(chip).join("");
+  mount.innerHTML=chips+chips;
 }
 function tickClock(){
   const d=new Date();
